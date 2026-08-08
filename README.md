@@ -48,38 +48,47 @@ When the walkthrough dialogue finishes, the agent will flatly ask if you want to
 
 ---
 
-## Usage Examples
+## Usage Example (From Invocation to HTML Report)
 
-### Example 1: Pre-Merge (Gating Mode)
+Here is a complete walkthrough of gating a pull request diff before merging:
 
-> **Scenario:** An AI agent generated a pull request or complex diff. Before merging, you want to make sure you thoroughly understand every line so you can defend it in code review.
-
+### 1. User Invokes the Skill
 ```bash
-/comprehend I want to walk through the JWT validation diff before merging PR #14.
+/comprehend I want to walk through the JWT validation diff in PR #14 before merging.
 ```
 
-1. **Agent Explanation:** The agent points out entry points, non-obvious logic, security invariants, and failure paths across the diff.
-2. **Dialogue:** You ask follow-up questions:
-   > *"Why did we move token extraction out of middleware into `session-store.ts`?"*
-3. **Agent Response:** The agent explains the architectural seam and cites exact lines (`src/auth/session-store.ts:L42-L58`).
-4. **Outcome:** You now understand the diff, can defend the implementation, and gate the merge on real comprehension.
+### 2. Agent Explains the Code
+The agent inspects the target code and provides a clear, structured explanation tailored to your preferences:
 
----
+> **Agent:** Here is the architecture of the JWT validation diff in `src/auth/session-store.ts`:
+> 
+> * **Entry Point:** `validateSessionToken()` ([src/auth/session-store.ts:L18](file:///src/auth/session-store.ts#L18)) parses the bearer token header.
+> * **Load-Bearing Invariant:** Token expiration is now checked *before* database lookup ([src/auth/session-store.ts:L42](file:///src/auth/session-store.ts#L42)), avoiding unnecessary DB load on expired tokens.
+> * **Decoupled Seam:** Signature verification was moved to a separate helper `verifySignature()` ([src/auth/crypto.ts:L10](file:///src/auth/crypto.ts#L10)).
 
-### Example 2: Post-Merge (Paying-down Mode)
+### 3. Conversational Dialogue
+You ask follow-up questions to understand why decisions were made or clarify non-obvious logic:
 
-> **Scenario:** An agent or colleague built a complex billing module last week. You want to pay down comprehension debt over multiple focused sessions so you can debug or extend it later.
+> **User:** *"Why did we move the token expiration check before the DB query?"*  
+> **Agent:** *"Checking expiration in-memory eliminates DB lookups for expired requests, preventing potential DB denial-of-service under high request rates."*
 
-```bash
-/comprehend src/billing/stripe-webhook-handler.ts
+### 4. Flat Offer & Optional HTML Report
+When the walkthrough dialogue reaches a natural conclusion, the agent flatly offers to capture the walkthrough:
+
+> **Agent:** *"Would you like me to capture this walkthrough in an HTML report, in your own words, for future reference?"*  
+> **User:** *"Yes, please."*
+
+### 5. Generated HTML Walkthrough Report
+The agent writes the walkthrough document to `.journal/comprehend/modules/0001-jwt-validation.html`, styled with your project's custom `journal.css`:
+
 ```
-
-1. **Mission Setup:** The agent initializes `.journal/comprehend/MISSION.md`:
-   * **Slice:** `src/billing/stripe-webhook-handler.ts`
-   * **Driver:** *"I need to debug 3 AM webhook failures and extend it for subscription upgrades."*
-   * **Success Criterion:** *"I can debug edge-case failures without needing an AI agent."*
-2. **Paced Walkthrough:** The agent walks through one slice at a time (e.g., idempotent processing of `invoice.payment_succeeded`).
-3. **Session Record:** The agent records your progress in `.journal/comprehend/records/0001-stripe-webhooks.md`, updating your ownership frontier so future sessions pick up right where you left off.
+.journal/
+  assets/
+    styles/journal.css              # Custom project stylesheet
+  comprehend/
+    records/0001-jwt-validation.md   # Session summary
+    modules/0001-jwt-validation.html # Generated walkthrough HTML report
+```
 
 ---
 
