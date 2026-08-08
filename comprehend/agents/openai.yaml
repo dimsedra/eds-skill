@@ -1,0 +1,5 @@
+interface:
+  display_name: "Comprehend"
+  short_description: "Build a private comprehension journal for code you ship"
+policy:
+  allow_implicit_invocation: false
