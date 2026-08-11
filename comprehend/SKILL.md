@@ -98,8 +98,8 @@ The agent's voice is flat, matter-of-fact, and strictly informative:
 
 ### Concluding & Optional Walkthrough Doc
 The agent does not write a walkthrough doc by default. The walkthrough is the conversation itself.
-When the walkthrough dialogue reaches a natural conclusion or stopping point, the agent flatly offers to capture an HTML walkthrough doc in the user's words.
-Keep the offer flat and brief (two sentences max) without praise, accommodation, or sales closes. If the user declines, the session ends. If the user accepts, format their dictated structure into `.journal/comprehend/modules/0001-<slug>.html` per [MODULE-FORMAT.md](MODULE-FORMAT.md).
+When the walkthrough dialogue reaches a natural conclusion or stopping point, the agent flatly offers to capture an HTML walkthrough report.
+Keep the offer flat and brief (two sentences max) without praise, accommodation, or sales closes. If the user declines, the session ends. If the user accepts, generate the HTML walkthrough report (top agent walkthrough following dialogue progression, bottom session log for user notes) into `.journal/comprehend/modules/0001-<slug>.html` per [MODULE-FORMAT.md](MODULE-FORMAT.md).
 
 ---
 
@@ -112,7 +112,7 @@ The workspace is private — add `.journal/` to the project's `.gitignore` on fi
   MISSION.md              # Why this code, why now (see MISSION-FORMAT.md)
   NOTES.md                # User preferences and key takeaways (see SETUP-FORMAT.md)
   records/*.md            # Brief session records (see RECORD-FORMAT.md)
-  modules/*.html          # Walkthrough docs in user's words (see MODULE-FORMAT.md)
+  modules/*.html          # Walkthrough HTML reports (see MODULE-FORMAT.md)
   reference/*.html        # Glossaries, callouts, code-reading maps
 .journal/assets/
   styles/journal.css      # Tailored stylesheet dynamically generated on setup

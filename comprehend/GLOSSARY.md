@@ -19,7 +19,7 @@ _Avoid_: "tutorial" (too generic), "lesson" (too generic)
 
 ## Walkthrough doc
 
-An optional HTML file in `.journal/comprehend/modules/`, titled `0001-<slug>.html`. Captured at the moment of ownership, in the **user's** voice. The user dictates the structure; the agent formats. The agent does not write the prose.
+An optional HTML file in `.journal/comprehend/modules/`, titled `0001-<slug>.html`. Contains the agent-authored walkthrough following the dialogue progression (top section) and the session log with user notes and framing (bottom section).
 _Avoid_: "module" (the old name; loaded with a meaning the skill no longer supports), "doc" (overloaded)
 
 ## Session record

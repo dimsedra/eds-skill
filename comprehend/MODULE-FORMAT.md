@@ -1,39 +1,39 @@
 # MODULE Format
 
-Reference for structuring walkthrough HTML documents produced by `/comprehend`.
+Reference for structuring walkthrough HTML reports produced by `/comprehend`.
 
 ---
 
 ## Creation Criterion
 
-A walkthrough document is created **only** when all three conditions are met:
+A walkthrough report is created **only** when all three conditions are met:
 1. The walkthrough dialogue reaches a natural conclusion or stopping point.
-2. The agent offers the document flatly (*"Want me to capture this as a walkthrough doc, in your words, for you to revisit later?"*).
+2. The agent offers the report flatly (e.g. asking if the user wants the walkthrough captured in an HTML report for future reference).
 3. The user explicitly accepts.
 
 The agent does **not** judge or grade ownership.
 
 ---
 
-## Agent Behavior & Document Structure
+## Document Structure & Pacing
 
-When constructing a walkthrough document:
+An HTML walkthrough report consists of two distinct sections separated by a divider:
 
-### 1. Primary Agent Explanation (Top Section)
-- Author the core walkthrough: code architecture, entry/exit points, non-obvious logic, load-bearing invariants, and adjacent seams.
-- Include precise file:line citations for every claim.
+### 1. Primary Walkthrough (Top Section)
+- **Agent-Authored Clarity:** Author the core walkthrough for maximum technical clarity, directly following the progression of topics discussed during the session (e.g., if the dialogue walked through topics A, C, and D, the report covers A, C, and D in that order).
+- **Technical Precision:** Detail code architecture, entry/exit points, non-obvious logic, load-bearing invariants, and adjacent seams.
+- **Citations:** Include precise `file:line` references for every claim.
 
 ### 2. Divider (`<hr>`)
 
 ### 3. Session Log (Bottom Section)
-- Capture the user's interactive session notes:
-  - **User Questions**: Questions or clarifications requested by the user.
-  - **Key Connections / Insights**: Structural notes or connections discussed during the session.
+- **User's Interactive Notes:** Placed at the bottom below the `<hr>` divider.
+- **User's Words & Framing:** Capture the user's interactive session notes, questions, pushbacks, key connections, and dictated insights recorded during the conversation.
 
 ---
 
-## Formatting & Verification
+## Formatting & Location
 
-- Save HTML walkthroughs under `.journal/comprehend/modules/0001-<slug>.html`.
+- Save HTML walkthrough reports under `.journal/comprehend/modules/0001-<slug>.html`.
 - Link the workspace stylesheet (`.journal/assets/styles/journal.css`).
-- Follow the aesthetic and print rules in [WRITING-HTML-REPORT.md](WRITING-HTML-REPORT.md).
+- Follow the visual and print conventions in [WRITING-HTML-REPORT.md](WRITING-HTML-REPORT.md).
