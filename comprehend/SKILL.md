@@ -43,7 +43,7 @@ On first invocation in a new project, execute setup before starting the walkthro
 2.  **Gitignore:** Append `.journal/` to the project's `.gitignore` file.
 3.  **Dynamic CSS Generation:**
     *   Inspect the host project's files (languages, frameworks, themes, styling configurations).
-    *   Dynamically generate a clean, premium, highly readable CSS stylesheet tailored to the project (supporting a comfortable font family, responsive margins, clean headers, and code block styling).
+    *   Dynamically generate a clean, readable CSS stylesheet tailored to the project (supporting a comfortable font family, responsive margins, clean headers, and code block styling).
     *   Write the CSS contents to `.journal/assets/styles/journal.css`.
 4.  **Preference Onboarding:** Follow [SETUP-FORMAT.md](SETUP-FORMAT.md) to discover the user's explanation preference via a short interview and save it to `.journal/comprehend/NOTES.md`.
 
