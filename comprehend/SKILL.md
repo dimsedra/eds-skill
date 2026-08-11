@@ -50,6 +50,38 @@ On first invocation in a new project, execute setup before starting the walkthro
 
 ---
 
+## Session Lifecycle (Time Block)
+
+Every `/comprehend` invocation operates as a distinct, bounded **time block** with a explicit Session Start and Session Exit.
+
+### 1. Session Start (Opening the Time Block)
+When `/comprehend` is invoked, the agent opens the time block by displaying a concise session banner before presenting the first code slice:
+
+```markdown
+🟢 **Comprehend Session Started**
+- **Target Slice:** `src/auth/session-store.ts`
+- **Mode:** Gating (Pre-Merge) | Paying-Down (Post-Merge)
+- **Active Preference:** [Style loaded from NOTES.md]
+```
+
+### 2. Session Progression (Two-Way Walkthrough)
+Iterate through the code 1–2 paragraphs at a time, allowing the user to steer, ask questions, or dive deeper.
+
+### 3. Session Exit (Closing the Time Block)
+When the user indicates they are finished or the walkthrough reaches its natural conclusion:
+1. **Flat Doc Offer:** Ask if the user wants an HTML walkthrough report (`.journal/comprehend/modules/0001-<slug>.html`).
+2. **Write Session Record:** Automatically log the session shape to `.journal/comprehend/records/0001-<slug>.md`.
+3. **Closing Banner:** Display the closing session summary banner to cleanly close the time block:
+
+```markdown
+🔴 **Comprehend Session Closed**
+- **Frontier Moved:** [One sentence summary of what was understood]
+- **Session Record:** `.journal/comprehend/records/0001-jwt-validation.md`
+- **HTML Report:** `.journal/comprehend/modules/0001-jwt-validation.html` (or "None created")
+```
+
+---
+
 ## Walkthrough Posture & Interaction Rules
 
 ### First Principle: The Agent Explains, The User Owns

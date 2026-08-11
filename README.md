@@ -36,59 +36,59 @@ On its first run in a project, `/comprehend` automatically:
 - **Dynamic CSS:** Inspects your project's code, structure, and styling to dynamically generate a clean, premium, highly readable CSS stylesheet tailored specifically to your project's aesthetic. This is written to `.journal/assets/styles/journal.css`.
 - Runs a short onboarding interview to establish your preferred learning style (e.g., systemic/structural, step-by-step logic tracing, or conceptual metaphors) and saves it to `.journal/comprehend/NOTES.md`.
 
-### 2. Walking Through Code
+### 2. Session Lifecycle (Time Block)
+Every `/comprehend` invocation runs as a distinct, bounded **time block** with a clear Session Start (`🟢`) and Session Exit (`🔴`).
+
+### 3. Walking Through Code
 You invoke the command and point it at the target file or diff:
 ```bash
 /comprehend src/auth/session.ts
 ```
-The agent explains the code in line with your preferences. You ask follow-up questions about why decisions were made, invariant logic, or dependencies.
-
-### 3. Optional Walkthrough Docs
-When the walkthrough dialogue finishes, the agent will flatly ask if you want to capture the explanation. If you accept, the agent formats a walkthrough HTML document under `.journal/comprehend/modules/` in **your own words** based on the conversation, linking the project-tailored `journal.css`.
+The agent presents explanations 1–2 paragraphs at a time, allowing you to ask follow-up questions, steer the walkthrough, or request deeper context.
 
 ---
 
-## Usage Example (From Invocation to HTML Report)
+## Usage Example (Session Lifecycle & HTML Report)
 
-Here is a complete walkthrough of gating a pull request diff before merging:
+Here is a complete walkthrough showing a bounded **Session Time Block**:
 
-### 1. User Invokes the Skill
+### 1. User Invokes & Session Start
 ```bash
 /comprehend I want to walk through the JWT validation diff in PR #14 before merging.
 ```
 
-### 2. Agent Explains the Code
-The agent inspects the target code and provides a clear, structured explanation tailored to your preferences:
+> 🟢 **Comprehend Session Started**  
+> - **Target Slice:** `src/auth/session-store.ts`  
+> - **Mode:** Gating (Pre-Merge)  
+> - **Active Preference:** Systemic Architecture  
 
-> **Agent:** Here is the architecture of the JWT validation diff in `src/auth/session-store.ts`:
+### 2. Agent Explains the Code Slice
+The agent inspects the code and presents a concise explanation tailored to your preferences:
+
+> **Agent:** Here is the entry point for JWT validation in `src/auth/session-store.ts`:
 > 
 > * **Entry Point:** `validateSessionToken()` ([src/auth/session-store.ts:L18](file:///src/auth/session-store.ts#L18)) parses the bearer token header.
-> * **Load-Bearing Invariant:** Token expiration is now checked *before* database lookup ([src/auth/session-store.ts:L42](file:///src/auth/session-store.ts#L42)), avoiding unnecessary DB load on expired tokens.
-> * **Decoupled Seam:** Signature verification was moved to a separate helper `verifySignature()` ([src/auth/crypto.ts:L10](file:///src/auth/crypto.ts#L10)).
+> * **Load-Bearing Invariant:** Token expiration is checked *before* DB lookup ([src/auth/session-store.ts:L42](file:///src/auth/session-store.ts#L42)), avoiding unnecessary DB load on expired tokens.
 
 ### 3. Conversational Dialogue
-You ask follow-up questions to understand why decisions were made or clarify non-obvious logic:
+You ask follow-up questions to understand decisions or non-obvious logic:
 
-> **User:** *"Why did we move the token expiration check before the DB query?"*  
+> **User:** *"Why did we move token expiration check before the DB query?"*  
 > **Agent:** *"Checking expiration in-memory eliminates DB lookups for expired requests, preventing potential DB denial-of-service under high request rates."*
 
 ### 4. Flat Offer & Optional HTML Report
-When the walkthrough dialogue reaches a natural conclusion, the agent flatly offers to capture the walkthrough:
+When the walkthrough dialogue finishes, the agent flatly offers to capture the walkthrough:
 
 > **Agent:** *"Would you like me to capture this walkthrough in an HTML report, in your own words, for future reference?"*  
 > **User:** *"Yes, please."*
 
-### 5. Generated HTML Walkthrough Report
-The agent writes the walkthrough document to `.journal/comprehend/modules/0001-jwt-validation.html`, styled with your project's custom `journal.css`:
+### 5. Session Exit & Closing Banner
+The agent writes `.journal/comprehend/modules/0001-jwt-validation.html` and closes the session:
 
-```
-.journal/
-  assets/
-    styles/journal.css              # Custom project stylesheet
-  comprehend/
-    records/0001-jwt-validation.md   # Session summary
-    modules/0001-jwt-validation.html # Generated walkthrough HTML report
-```
+> 🔴 **Comprehend Session Closed**  
+> - **Frontier Moved:** Understood JWT in-memory token validation and DB DoS protection seam.  
+> - **Session Record:** `.journal/comprehend/records/0001-jwt-validation.md`  
+> - **HTML Report:** `.journal/comprehend/modules/0001-jwt-validation.html`  
 
 ---
 
