@@ -52,7 +52,7 @@ On first invocation in a new project, execute setup before starting the walkthro
 
 ## Session Lifecycle (Time Block)
 
-Every `/comprehend` invocation operates as a distinct, bounded **time block**. Anchor session boundaries behaviorally without hardcoding scripts or templates.
+Every `/comprehend` invocation operates as a distinct, bounded **time block**.
 
 ### 1. Session Framing
 In the opening turn, establish context naturally:
