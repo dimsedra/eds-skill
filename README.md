@@ -7,6 +7,7 @@ This repository hosts four skills:
 *   **`/issue-it`** — Convert problem discussions and bugs into clean, user-centered GitHub issues (no code block bloat, problem-focused titles).
 *   **`/write-skills`** — Meta-skill for writing, refining, and auditing universal agent skills against overfitting and verbosity.
 *   **`html-presentation`** — Engineer custom HTML slide decks with responsive viewport fitting, keyboard navigation, and exact PDF export.
+*   **`personal/`** — Eds' personal use-case skills (user-specific workflows, see `personal/README.md`).
 
 ---
 
