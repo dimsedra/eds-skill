@@ -4,11 +4,17 @@ Reference for structuring walkthrough HTML reports produced by `/comprehend`.
 
 ---
 
+## Core Mental Model: The "Cold-Me Six Weeks Later" Rule
+
+An HTML walkthrough report is created for the user returning to this code weeks or months later with zero active context. It must pass the cold-start test: a reader opening the report cold must instantly get high-level system re-orientation before diving into detailed code mechanics.
+
+---
+
 ## Creation Criterion
 
 A walkthrough report is created **only** when all three conditions are met:
 1. The walkthrough dialogue reaches a natural conclusion or stopping point.
-2. The agent offers the report flatly (e.g. asking if the user wants the walkthrough captured in an HTML report for future reference).
+2. The agent offers the report concisely.
 3. The user explicitly accepts.
 
 The agent does **not** judge or grade ownership.
@@ -19,14 +25,15 @@ The agent does **not** judge or grade ownership.
 
 An HTML walkthrough report consists of two distinct sections separated by a divider:
 
-### 1. Primary Walkthrough (Top Section)
-- **Agent-Authored Clarity:** Author the core walkthrough for maximum technical clarity, directly following the progression of topics discussed during the session (e.g., if the dialogue walked through topics A, C, and D, the report covers A, C, and D in that order).
-- **Technical Precision:** Detail code architecture, entry/exit points, non-obvious logic, load-bearing invariants, and adjacent seams.
+### 1. Primary Walkthrough (Top Section - Agent-Authored)
+- **Big-Picture Re-Orientation First:** Always start with a 1–2 paragraph high-level system overview. Explain what component or slice this document covers, where it sits in the broader architecture, and why this walkthrough was conducted.
+- **Dialogue Progression (A → C → D):** Author the core walkthrough with maximum technical clarity, directly following the progression of topics discussed during the session (e.g. if the dialogue walked through topics A, C, and D, the report covers A, C, and D in that order).
+- **Technical Precision & Invariants:** Detail code architecture, entry/exit points, non-obvious logic, load-bearing invariants, and adjacent seams.
 - **Citations:** Include precise `file:line` references for every claim.
 
 ### 2. Divider (`<hr>`)
 
-### 3. Session Log (Bottom Section)
+### 3. Session Log (Bottom Section - User Notes & Framing)
 - **User's Interactive Notes:** Placed at the bottom below the `<hr>` divider.
 - **User's Words & Framing:** Capture the user's interactive session notes, questions, pushbacks, key connections, and dictated insights recorded during the conversation.
 
