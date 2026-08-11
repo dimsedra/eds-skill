@@ -133,5 +133,4 @@ The agent writes `records/` — brief session records, agent's voice, capturing 
 - [SETUP-FORMAT.md](SETUP-FORMAT.md) — Guidelines for onboarding interviews and preference maintenance.
 - [MISSION-FORMAT.md](MISSION-FORMAT.md) — Specification for `MISSION.md`.
 - [RECORD-FORMAT.md](RECORD-FORMAT.md) — Specification for Markdown session records.
-- [MODULE-FORMAT.md](MODULE-FORMAT.md) — Specification for Walkthrough HTML documents.
-- [WRITING-HTML-REPORT.md](WRITING-HTML-REPORT.md) — Guidelines for typography, styling, and print-ready HTML conventions.
+- [MODULE-FORMAT.md](MODULE-FORMAT.md) — Specification for Walkthrough HTML reports (structure, aesthetics, and styling).

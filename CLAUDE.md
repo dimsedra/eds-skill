@@ -8,7 +8,7 @@ This repository hosts pluggable, user-invoked agent skills (`disable-model-invoc
     *   `comprehend/SKILL.md` — Core instructions.
     *   `comprehend/GLOSSARY.md` — Domain vocabulary.
     *   `comprehend/SETUP-FORMAT.md` — Preference onboarding and dynamic maintenance.
-    *   `comprehend/MISSION-FORMAT.md`, `MODULE-FORMAT.md`, `RECORD-FORMAT.md`, `WRITING-HTML-REPORT.md`.
+    *   `comprehend/MISSION-FORMAT.md`, `MODULE-FORMAT.md`, `RECORD-FORMAT.md`.
 *   `issue-it/` — Skill for user-centered GitHub issue creation.
     *   `issue-it/SKILL.md` — Core instructions and failure modes.
     *   `issue-it/ISSUE-FORMAT.md` — Issue template structure.

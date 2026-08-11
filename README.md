@@ -48,6 +48,7 @@ Agents often write issues catered to themselves — filled with verbose prompt l
 *   [SKILL.md](comprehend/SKILL.md) — Core walkthrough skill instructions.
 *   [GLOSSARY.md](comprehend/GLOSSARY.md) — Standard definitions (frontier, signals, desirable difficulty, etc.).
 *   [SETUP-FORMAT.md](comprehend/SETUP-FORMAT.md) — Guidelines for onboarding interviews and preference maintenance.
+*   [MODULE-FORMAT.md](comprehend/MODULE-FORMAT.md) — HTML walkthrough report structure and aesthetic guidelines.
 
 ### `/issue-it` Documentation
 *   [SKILL.md](issue-it/SKILL.md) — Core user-centered issue drafting rules.

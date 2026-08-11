@@ -1,6 +1,6 @@
-# MODULE Format
+# MODULE Format (HTML Walkthrough Reports)
 
-Reference for structuring walkthrough HTML reports produced by `/comprehend`.
+Reference guide for structuring and styling walkthrough HTML reports produced by `/comprehend`.
 
 ---
 
@@ -21,7 +21,7 @@ The agent does **not** judge or grade ownership.
 
 ---
 
-## Document Structure & Pacing
+## Document Structure & Layout
 
 An HTML walkthrough report consists of two distinct sections separated by a divider:
 
@@ -39,8 +39,17 @@ An HTML walkthrough report consists of two distinct sections separated by a divi
 
 ---
 
-## Formatting & Location
+## Aesthetic, Typography & Assets
+
+- **Stylesheet:** Link the shared workspace stylesheet (`.journal/assets/styles/journal.css`).
+- **Visual Consistency:** Adopt the typography, spacing, and font choices generated in `journal.css`.
+- **Side Notes & Callouts:** Use `<aside>` or `<figure>` elements for supplementary notes, definitions, or code callouts without breaking the narrative flow.
+- **Readability:** Ensure a comfortable reading layout (optimal line length, clear headings, proper contrast).
+- **Components:** Reference reusable component assets in `.journal/assets/` rather than inlining duplicated styles or scripts.
+- **Print Verification:** Ensure the HTML renders cleanly on screen and prints to PDF or paper without broken section headings or cluttered UI controls.
+
+---
+
+## File Location
 
 - Save HTML walkthrough reports under `.journal/comprehend/modules/0001-<slug>.html`.
-- Link the workspace stylesheet (`.journal/assets/styles/journal.css`).
-- Follow the visual and print conventions in [WRITING-HTML-REPORT.md](WRITING-HTML-REPORT.md).
