@@ -1,14 +1,16 @@
-# Comprehend Skill
+# Agent Skills
 
-Dialogue-based, conversational, two-way code walkthroughs tailored to your preferences and proficiency. Use it before the merge to understand the diff, or after to pay down comprehension debt.
+A collection of human-centered, pluggable agent skills designed to improve comprehension and clarity in AI-assisted development.
 
-This repository hosts `/comprehend` as a standalone, pluggable skill.
+This repository hosts two user-invoked skills:
+*   **`/comprehend`** — Dialogue-based, two-way code walkthroughs to gate pre-merge diffs or pay down comprehension debt.
+*   **`/issue-it`** — Convert problem discussions and bugs into clean, human-centered GitHub issues (no code block bloat, problem-focused titles).
 
 ---
 
 ## Installation
 
-Install the skill on your coding agent using `npx skills`:
+Install the skills on your coding agent using `npx skills`:
 
 ```bash
 npx skills@latest add dimsedra/eds-skill
@@ -16,91 +18,37 @@ npx skills@latest add dimsedra/eds-skill
 
 ---
 
-## Why `/comprehend` Exists
+## Skills Included
 
-In agent-led development, code is produced at an unprecedented speed, creating instant **comprehension debt** — code in your repo that you can't explain, defend in a review, or debug at 3 AM. 
+### 1. `/comprehend` — Code Walkthrough & Ownership
+In agent-led development, code is produced at an unprecedented speed, creating instant **comprehension debt**. `/comprehend` runs a bounded session time block to walk through code slices 1–2 paragraphs at a time.
 
-`/comprehend` resolves this:
-*   **Before the merge (Gating Mode):** Walk through and understand the diff so you can gate the change and defend the code in review before it ships.
-*   **After the merge (Paying-down Mode):** Walk through existing code slices over multiple sessions, building long-term retention and ownership.
+*   **Pre-Merge (Gating Mode):** Understand a diff before merging so you can defend it in code review.
+*   **Post-Merge (Paying-down Mode):** Walk through complex modules over time to build long-term retention.
 
-Comprehension belongs to the human. The agent's role is strictly to **inform and explain** code clearly, adapting to your preferences. The agent does not test, quiz, or grade you.
-
----
-
-## How It Works
-
-### 1. First-Run Setup & Dynamic CSS
-On its first run in a project, `/comprehend` automatically:
-- Scaffolds a private `.journal/` workspace (and appends it to `.gitignore`).
-- **Dynamic CSS:** Inspects your project's code, structure, and styling to dynamically generate a clean, premium, highly readable CSS stylesheet tailored specifically to your project's aesthetic. This is written to `.journal/assets/styles/journal.css`.
-- Runs a short onboarding interview to establish your preferred learning style (e.g., systemic/structural, step-by-step logic tracing, or conceptual metaphors) and saves it to `.journal/comprehend/NOTES.md`.
-
-### 2. Bounded Session Time Block
-Every `/comprehend` invocation runs as a distinct, bounded **time block**. The agent opens and closes the session conversationally (without sterile dashboards or emojis):
-
-*   **Opening:** *"Opening a session for `src/auth/session-store.ts` (gating mode). Let's start with the token parsing entry point..."*
-*   **Closing:** *"That wraps up this session for `src/auth/session-store.ts`. I've logged our session record to `.journal/comprehend/records/0001-jwt-validation.md` (and generated `.journal/comprehend/modules/0001-jwt-validation.html`)."*
+### 2. `/issue-it` — Human-Centered Issue Drafting
+Agents often write issues catered to themselves — filled with verbose prompt language, agent register, and pasted code blocks. `/issue-it` enforces human-centered issue drafting:
+*   **Problem-Focused Titles:** Describe the failure condition, not generic solution actions.
+*   **Big-Picture & Localized Context:** 1–2 sentence architecture context followed by digestible problem details.
+*   **Location Pointers, Zero Code Snippets:** Strict prohibition on code blocks (` ``` `). Refers to files and line ranges (`path/to/file:L10-L20`) so issues stay clean and readable for humans.
+*   **High-Level Fix Direction:** Outlines strategic design intent without pasting code implementations into the issue tracker.
 
 ---
 
-## Usage Example (Session & HTML Report)
+## Workspace Structures
 
-Here is a complete walkthrough showing natural session framing:
-
-### 1. User Invokes & Agent Opens Session
-```bash
-/comprehend I want to walk through the JWT validation diff in PR #14 before merging.
-```
-
-> **Agent:** *"Opening a session for `src/auth/session-store.ts` (gating mode). Here is the entry point for JWT validation:"*
-> 
-> * **Entry Point:** `validateSessionToken()` ([src/auth/session-store.ts:L18](file:///src/auth/session-store.ts#L18)) parses the bearer token header.
-> * **Load-Bearing Invariant:** Token expiration is checked *before* DB lookup ([src/auth/session-store.ts:L42](file:///src/auth/session-store.ts#L42)), avoiding unnecessary DB load on expired tokens.
-
-### 2. Conversational Dialogue
-You ask follow-up questions to understand decisions or non-obvious logic:
-
-> **User:** *"Why did we move token expiration check before the DB query?"*  
-> **Agent:** *"Checking expiration in-memory eliminates DB lookups for expired requests, preventing potential DB denial-of-service under high request rates."*
-
-### 3. Flat Offer & Optional HTML Report
-When the walkthrough dialogue finishes, the agent flatly offers to capture the walkthrough:
-
-> **Agent:** *"Would you like me to capture this walkthrough in an HTML report, in your own words, for future reference?"*  
-> **User:** *"Yes, please."*
-
-### 4. Natural Session Wrap-Up
-The agent writes `.journal/comprehend/modules/0001-jwt-validation.html` and closes the session:
-
-> **Agent:** *"That wraps up this session for `src/auth/session-store.ts`. I've logged our session record to `.journal/comprehend/records/0001-jwt-validation.md` and saved the HTML report to `.journal/comprehend/modules/0001-jwt-validation.html`."*
-
----
-
-## The Ownership Workspace
-
-All comprehension progress is saved in a private workspace `.journal/` at the root of your project:
-
-```
-.journal/
-  assets/
-    styles/journal.css     # Stylesheet dynamically generated to match your project
-  comprehend/
-    MISSION.md             # The focus of your current walkthrough and success criteria
-    NOTES.md               # Your active explanation preferences (continually refined by the agent)
-    records/*.md           # Brief session records capturing the shape of walkthroughs
-    modules/*.html         # Optional walkthrough documents in your own words
-    reference/*.html       # Project-specific glossaries, invariants, and reading maps
-```
+*   **Comprehend Workspace:** `.journal/comprehend/` (contains `MISSION.md`, `NOTES.md`, `records/*.md`, and `modules/*.html`).
+*   **Issue-It Output:** Prepares formatted markdown issues or pushes directly to GitHub via `gh issue create`.
 
 ---
 
 ## References
 
-For deep-dive documentation on skill formats and behaviors:
-*   [GLOSSARY.md](comprehend/GLOSSARY.md) - Standard definitions (frontier, signals, desirable difficulty, etc.).
-*   [SETUP-FORMAT.md](comprehend/SETUP-FORMAT.md) - Guidelines for onboarding interviews and how the agent dynamically maintains `NOTES.md`.
-*   [MISSION-FORMAT.md](comprehend/MISSION-FORMAT.md) - How `MISSION.md` is structured.
-*   [RECORD-FORMAT.md](comprehend/RECORD-FORMAT.md) - Structure for markdown session records.
-*   [MODULE-FORMAT.md](comprehend/MODULE-FORMAT.md) - Rules for generating walkthrough HTML documents.
-*   [WRITING-HTML-REPORT.md](comprehend/WRITING-HTML-REPORT.md) - Layout, typography, and print-ready HTML conventions.
+### `/comprehend` Documentation
+*   [SKILL.md](comprehend/SKILL.md) — Core walkthrough skill instructions.
+*   [GLOSSARY.md](comprehend/GLOSSARY.md) — Standard definitions (frontier, signals, desirable difficulty, etc.).
+*   [SETUP-FORMAT.md](comprehend/SETUP-FORMAT.md) — Guidelines for onboarding interviews and preference maintenance.
+
+### `/issue-it` Documentation
+*   [SKILL.md](issue-it/SKILL.md) — Core human-centered issue drafting rules.
+*   [ISSUE-FORMAT.md](issue-it/ISSUE-FORMAT.md) — GitHub issue template structure and rules.

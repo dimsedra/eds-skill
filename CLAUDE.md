@@ -1,21 +1,22 @@
-# Developer Rules for Comprehend Skill
+# Developer Rules for Skills Repository
 
-This repository is a single-skill, standalone, pluggable workspace for the `/comprehend` skill.
+This repository hosts pluggable, user-invoked agent skills (`disable-model-invocation: true`).
 
 ## Repository Layout
 
-*   `comprehend/SKILL.md` — The main agent instructions.
-*   `comprehend/GLOSSARY.md` — Glossary of terms (frontier, signals, etc.).
-*   `comprehend/SETUP-FORMAT.md` — Guide for user onboarding and dynamic preferences.
-*   `comprehend/MISSION-FORMAT.md` — Mission document layout.
-*   `comprehend/RECORD-FORMAT.md` — Session record structure.
-*   `comprehend/MODULE-FORMAT.md` — Walkthrough HTML layout.
-*   `comprehend/WRITING-HTML-REPORT.md` — HTML output and typography styling rules.
-*   `comprehend/agents/openai.yaml` — Skill metadata and client configuration.
+*   `comprehend/` — Skill for dialogue-based code walkthroughs and private comprehension journals.
+    *   `comprehend/SKILL.md` — Core instructions.
+    *   `comprehend/GLOSSARY.md` — Domain vocabulary.
+    *   `comprehend/SETUP-FORMAT.md` — Preference onboarding and dynamic maintenance.
+    *   `comprehend/MISSION-FORMAT.md`, `MODULE-FORMAT.md`, `RECORD-FORMAT.md`, `WRITING-HTML-REPORT.md`.
+*   `issue-it/` — Skill for human-centered GitHub issue creation.
+    *   `issue-it/SKILL.md` — Core instructions and failure modes.
+    *   `issue-it/ISSUE-FORMAT.md` — Issue template structure.
+    *   `issue-it/agents/openai.yaml` — Skill metadata.
 
-## Contribution Guidelines
+## Authoring Guidelines
 
-1.  **Strict Singularity:** Do not add other skills or sibling buckets. This repository must remain exclusively focused on `/comprehend` to keep it clean and pluggable.
-2.  **No Static Stylesheets:** Do not commit a static `tufte.css` or generic styles. The stylesheet `.journal/assets/styles/journal.css` must be dynamically generated during the setup phase of `comprehend/SKILL.md` to fit the specific project's tech stack and style guidelines.
-3.  **Onboarding & Updating Preferences:** Always follow the guidelines in `comprehend/SETUP-FORMAT.md`. If preferences are empty, perform onboarding. Continuously monitor user feedback during the walkthrough and update `.journal/comprehend/NOTES.md` with new insights.
-4.  **Distribution:** The skill is distributed via `npx skills` pointing directly to this GitHub repository. Ensure `SKILL.md` contains accurate markdown and a valid YAML frontmatter.
+1.  **No Verbatim Script Trapping:** Do not include hardcoded quote scripts (`""`) in `SKILL.md` files. State behavioral rules cleanly to prevent LLMs from parroting fixed scripts.
+2.  **Human-Centered Issue Design:** `/issue-it` outputs must strictly omit code snippets (` ``` `), relying instead on location pointers (`file:line`). Titles must remain problem-focused.
+3.  **User-Invoked Frontmatter:** Both skills set `disable-model-invocation: true`. Descriptions must state the slash command and human-facing purpose.
+4.  **Distribution:** Distributed via `npx skills` pointing directly to this repository.
