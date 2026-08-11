@@ -36,59 +36,44 @@ On its first run in a project, `/comprehend` automatically:
 - **Dynamic CSS:** Inspects your project's code, structure, and styling to dynamically generate a clean, premium, highly readable CSS stylesheet tailored specifically to your project's aesthetic. This is written to `.journal/assets/styles/journal.css`.
 - Runs a short onboarding interview to establish your preferred learning style (e.g., systemic/structural, step-by-step logic tracing, or conceptual metaphors) and saves it to `.journal/comprehend/NOTES.md`.
 
-### 2. Session Lifecycle (Time Block)
-Every `/comprehend` invocation runs as a distinct, bounded **time block** with a clear Session Start (`🟢`) and Session Exit (`🔴`).
+### 2. Bounded Session Time Block
+Every `/comprehend` invocation runs as a distinct, bounded **time block**. The agent opens and closes the session conversationally (without sterile dashboards or emojis):
 
-### 3. Walking Through Code
-You invoke the command and point it at the target file or diff:
-```bash
-/comprehend src/auth/session.ts
-```
-The agent presents explanations 1–2 paragraphs at a time, allowing you to ask follow-up questions, steer the walkthrough, or request deeper context.
+*   **Opening:** *"Opening a session for `src/auth/session-store.ts` (gating mode). Let's start with the token parsing entry point..."*
+*   **Closing:** *"That wraps up this session for `src/auth/session-store.ts`. I've logged our session record to `.journal/comprehend/records/0001-jwt-validation.md` (and generated `.journal/comprehend/modules/0001-jwt-validation.html`)."*
 
 ---
 
-## Usage Example (Session Lifecycle & HTML Report)
+## Usage Example (Session & HTML Report)
 
-Here is a complete walkthrough showing a bounded **Session Time Block**:
+Here is a complete walkthrough showing natural session framing:
 
-### 1. User Invokes & Session Start
+### 1. User Invokes & Agent Opens Session
 ```bash
 /comprehend I want to walk through the JWT validation diff in PR #14 before merging.
 ```
 
-> 🟢 **Comprehend Session Started**  
-> - **Target Slice:** `src/auth/session-store.ts`  
-> - **Mode:** Gating (Pre-Merge)  
-> - **Active Preference:** Systemic Architecture  
-
-### 2. Agent Explains the Code Slice
-The agent inspects the code and presents a concise explanation tailored to your preferences:
-
-> **Agent:** Here is the entry point for JWT validation in `src/auth/session-store.ts`:
+> **Agent:** *"Opening a session for `src/auth/session-store.ts` (gating mode). Here is the entry point for JWT validation:"*
 > 
 > * **Entry Point:** `validateSessionToken()` ([src/auth/session-store.ts:L18](file:///src/auth/session-store.ts#L18)) parses the bearer token header.
 > * **Load-Bearing Invariant:** Token expiration is checked *before* DB lookup ([src/auth/session-store.ts:L42](file:///src/auth/session-store.ts#L42)), avoiding unnecessary DB load on expired tokens.
 
-### 3. Conversational Dialogue
+### 2. Conversational Dialogue
 You ask follow-up questions to understand decisions or non-obvious logic:
 
 > **User:** *"Why did we move token expiration check before the DB query?"*  
 > **Agent:** *"Checking expiration in-memory eliminates DB lookups for expired requests, preventing potential DB denial-of-service under high request rates."*
 
-### 4. Flat Offer & Optional HTML Report
+### 3. Flat Offer & Optional HTML Report
 When the walkthrough dialogue finishes, the agent flatly offers to capture the walkthrough:
 
 > **Agent:** *"Would you like me to capture this walkthrough in an HTML report, in your own words, for future reference?"*  
 > **User:** *"Yes, please."*
 
-### 5. Session Exit & Closing Banner
+### 4. Natural Session Wrap-Up
 The agent writes `.journal/comprehend/modules/0001-jwt-validation.html` and closes the session:
 
-> 🔴 **Comprehend Session Closed**  
-> - **Frontier Moved:** Understood JWT in-memory token validation and DB DoS protection seam.  
-> - **Session Record:** `.journal/comprehend/records/0001-jwt-validation.md`  
-> - **HTML Report:** `.journal/comprehend/modules/0001-jwt-validation.html`  
+> **Agent:** *"That wraps up this session for `src/auth/session-store.ts`. I've logged our session record to `.journal/comprehend/records/0001-jwt-validation.md` and saved the HTML report to `.journal/comprehend/modules/0001-jwt-validation.html`."*
 
 ---
 

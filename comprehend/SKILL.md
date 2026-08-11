@@ -52,33 +52,21 @@ On first invocation in a new project, execute setup before starting the walkthro
 
 ## Session Lifecycle (Time Block)
 
-Every `/comprehend` invocation operates as a distinct, bounded **time block** with a explicit Session Start and Session Exit.
+Every `/comprehend` invocation operates as a distinct, bounded **time block**. Avoid rigid status dashboards, emojis, or robot templates; frame the session start and exit naturally like a senior peer pairing with a colleague.
 
 ### 1. Session Start (Opening the Time Block)
-When `/comprehend` is invoked, the agent opens the time block by displaying a concise session banner before presenting the first code slice:
-
-```markdown
-🟢 **Comprehend Session Started**
-- **Target Slice:** `src/auth/session-store.ts`
-- **Mode:** Gating (Pre-Merge) | Paying-Down (Post-Merge)
-- **Active Preference:** [Style loaded from NOTES.md]
-```
+When `/comprehend` is invoked, open the session with a concise, natural sentence before presenting the first code slice:
+> *"Opening a session for `src/auth/session-store.ts` (gating mode). Let's start with the token parsing entry point..."*
 
 ### 2. Session Progression (Two-Way Walkthrough)
-Iterate through the code 1–2 paragraphs at a time, allowing the user to steer, ask questions, or dive deeper.
+Walk through the code 1–2 paragraphs at a time, letting the user steer, ask questions, or dive deeper.
 
 ### 3. Session Exit (Closing the Time Block)
-When the user indicates they are finished or the walkthrough reaches its natural conclusion:
-1. **Flat Doc Offer:** Ask if the user wants an HTML walkthrough report (`.journal/comprehend/modules/0001-<slug>.html`).
-2. **Write Session Record:** Automatically log the session shape to `.journal/comprehend/records/0001-<slug>.md`.
-3. **Closing Banner:** Display the closing session summary banner to cleanly close the time block:
-
-```markdown
-🔴 **Comprehend Session Closed**
-- **Frontier Moved:** [One sentence summary of what was understood]
-- **Session Record:** `.journal/comprehend/records/0001-jwt-validation.md`
-- **HTML Report:** `.journal/comprehend/modules/0001-jwt-validation.html` (or "None created")
-```
+When the walkthrough reaches a natural conclusion or the user is done:
+1. **Flat Doc Offer:** Ask flatly if the user wants an HTML walkthrough report saved.
+2. **Write Session Record:** Automatically save the session record to `.journal/comprehend/records/0001-<slug>.md`.
+3. **Conversational Exit:** Close the time block with a clear, matter-of-fact wrap-up sentence:
+> *"That wraps up this session for `src/auth/session-store.ts`. I've logged our session record to `.journal/comprehend/records/0001-jwt-validation.md` (and generated `.journal/comprehend/modules/0001-jwt-validation.html`)."*
 
 ---
 
@@ -137,6 +125,7 @@ The agent writes `records/` — brief session records, agent's voice, capturing 
 ## Failure Modes of this Skill
 
 - **Monologue Dump**: Outputting a massive wall of text covering entry points, edge cases, and invariants all at once. Fix: Explain one concise slice at a time (1–2 paragraphs) and pause to yield control to the user.
+- **Robot Dashboard / Status Formatting**: Using rigid status tables, emojis (🟢/🔴), or sterile templates to manage sessions. Fix: Frame session starts and exits naturally as a peer engineer.
 - **Hype Drift**: Slipping into praise or emotional mirroring. Maintain a flat, matter-of-fact voice.
 - **Salesy Offer**: Doc offer becoming a pitch. Keep the offer flat and brief (two sentences max).
 - **Drift into Doc-writing**: Drafting docs without walking through code first. Explain conversationally.
