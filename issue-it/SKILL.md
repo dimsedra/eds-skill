@@ -17,6 +17,7 @@ An issue is written for a developer (or your future self) reading it six weeks f
 
 - **Problem-First Titles:** The title must state the exact failure condition or system gap. A developer skimming an issue list six weeks later must immediately understand what is broken without opening the issue.
 - **Big-Picture First:** Always start with 1–2 sentences of high-level system framing. A cold reader six weeks later needs mental re-orientation before diving into localized problem details.
+- **Cognitive Load Slicing:** Humans have limited working memory at any single point in time. Never pack multiple distinct domain problems or system layers into one overwhelming issue. If a problem spans multiple independent abstraction boundaries, slice it into separate, focused sub-issues that make abstract sense on their own.
 - **No Code Blocks (Code-As-Context Trap):** Strictly no fenced code blocks. Code snippets are a trap: they feel like documentation, but become stale snapshots that fail to explain why something breaks. Use file and line pointers (`file:line`) only. The repository holds the code; the issue holds the context and location pointers.
 - **Strategic Fix Direction (Optional):** Focus strictly on high-level architectural direction and design intent. Never write code implementations or pseudo-code inside the issue body.
 
@@ -43,6 +44,7 @@ Read the conversation history or targeted code files. Extract:
 - Localized problem mechanics (what breaks and why).
 - File paths and line numbers (`path/to/file:L10-L20`).
 - High-level fix direction (if discussed).
+- Natural abstraction boundaries for slicing if the problem spans multiple distinct concerns.
 
 ### 2. Format the Issue Structure
 Structure the content using [ISSUE-FORMAT.md](ISSUE-FORMAT.md):
@@ -53,12 +55,13 @@ Structure the content using [ISSUE-FORMAT.md](ISSUE-FORMAT.md):
 - **Fix Direction (Optional):** High-level strategic approach, avoiding code snippets or pseudo-code.
 
 ### 3. Review & Output
-Present the drafted issue to the user for review. If configured to write directly to an issue tracker CLI (such as GitHub CLI `gh issue create`), confirm before publishing.
+Present the drafted issue (or sliced sub-issues) to the user for review. If configured to write directly to an issue tracker CLI (such as GitHub CLI `gh issue create`), confirm before publishing.
 
 ---
 
 ## Failure Modes of this Skill
 
+- **Monolithic Packing:** Packing multiple distinct domain problems or architectural layers into a single issue, overloading human working memory. Fix: Apply Cognitive Load Slicing — split complex problems into independent, abstractly coherent sub-issues.
 - **Agent-Centric Drift:** Writing issue text tailored for LLM consumption (using prompt keywords, verbose machine logs, or internal subagent register). Fix: Frame explanations for human reader comprehension six weeks later.
 - **Code Block Bloat (Code-As-Context Trap):** Pasting code snippets into the issue body. Fix: Use file:line pointers only. Code belongs in files, not in issue trackers.
 - **Solution-First Titles:** Titling issues after proposed fixes instead of the underlying problem. Fix: State the exact failure condition so it can be understood from an issue list skim.

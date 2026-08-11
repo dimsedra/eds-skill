@@ -23,19 +23,24 @@ Every section in an issue exists for a specific cognitive reason — serving a h
 - 1–2 concise sentences framing where this problem fits in the broader system architecture.
 - Keep it digestible at a glance.
 
-### 3. Localized Problem & Impact
+### 3. Cognitive Load Slicing
+*Rationale: Humans have limited working memory at any single point in time. Monolithic issues packing multiple concerns cause cognitive overload.*
+- Constrain each issue to a single, abstractly coherent problem boundary.
+- If a problem spans multiple independent system layers (e.g., API contract, DB schema, UI state), slice them into separate, focused sub-issues linked by parent/child references.
+
+### 4. Localized Problem & Impact
 *Rationale: Explains why the system fails and what impact it causes.*
 - What is breaking or missing.
 - Why it manifests and under what conditions.
 - Operational or system impact.
 
-### 4. Affected Code Locations (Pointers, Not Code)
+### 5. Affected Code Locations (Pointers, Not Code)
 *Rationale: Code-as-context is a trap. Code snippets feel like documentation, but become stale snapshots that do not explain why by themselves. The repository holds the code; the issue holds location pointers.*
 - List relevant file paths, function signatures, or line ranges.
 - **Allowed:** `src/auth/session-store.ts:L42-L58`, `validateSessionToken()`
 - **Strict Prohibition:** Do NOT include fenced code blocks or code snippets.
 
-### 5. Fix Direction (Strategy, Not Implementation - Optional)
+### 6. Fix Direction (Strategy, Not Implementation - Optional)
 *Rationale: Focuses on architectural direction and design intent, leaving code implementation to the pull request.*
 - Outline high-level strategic direction and architectural approach.
 - Focus on design intent, seams, and boundary changes.
