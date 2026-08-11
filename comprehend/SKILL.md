@@ -2,7 +2,7 @@
 name: comprehend
 description: User-invoked command (/comprehend) for two-way code walkthroughs. Use before merging to gate a diff or after to pay down comprehension debt.
 disable-model-invocation: true
-argument-hint: "What code do you want to comprehend?"
+argument-hint: What code do you want to comprehend?
 ---
 
 # Comprehend
@@ -52,7 +52,7 @@ On first invocation in a new project, execute setup before starting the walkthro
 
 ## Session Lifecycle (Time Block)
 
-Every `/comprehend` invocation operates as a distinct, bounded **time block**. Anchor session boundaries behaviorally without hardcoding scripts, verbatim quotes, or rigid templates.
+Every `/comprehend` invocation operates as a distinct, bounded **time block**. Anchor session boundaries behaviorally without hardcoding scripts or templates.
 
 ### 1. Session Framing
 In the opening turn, establish context naturally:
@@ -125,7 +125,6 @@ The agent writes `records/` — brief session records, agent's voice, capturing 
 ## Failure Modes of this Skill
 
 - **Monologue Dump**: Outputting a massive wall of text covering entry points, edge cases, and invariants all at once. Fix: Explain one concise slice at a time (1–2 paragraphs) and pause to yield control to the user.
-- **Script Parroting / Hardcoded Dialogue**: Parroting literal quote scripts verbatim instead of generating dynamic context-aware prose. Fix: Anchor on behavioral rules (Session Framing & Wrap-up) rather than rigid scripts.
 - **Robot Dashboard / Status Formatting**: Using rigid status tables, emojis (🟢/🔴), or sterile templates to manage sessions. Fix: Express session boundaries dynamically as a peer engineer.
 - **Hype Drift**: Slipping into praise or emotional mirroring. Maintain a flat, matter-of-fact voice.
 - **Salesy Offer**: Doc offer becoming a pitch. Keep the offer flat and brief (two sentences max).
