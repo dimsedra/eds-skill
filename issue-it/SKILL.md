@@ -1,23 +1,23 @@
 ---
 name: issue-it
-description: User-invoked command (/issue-it) to convert a problem or discussion into a clean, human-centered issue.
+description: User-invoked command (/issue-it) to convert a problem or discussion into a clean, user-centered issue.
 disable-model-invocation: true
 argument-hint: What problem or context do you want to turn into an issue?
 ---
 
 # Issue It
 
-`/issue-it` transforms problem discussions, bug reports, or architecture gaps into clean, human-centered tracking issues. The agent synthesizes context and posts or drafts an issue optimized for human comprehension.
+`/issue-it` transforms problem discussions, bug reports, or architecture gaps into clean, user-centered tracking issues. The agent synthesizes context and posts or drafts an issue optimized for user comprehension.
 
 ---
 
 ## Core Posture: The "Cold-Me Six Weeks Later" Rule
 
-An issue is written for a developer (or your future self) reading it six weeks from now with zero active context.
+An issue is written for the user reading it six weeks from now with zero active context.
 
-- **Problem-First Titles:** The title must state the exact failure condition or system gap. A developer skimming an issue list six weeks later must immediately understand what is broken without opening the issue.
+- **Problem-First Titles:** The title must state the exact failure condition or system gap. A user skimming an issue list six weeks later must immediately understand what is broken without opening the issue.
 - **Big-Picture First:** Always start with 1–2 sentences of high-level system framing. A cold reader six weeks later needs mental re-orientation before diving into localized problem details.
-- **Cognitive Load Slicing:** Humans have limited working memory at any single point in time. Never pack multiple distinct domain problems or system layers into one overwhelming issue. If a problem spans multiple independent abstraction boundaries, slice it into separate, focused sub-issues that make abstract sense on their own.
+- **Cognitive Load Slicing:** The user has limited working memory at any single point in time. Never pack multiple distinct domain problems or system layers into one overwhelming issue. If a problem spans multiple independent abstraction boundaries, slice it into separate, focused sub-issues that make abstract sense on their own.
 - **No Code Blocks (Code-As-Context Trap):** Strictly no fenced code blocks. Code snippets are a trap: they feel like documentation, but become stale snapshots that fail to explain why something breaks. Use file and line pointers (`file:line`) only. The repository holds the code; the issue holds the context and location pointers.
 - **Strategic Fix Direction (Optional):** Focus strictly on high-level architectural direction and design intent. Never write code implementations or pseudo-code inside the issue body.
 
@@ -61,8 +61,8 @@ Present the drafted issue (or sliced sub-issues) to the user for review. If conf
 
 ## Failure Modes of this Skill
 
-- **Monolithic Packing:** Packing multiple distinct domain problems or architectural layers into a single issue, overloading human working memory. Fix: Apply Cognitive Load Slicing — split complex problems into independent, abstractly coherent sub-issues.
-- **Agent-Centric Drift:** Writing issue text tailored for LLM consumption (using prompt keywords, verbose machine logs, or internal subagent register). Fix: Frame explanations for human reader comprehension six weeks later.
+- **Monolithic Packing:** Packing multiple distinct domain problems or architectural layers into a single issue, overloading user working memory. Fix: Apply Cognitive Load Slicing — split complex problems into independent, abstractly coherent sub-issues.
+- **Agent-Centric Drift:** Writing issue text tailored for LLM consumption (using prompt keywords, verbose machine logs, or internal subagent register). Fix: Frame explanations for user reader comprehension six weeks later.
 - **Code Block Bloat (Code-As-Context Trap):** Pasting code snippets into the issue body. Fix: Use file:line pointers only. Code belongs in files, not in issue trackers.
 - **Solution-First Titles:** Titling issues after proposed fixes instead of the underlying problem. Fix: State the exact failure condition so it can be understood from an issue list skim.
 - **Big-Picture Omission:** Jumping straight to localized file details without setting 1–2 sentences of high-level context. Fix: Always provide big-picture context first for cold re-orientation.

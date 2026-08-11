@@ -9,7 +9,7 @@ This repository hosts pluggable, user-invoked agent skills (`disable-model-invoc
     *   `comprehend/GLOSSARY.md` — Domain vocabulary.
     *   `comprehend/SETUP-FORMAT.md` — Preference onboarding and dynamic maintenance.
     *   `comprehend/MISSION-FORMAT.md`, `MODULE-FORMAT.md`, `RECORD-FORMAT.md`, `WRITING-HTML-REPORT.md`.
-*   `issue-it/` — Skill for human-centered GitHub issue creation.
+*   `issue-it/` — Skill for user-centered GitHub issue creation.
     *   `issue-it/SKILL.md` — Core instructions and failure modes.
     *   `issue-it/ISSUE-FORMAT.md` — Issue template structure.
     *   `issue-it/agents/openai.yaml` — Skill metadata.
@@ -17,6 +17,6 @@ This repository hosts pluggable, user-invoked agent skills (`disable-model-invoc
 ## Authoring Guidelines
 
 1.  **No Verbatim Script Trapping:** Do not include hardcoded quote scripts (`""`) in `SKILL.md` files. State behavioral rules cleanly to prevent LLMs from parroting fixed scripts.
-2.  **Human-Centered Issue Design:** `/issue-it` outputs must strictly omit code snippets (` ``` `), relying instead on location pointers (`file:line`). Titles must remain problem-focused.
-3.  **User-Invoked Frontmatter:** Both skills set `disable-model-invocation: true`. Descriptions must state the slash command and human-facing purpose.
+2.  **User-Centered Issue Design:** `/issue-it` outputs must strictly omit code snippets (` ``` `), relying instead on location pointers (`file:line`). Titles must remain problem-focused.
+3.  **User-Invoked Frontmatter:** Both skills set `disable-model-invocation: true`. Descriptions must state the slash command and user-facing purpose.
 4.  **Distribution:** Distributed via `npx skills` pointing directly to this repository.

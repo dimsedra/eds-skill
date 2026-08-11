@@ -1,10 +1,10 @@
 # Agent Skills
 
-A collection of human-centered, pluggable agent skills designed to improve comprehension and clarity in AI-assisted development.
+A collection of user-centered, pluggable agent skills designed to improve comprehension and clarity in AI-assisted development.
 
 This repository hosts two user-invoked skills:
 *   **`/comprehend`** — Dialogue-based, two-way code walkthroughs to gate pre-merge diffs or pay down comprehension debt.
-*   **`/issue-it`** — Convert problem discussions and bugs into clean, human-centered GitHub issues (no code block bloat, problem-focused titles).
+*   **`/issue-it`** — Convert problem discussions and bugs into clean, user-centered GitHub issues (no code block bloat, problem-focused titles).
 
 ---
 
@@ -26,11 +26,11 @@ In agent-led development, code is produced at an unprecedented speed, creating i
 *   **Pre-Merge (Gating Mode):** Understand a diff before merging so you can defend it in code review.
 *   **Post-Merge (Paying-down Mode):** Walk through complex modules over time to build long-term retention.
 
-### 2. `/issue-it` — Human-Centered Issue Drafting
-Agents often write issues catered to themselves — filled with verbose prompt language, agent register, and pasted code blocks. `/issue-it` enforces human-centered issue drafting:
+### 2. `/issue-it` — User-Centered Issue Drafting
+Agents often write issues catered to themselves — filled with verbose prompt language, agent register, and pasted code blocks. `/issue-it` enforces user-centered issue drafting:
 *   **Problem-Focused Titles:** Describe the failure condition, not generic solution actions.
 *   **Big-Picture & Localized Context:** 1–2 sentence architecture context followed by digestible problem details.
-*   **Location Pointers, Zero Code Snippets:** Strict prohibition on code blocks (` ``` `). Refers to files and line ranges (`path/to/file:L10-L20`) so issues stay clean and readable for humans.
+*   **Location Pointers, Zero Code Snippets:** Strict prohibition on code blocks (` ``` `). Refers to files and line ranges (`path/to/file:L10-L20`) so issues stay clean and readable for the user.
 *   **High-Level Fix Direction:** Outlines strategic design intent without pasting code implementations into the issue tracker.
 
 ---
@@ -50,5 +50,5 @@ Agents often write issues catered to themselves — filled with verbose prompt l
 *   [SETUP-FORMAT.md](comprehend/SETUP-FORMAT.md) — Guidelines for onboarding interviews and preference maintenance.
 
 ### `/issue-it` Documentation
-*   [SKILL.md](issue-it/SKILL.md) — Core human-centered issue drafting rules.
+*   [SKILL.md](issue-it/SKILL.md) — Core user-centered issue drafting rules.
 *   [ISSUE-FORMAT.md](issue-it/ISSUE-FORMAT.md) — GitHub issue template structure and rules.

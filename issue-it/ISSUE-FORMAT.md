@@ -1,12 +1,12 @@
 # ISSUE Format
 
-Reference template for structuring human-centered GitHub issues produced by `/issue-it`.
+Reference template for structuring user-centered GitHub issues produced by `/issue-it`.
 
 ---
 
 ## Core Mental Model: The "Cold-Me Six Weeks Later" Rule
 
-Every section in an issue exists for a specific cognitive reason — serving a human reading it six weeks later with zero active memory of the conversation.
+Every section in an issue exists for a specific cognitive reason — serving the user reading it six weeks later with zero active memory of the conversation.
 
 ---
 
