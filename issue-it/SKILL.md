@@ -29,7 +29,7 @@ An issue is written for a developer (or your future self) reading it six weeks f
 - User asks to turn a bug, task, or architectural gap into a tracking issue.
 
 ### When NOT to Invoke
-- User wants to write code or run tests (`/implement` or TDD).
+- User wants to write code or run tests.
 - User wants to walk through existing code to build personal comprehension (`/comprehend`).
 - The task is a minor single-line edit that requires no tracking.
 
