@@ -1,6 +1,6 @@
 ---
 name: comprehend
-description: Dialogue-based, conversational, two-way code walkthrough tailored to your preferences and proficiency. Use it before the merge to understand the diff, or after to pay down comprehension debt.
+description: User-invoked command (/comprehend) for two-way code walkthroughs. Use before merging to gate a diff or after to pay down comprehension debt.
 disable-model-invocation: true
 argument-hint: "What code do you want to comprehend?"
 ---
