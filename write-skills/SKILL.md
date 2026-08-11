@@ -6,70 +6,60 @@ disable-model-invocation: false
 
 # Write Skills
 
-`write-skills` provides the meta-methodology to engineer high-impact, universal agent skills that steer LLM probabilistic reasoning to a targeted center of gravity without overfitting or template fixation.
+Write skills that steer your reasoning toward a center of gravity — clear direction, not rigid scripts. A skill is an instruction, not an essay: tell yourself where to aim, and let yourself rationalize the rest.
 
 ---
 
-## First Principle: Nudge Center of Gravity, Avoid Rigid Presets
+## How to Write
 
-A skill exists to establish an operational mindset, decision posture, and execution boundary for the LLM. Never trap the LLM with hardcoded code blocks, opinionated templates, fixed color hexes, specific font names, or arbitrary numeric thresholds. Shift the LLM's center of gravity through principles, posture, and dynamic discovery steps.
+- **Act as the user.** When you write a skill, you take the user's seat: write it the way this file writes to you — second person, direct, "you".
+- **Nudge, don't dictate.** Express each rule as a direction with a reason, so you can generalize it. A checklist of do-this/don't-do-that items makes you obey the items and miss the class of problem behind them.
+- **Name failure modes, not forbidden artifacts.** Say what failure you're guarding against (fixation, brittleness, single-project bias). Don't list artifacts to strip — you will hunt only those and miss the class.
+- **State directions positively.** Say where reasoning should land. Keep prohibitions only as hard guardrails, always paired with the direction they protect.
+- **Prefer qualitative criteria over numbers.** "10+ items" claims a precision the situation doesn't have and makes you optimize the number. "Scale, modularity, distribution" keeps judgment where it belongs.
+- **Write the why.** When a direction protects against a failure mode, say so in one line, so you can generalize it to cases the rule never names.
+- **Stay lean.** Every line either steers reasoning or guards a boundary. Cut everything else.
+- **Demonstrate the direction.** This file is directions, not artifact lists. Your skill should read the same way.
 
 ---
 
 ## Core Posture
 
-- **Principle Over Template**: Guide by posture, structural boundaries, and intent discovery — not by copy-paste code blocks.
-- **Universal Context**: Draft instructions to accommodate any user prompt situation, domain, or visual preference without hardcoded assumptions.
-- **Zero Verbosity**: Eliminate fluff, narrative filler, and duplicate definitions. Every line must serve predictability or guardrails.
-- **Flat File Hierarchy**: Keep supplementary reference files flat in the skill folder using uppercase names (`SLUG-NAME.md`). Avoid nested directory sprawl.
+- **Principle Over Template**: guide by posture, structural boundaries, and intent discovery — not copy-paste artifacts.
+- **Universal Context**: keep instructions at the level of the class of problem, so any user, domain, or visual preference fits without hardcoded assumptions.
+- **Zero Verbosity**: no fluff, narrative filler, or duplicate definitions; every line serves direction or guardrails.
+- **Flat File Hierarchy**: keep supplementary reference files flat in the skill folder (`UPPERCASE-SLUG.md`), no nested sprawl.
 
 ---
 
-## Triggers
+## When to Use
 
-Reach for this skill when:
-- Designing a new agent skill from scratch.
-- Refactoring an existing skill that suffers from verbosity, hardcoded examples, or rigid template fixation.
-- Auditing skill files for universal applicability and LLM posture alignment.
+- The user wants a new agent skill designed from scratch.
+- An existing skill suffers from verbosity, hardcoded examples, or rigid template fixation.
+- The user wants a skill audited for universal applicability and posture alignment.
 
 ---
 
-## Execution Workflow
+## Workflow
 
-### 1. Identify Intent & Leading Words
-Define the skill's primary leading words and operational posture:
-- Identify the core posture (e.g. *Discover First*, *Systemize Second*, *Semantic Hygiene*).
-- Define unambiguous model triggers and clear "When NOT to invoke" boundaries.
-
-### 2. Formulate Workflow & Discovery Steps
-Structure the execution workflow around dynamic discovery rather than fixed defaults:
-- **Phase 1 (Discovery)**: Require the agent to align with user intent, context, and brand before generating output.
-- **Phase 2 (Architecture)**: Provide decision criteria for selecting structural patterns based on project scale and delivery target.
-- **Phase 3 (Execution)**: Provide principles for semantic markup, data hygiene, and structural clarity.
-- **Phase 4 (Verification)**: Define checkable completion criteria and verification passes.
-
-### 3. Audit for Overfitting & Hardcoded Presets
-Review the skill against [SKILL-ENGINEERING.md](SKILL-ENGINEERING.md):
-- Strip out hardcoded code blocks, specific color hex codes, fixed font names, or preset theme names.
-- Remove project-specific edge cases that belong to an individual user's request rather than the universal skill.
-- Eliminate arbitrary numeric thresholds (e.g. "10+ items") that artificially constrain decision making.
-
-### 4. Structure & Flatten Files
-Consult [SKILL-ENGINEERING.md](SKILL-ENGINEERING.md):
-- Keep `SKILL.md` concise, containing only frontmatter, principles, posture, workflow, failure modes, and framework pointers.
-- Place supplementary reference files directly in the skill root directory (`UPPERCASE-SLUG.md`).
+1. **Discover the intent.** Before writing anything, determine what posture the skill should establish: where should your thinking land, what boundaries should it respect, where should your judgment stay free? Pick leading words — compact concepts you already hold — that anchor that posture.
+2. **Architect the skill.** Write a lean `SKILL.md`: frontmatter, posture, workflow, failure modes, and pointers. Push detail into flat `UPPERCASE-SLUG.md` reference files only where you need it on demand.
+3. **Write with direction.** State each rule as a direction with its reason. Keep discovery dynamic — align with the user's context and brand instead of applying defaults.
+4. **Read it back as you will meet it.** Does it steer reasoning, or dictate artifacts? Would a literal reading of any line send you wrong? The skill passes when the direction survives contact with cases it never names.
 
 ---
 
 ## Failure Modes
 
-- **Template Overfitting**: Including specific code blocks or preset styles that cause the LLM to blindly copy examples instead of reasoning dynamically.
-- **Project-Specific Over-indexing**: Turning an individual user's one-off preference into a mandatory global skill rule.
-- **Arbitrary Thresholds**: Defining hardcoded numbers (e.g. "10+ slides") that restrict flexibility.
-- **Verbosity Sprawl**: Filling skill files with narrative prose that inflates token load without improving execution predictability.
+- **Checklist Fixation**: writing the skill as a compliance list of do-this/don't-do-that items; you obey the items and stop reasoning about the class of problem. Fix: name the failure mode, state the direction, delete the artifact list.
+- **Template Overfitting**: including specific code blocks or preset styles that invite blind copying instead of dynamic reasoning.
+- **Project Over-indexing**: turning one user's one-off preference into a mandatory global rule, forcing irrelevant edge-case logic onto future users. Put it in discovery, not in the rule.
+- **Arbitrary Thresholds**: hardcoded numbers that claim precision the situation doesn't have and make you optimize the number instead of the outcome.
+- **Verbosity Sprawl**: narrative prose that inflates token load without steering reasoning anywhere new.
+- **No-Payload Lines**: lines you would follow by default anyway; they cost load and say nothing. Cut them.
 
 ---
 
 ## Disclosed Reference
 
-- [SKILL-ENGINEERING.md](SKILL-ENGINEERING.md) — Guidelines for preventing overfitting, establishing operational posture, and steering LLM attention.
+- [SKILL-ENGINEERING.md](SKILL-ENGINEERING.md) — Deeper reference on overfitting, posture, and file structure.

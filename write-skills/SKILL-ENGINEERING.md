@@ -1,55 +1,42 @@
 # Skill Engineering Guidelines
 
-Unified reference guide for preventing overfitting, establishing operational posture, and steering LLM attention in agent skills.
+The deeper reference behind SKILL.md: what overfitting does to your reasoning, and how to keep a skill universal.
 
 ---
 
-## 1. Preventing Overfitting
+## 1. Overfitting: A Skill That Stops Generalizing
 
-Guidelines to ensure agent skills remain universal, flexible, and free of single-project bias:
+Overfitting binds you to the artifacts of one situation — a snippet, a preset, a number — and you follow those instead of the direction behind them. Keep every instruction at the level of the class of problem.
 
-### Code Block Overfitting
-- **Anti-Pattern:** Writing explicit code snippets, fixed CSS classes, or complete HTML templates inside skill files.
-- **Why It Fails:** The LLM fixates on copy-pasting the exact code block, ignoring the user's distinct requirements.
-- **Solution:** Describe architectural directions, design principles, and structural patterns in clear prose rather than rigid code blocks.
+### Fixation on Specifics
+Showing exact snippets, fixed classes, or complete templates in a skill invites copying instead of reasoning about the actual requirements. Describe the direction — architectural intent, design principles, structural patterns — and let the specifics follow.
 
-### Single-Project Over-Indexing
-- **Anti-Pattern:** Elevating a specific user request from one session (e.g., hiding speaker notes in comments or using blue theme cards) into a mandatory global skill rule.
-- **Why It Fails:** Forces irrelevant edge-case logic onto future users who have completely different needs.
-- **Solution:** Frame project-specific needs as dynamic discovery options during Phase 1 alignment rather than mandatory rules.
+### Single-Project Bias
+Turning one user's one-off request (speaker notes in comments, blue theme cards) into a mandatory rule forces irrelevant edge cases onto everyone else. One-off specifics belong in the discovery phase of the situation that produced them, not in the rule.
 
-### Preset & Color Hardcoding
-- **Anti-Pattern:** Defining theme presets (e.g. "Academic = blue", "Corporate = slate") or hardcoding color hex codes.
-- **Why It Fails:** Restricts creative flexibility and forces uniform styling across all outputs.
-- **Solution:** Mandate dynamic token construction derived strictly from user discovery.
+### Preset Uniformity
+Preset themes and hardcoded colors make every output identical regardless of context. Build tokens dynamically from what the user tells you during discovery.
 
-### Arbitrary Numeric Thresholds
-- **Anti-Pattern:** Hardcoding arbitrary numbers (e.g. "10+ items = multi-file", "under 10 = single file").
-- **Why It Fails:** Artificially limits decision making when real-world context demands a different structure.
-- **Solution:** Use qualitative criteria based on project scale, modularity, and distribution requirements.
+### False Precision
+A hardcoded number ("10+ items", "under 10") claims a precision the situation doesn't have, and you optimize the number instead of the structure. Use qualitative criteria — scale, modularity, distribution — and keep the judgment where it belongs.
 
 ---
 
-## 2. Skill Posture & LLM Nudging
+## 2. Steering Your Reasoning
 
-Guidelines for steering LLM attention, establishing operational posture, and maintaining token efficiency:
+### Leading Words
+Anchor the skill's posture with compact concepts you already hold (*Discover First*, *Semantic Hygiene*). A single repeated leading word carries a whole region of behaviour for a few tokens.
 
-### Leading Words & Posture Anchors
-- Use compact, high-leverage terms pretrained in the model (e.g. *Discover First*, *Semantic Hygiene*, *Zero Hardcoding*, *Exact-Print*).
-- Repeated leading words anchor regional reasoning across turns without requiring verbose explanations.
+### Positive Guardrails
+Say where reasoning should land, with the why in one line. When a prohibition is unavoidable, pair it with the direction it protects — a bare prohibition names what to avoid and makes it more available.
 
-### Positive Behavioral Guardrails
-- State target behaviors positively (what to do and why) rather than relying solely on prohibitions.
-- Pair necessary prohibitions with the exact alternative action to prevent negative priming.
-
-### Checkable Completion Criteria
-- End each workflow phase with a clear, checkable completion criterion.
-- Checkable criteria prevent premature completion and drive thorough execution legwork.
+### Checkable Completion
+Close each phase with a condition you can check — done, not done — so the work ends when it is genuinely complete, not when it feels complete.
 
 ---
 
-## 3. Information Hierarchy & Directory Structure
+## 3. File Structure
 
-- **Root `SKILL.md`:** Entry point containing triggers, core posture, workflow phases, failure modes, and reference pointers.
-- **Root Supplementary Files (`UPPERCASE-SLUG.md`):** Flat reference files living directly in the skill directory. Avoid nested subdirectories (`references/`) to reduce file depth.
-- **Zero Fluff:** Omit generic introductory prose, pleasantries, or redundant summaries. Every line must serve predictability.
+- **`SKILL.md`**: frontmatter, first principle, posture, workflow, failure modes, and pointers.
+- **Flat `UPPERCASE-SLUG.md` files**: reference detail lives directly in the skill folder, reached on demand. No nested subdirectories.
+- **Lean**: every line steers reasoning or guards a boundary; nothing else survives.
