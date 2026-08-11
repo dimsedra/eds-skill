@@ -46,7 +46,6 @@ On first invocation in a new project, execute setup before starting the walkthro
     *   Dynamically generate a clean, premium, highly readable CSS stylesheet tailored to the project (supporting a comfortable font family, responsive margins, clean headers, and code block styling).
     *   Write the CSS contents to `.journal/assets/styles/journal.css`.
 4.  **Preference Onboarding:** Follow [SETUP-FORMAT.md](SETUP-FORMAT.md) to discover the user's explanation preference via a short interview and save it to `.journal/comprehend/NOTES.md`.
-5.  **Mission Setup:** Read [MISSION-FORMAT.md](MISSION-FORMAT.md) to initialize `.journal/comprehend/MISSION.md` with the user.
 
 ---
 
@@ -54,18 +53,19 @@ On first invocation in a new project, execute setup before starting the walkthro
 
 Every `/comprehend` invocation operates as a distinct, bounded **time block**.
 
-### 1. Session Framing
+### 1. Session Framing (Start)
 In the opening turn, establish context naturally:
+- Create or open the session record (`.journal/comprehend/records/0001-<slug>.md`) and initialize the **Session Mission** (Target Slice, Driver, Success Criterion) per [RECORD-FORMAT.md](RECORD-FORMAT.md).
 - State the target code slice and active mode (Gating vs. Paying-down).
 - Begin immediately with the first bite-sized entry point explanation.
 
 ### 2. Session Progression
 Walk through the code 1–2 paragraphs at a time, yielding each turn to allow the user to ask questions and steer the focus.
 
-### 3. Session Wrap-up
+### 3. Session Wrap-up (Finish)
 Close the session cleanly when dialogue finishes:
 - Offer the optional HTML walkthrough report (`MODULE-FORMAT.md`).
-- Save the markdown session record (`RECORD-FORMAT.md`).
+- Update the **Session Summary & Insights** section in the session record (`.journal/comprehend/records/0001-<slug>.md`) per [RECORD-FORMAT.md](RECORD-FORMAT.md).
 - State where the session record and optional HTML report were saved.
 
 ---
@@ -102,16 +102,15 @@ The workspace is private — add `.journal/` to the project's `.gitignore` on fi
 
 ```
 .journal/comprehend/
-  MISSION.md              # Why this code, why now (see MISSION-FORMAT.md)
   NOTES.md                # User preferences and key takeaways (see SETUP-FORMAT.md)
-  records/*.md            # Brief session records (see RECORD-FORMAT.md)
+  records/*.md            # Session mission and summary records (see RECORD-FORMAT.md)
   modules/*.html          # Walkthrough HTML reports (see MODULE-FORMAT.md)
   reference/*.html        # Glossaries, callouts, code-reading maps
 .journal/assets/
   styles/journal.css      # Tailored stylesheet dynamically generated on setup
 ```
 
-The agent writes `records/` — brief session records, agent's voice, capturing the shape of the conversation. See [RECORD-FORMAT.md](RECORD-FORMAT.md).
+The agent initializes mission info at session start and completes summary info at session end in `records/0001-<slug>.md`. See [RECORD-FORMAT.md](RECORD-FORMAT.md).
 
 ---
 
@@ -123,7 +122,7 @@ The agent writes `records/` — brief session records, agent's voice, capturing 
 - **Rubber-stamp (pre-merge)**: Merging without walking through. Ensure entry points and invariants are explained conversationally.
 - **Quiz / Checkpoint Drift**: Asking test questions or checkpoints. Stop quizzing; user drives questioning.
 - **Theatre (post-merge)**: Un-visited walkthrough docs. Reference previous records to build connection.
-- **Mission Drift**: Scope changes without updating `MISSION.md`. Update `MISSION.md` when focus shifts.
+- **Mission Drift**: Scope changes without updating the session record's mission section. Update the record when focus shifts.
 
 ---
 
@@ -131,6 +130,5 @@ The agent writes `records/` — brief session records, agent's voice, capturing 
 
 - [GLOSSARY.md](GLOSSARY.md) — Detailed definitions of *Frontier*, *Signals*, *Walkthrough*, and *Desirable Difficulty*.
 - [SETUP-FORMAT.md](SETUP-FORMAT.md) — Guidelines for onboarding interviews and preference maintenance.
-- [MISSION-FORMAT.md](MISSION-FORMAT.md) — Specification for `MISSION.md`.
-- [RECORD-FORMAT.md](RECORD-FORMAT.md) — Specification for Markdown session records.
+- [RECORD-FORMAT.md](RECORD-FORMAT.md) — Specification for session mission and summary records.
 - [MODULE-FORMAT.md](MODULE-FORMAT.md) — Specification for Walkthrough HTML reports (structure, aesthetics, and styling).

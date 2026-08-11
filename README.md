@@ -37,7 +37,7 @@ Agents often write issues catered to themselves — filled with verbose prompt l
 
 ## Workspace Structures
 
-*   **Comprehend Workspace:** `.journal/comprehend/` (contains `MISSION.md`, `NOTES.md`, `records/*.md`, and `modules/*.html`).
+*   **Comprehend Workspace:** `.journal/comprehend/` (contains `NOTES.md`, `records/*.md`, and `modules/*.html`).
 *   **Issue-It Output:** Prepares formatted markdown issues or pushes directly to GitHub via `gh issue create`.
 
 ---

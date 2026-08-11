@@ -1,47 +1,59 @@
-# RECORD Format
+# RECORD Format (Session Mission & Record)
 
-A session record is a brief markdown file in `.journal/comprehend/records/`, titled `0001-<slug>.md`. It captures a single session's shape so the walkthrough can be reconstructed later. Agent's voice. Not a transcript.
+A session record is a brief markdown file in `.journal/comprehend/records/0001-<slug>.md`. Each `/comprehend` session has its own focused mission and record combined in one file.
 
-## Template
+The agent initializes the **Mission** section at session start, and completes the **Session Summary & Insights** section as the session finishes.
+
+---
+
+## Template Structure
 
 ```md
 ---
 date: {YYYY-MM-DD}
-slice: {the slice the session covered, or '-' if mission-level}
+slice: {target code slice or module}
 mode: {gating | paying-down}
-frontier: {one sentence: where the ownership frontier moved this session}
 ---
 
+# Session Mission
+
+## Target Slice
+{1-2 sentences: which code, where it lives, and what it does.}
+
+## Why This Slice, Now (Driver)
+{1-2 sentences: the driver. Gating a PR diff, an upcoming refactor, a 3am incident, or paying down debt.}
+
+## Success Criterion
+{1-2 sentences: what success looks like for this session.}
+
+---
+
+# Session Summary & Insights
+
 ## Covered
+{1-3 bullets: what the session walked through, following the dialogue progression.}
 
-{1-3 bullets: what the session walked through. The shape, not the transcript. The agent's voice.}
+## User Questions & Key Inputs
+{1-3 bullets: key questions, pushbacks, or connections the user raised.}
 
-## User questions
+## Report Status
+{Path to HTML walkthrough report (.journal/comprehend/modules/0001-<slug>.html) if created, or 'None' if declined.}
 
-{1-3 bullets: the questions the user asked that drove the session. These are the moments that shaped the conversation. The user's words, paraphrased. If the user asked nothing, note "no questions" — the agent was talking too much.}
-
-## Ownership signals observed
-
-{1-3 bullets: recital, question depth, pushback, connection, defence. The agent observed these in the conversation. If fewer than 2, the user hasn't owned the slice yet — the next session's scope is closer than they think.}
-
-## Doc written?
-
-{Yes / No. If yes, the file path of the walkthrough doc. If no, why not — ownership not yet demonstrated, user declined, or session cut short.}
-
-## Next session
-
-{1-2 sentences: what the next session should pick up. Either a new slice to walk through, or a re-activation of an earlier slice.}
+## Next Steps
+{1-2 sentences: what the next session should pick up.}
 ```
 
-## When to write a record
+---
 
-- After every session that walked through a slice — even if no walkthrough doc was written.
-- After every mission-level event: mission changed, success criterion reached, mission archived.
+## Execution Workflow
 
-If a session produced nothing worth recording (rare), no record is needed. The journal is not a transcript.
+1. **Session Start:** Create or open `records/0001-<slug>.md`. Fill in the **Session Mission** (Target Slice, Driver, Success Criterion).
+2. **Session Finish:** Update the **Session Summary & Insights** section (Covered, User Questions, Report Status, Next Steps).
 
-## What the agent should NOT write
+---
 
-- **A summary of the user's explanations.** The user owns those. The record captures the *shape* of the conversation, not its content.
-- **A score or grade.** The skill is explaining, not testing. The frontier note is a position, not a rating.
-- **Verbatim dialogue.** Paraphrase. The record is for reconstructing the walkthrough, not replaying it.
+## Guidelines for the Agent
+
+- **Do NOT write code blocks in records.** Keep records focused on high-level shape, driver, and questions.
+- **Do NOT score or grade.** State the session shape and questions objectively.
+- **Paraphrase questions.** Capture the user's key questions and inputs concisely without dumping verbatim transcripts.
