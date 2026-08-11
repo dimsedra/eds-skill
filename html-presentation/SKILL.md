@@ -6,13 +6,9 @@ disable-model-invocation: false
 
 # HTML Presentation
 
-`html-presentation` provides the execution framework to engineer custom, web-based presentation decks for any domain, prompt context, or visual requirement.
-
----
-
 ## First Principle
 
-The user's context, brand, and presentation goals dictate every architectural, aesthetic, and technical choice. Never apply fixed templates, preset color schemes, default fonts, or rigid UI structures. Always discover requirements first, then engineer a custom presentation system.
+Every choice you make — architecture, aesthetic, technique — follows from the user's context, brand, and presentation goals. A fixed template shapes the deck around itself, not around the user; discover requirements first, then engineer a custom system.
 
 ---
 
@@ -53,6 +49,7 @@ Align with the user on:
 
 ### 2. Architecture & Design Tokens
 Consult [DECK-ENGINEERING.md](DECK-ENGINEERING.md):
+- Once alignment settles the design direction, scaffold `DECK-DESIGN.md` next to the deck files: palette, typography, aspect ratio, surfaces, and interaction. The document, not your memory, holds the design — the user can steer it, and every file stays consistent with it.
 - Scaffold the presentation layout appropriate for deck scale.
 - Construct custom CSS variables for colors, typography scaling, spacing, and surfaces derived entirely from user alignment.
 
@@ -73,7 +70,7 @@ Apply patterns from [DECK-ENGINEERING.md](DECK-ENGINEERING.md):
 ## Failure Modes
 
 - **Preset Fixation**: Forcing specific colors, fonts, or component templates onto a project without user discovery.
-- **Template Copying**: Copying fixed example structures instead of engineering a system tailored to the prompt.
+- **Template Copying**: Copying fixed example structures instead of engineering a system tailored to the user.
 - **Print Background Loss**: Omitting exact print color properties, causing browsers to strip backgrounds in PDF exports.
 
 ---

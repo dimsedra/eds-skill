@@ -7,7 +7,7 @@ argument-hint: What code do you want to comprehend?
 
 # Comprehend
 
-`/comprehend` is a dialogue-based, conversational, two-way code walkthrough tailored to the user's preferences (saved in `NOTES.md`) and proficiency. The agent presents clear, structured code explanations; the user drives questioning and context.
+`/comprehend` is a two-way code walkthrough tailored to the user's preferences (saved in `NOTES.md`) and proficiency. You present clear, structured code explanations; the user drives questioning and context.
 
 ---
 
@@ -28,7 +28,7 @@ Reach for this skill when the user requests pre-merge diff ownership or post-mer
 ## Execution Modes
 
 ### Gating Mode — Before the Merge
-Single session, fast. The agent provides clear, structured explanations of the diff so the user understands what is shipping. The user asks questions whenever they want deeper context or edge-case clarification.
+Single session, fast. You provide clear, structured explanations of the diff so the user understands what is shipping. The user asks questions whenever they want deeper context or edge-case clarification.
 
 ### Paying-down Mode — After the Merge
 Multi-session, paced. Walk through code over multiple sessions, one slice at a time, referencing earlier slices to build long-term retention.
@@ -64,7 +64,6 @@ Walk through the code 1–2 paragraphs at a time, yielding each turn to allow th
 
 ### 3. Session Wrap-up (Finish)
 Close the session cleanly when dialogue finishes:
-- Offer the optional HTML walkthrough report (`MODULE-FORMAT.md`).
 - Update the **Session Summary & Insights** section in the session record (`.journal/comprehend/records/0001-<slug>.md`) per [RECORD-FORMAT.md](RECORD-FORMAT.md).
 - State where the session record and optional HTML report were saved.
 
@@ -72,11 +71,11 @@ Close the session cleanly when dialogue finishes:
 
 ## Walkthrough Posture & Interaction Rules
 
-### First Principle: The Agent Explains, The User Owns
-Comprehension is the user's. The agent's job is to walk through the code with the user — not to write a walkthrough doc, not to summarise, not to fill in a journal. The agent informs; the user articulates.
+### First Principle: You Explain, the User Owns
+Comprehension is the user's. Your job is to walk through the code with the user — not to write a walkthrough doc, not to summarise, not to fill in a journal. You inform; the user articulates.
 
 ### Two-Way Pacing: Never Monologue
-A walkthrough is a two-way conversation, not a lecture. The agent **must never dump a massive wall of text** detailing entry points, edge-case invariants, and logic all at once.
+A walkthrough is a two-way conversation, not a lecture. You must never dump a massive wall of text detailing entry points, edge-case invariants, and logic all at once.
 - **One Slice at a Time:** Explain a single entry point or architectural seam concisely (1–2 paragraphs max).
 - **Pause and Yield:** End messages cleanly to yield the turn to the user.
 - **User Steers:** Let the user react, ask questions, or direct which part of the code to explore next before diving into deeper edge cases or invariants.
@@ -87,12 +86,12 @@ Tone, presentation style, and explanation structure are governed strictly by `.j
 - Dynamically update `NOTES.md` when the user requests style adjustments per [SETUP-FORMAT.md](SETUP-FORMAT.md).
 
 ### Explain, Don't Quiz
-The agent presents structured code explanations and pauses. The user drives questioning; the agent never interrogates, quizzes, or grades checkpoint questions.
+You present structured code explanations and pause. The user drives questioning; you never interrogate, quiz, or grade checkpoint questions.
 
 ### Concluding & Optional Walkthrough Report
-The agent does not write a walkthrough report by default. The walkthrough is the conversation itself.
-When the walkthrough dialogue reaches a natural conclusion or stopping point, concisely ask if the user wants an HTML walkthrough report saved.
-If the user accepts, generate the HTML walkthrough report (top agent walkthrough following dialogue progression, bottom session log for user notes) into `.journal/comprehend/modules/0001-<slug>.html` per [MODULE-FORMAT.md](MODULE-FORMAT.md).
+You do not write a walkthrough report by default. The walkthrough is the conversation itself.
+When the dialogue reaches a natural conclusion or stopping point, concisely ask if the user wants an HTML walkthrough report saved.
+If the user accepts, generate the report (top: your walkthrough following the dialogue progression; bottom: session log for user notes) into `.journal/comprehend/modules/0001-<slug>.html` per [MODULE-FORMAT.md](MODULE-FORMAT.md).
 
 ---
 
@@ -110,7 +109,7 @@ The workspace is private — add `.journal/` to the project's `.gitignore` on fi
   styles/journal.css      # Tailored stylesheet dynamically generated on setup
 ```
 
-The agent initializes mission info at session start and completes summary info at session end in `records/0001-<slug>.md`. See [RECORD-FORMAT.md](RECORD-FORMAT.md).
+You initialize mission info at session start and complete summary info at session end in `records/0001-<slug>.md`. See [RECORD-FORMAT.md](RECORD-FORMAT.md).
 
 ---
 

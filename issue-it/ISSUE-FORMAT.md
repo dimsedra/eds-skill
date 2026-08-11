@@ -33,7 +33,7 @@ Every section in an issue exists for a specific cognitive reason — serving the
 *Rationale: Code-as-context is a trap. Code snippets feel like documentation, but become stale snapshots that do not explain why by themselves. The repository holds the code; the issue holds location pointers.*
 - List relevant file paths, function signatures, or line ranges.
 - **Allowed:** `src/auth/session-store.ts:L42-L58`, `validateSessionToken()`
-- **Strict Prohibition:** Do NOT include fenced code blocks or code snippets.
+- **Strict Prohibition:** Do NOT include fenced code blocks.
 
 ### 5. Fix Direction (Strategy, Not Implementation - Optional)
 *Rationale: Focuses on architectural direction and design intent, leaving code implementation to the pull request.*

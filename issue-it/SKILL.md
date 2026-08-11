@@ -7,7 +7,7 @@ argument-hint: What problem or context do you want to turn into an issue?
 
 # Issue It
 
-`/issue-it` transforms problem discussions, bug reports, or architecture gaps into clean, user-centered tracking issues. The agent synthesizes context and posts or drafts an issue optimized for user comprehension.
+`/issue-it` transforms problem discussions, bug reports, or architecture gaps into clean, user-centered tracking issues. You synthesize context and post or draft an issue optimized for user comprehension.
 
 ---
 
@@ -15,7 +15,7 @@ argument-hint: What problem or context do you want to turn into an issue?
 
 An issue is written for the user reading it six weeks from now with zero active context.
 
-- **Problem-First Titles:** The title must state the exact failure condition or system gap. A user skimming an issue list six weeks later must immediately understand what is broken without opening the issue.
+- **Problem-First Titles:** State the exact failure condition or system gap in the title — a skim of the issue list must tell what's broken without opening the issue.
 - **Big-Picture First:** Always start with 1–2 sentences of high-level system framing. A cold reader six weeks later needs mental re-orientation before diving into localized problem details.
 - **Cognitive Load Slicing:** The user has limited working memory at any single point in time. Never pack multiple distinct domain problems or system layers into one overwhelming issue. If a problem spans multiple independent abstraction boundaries, slice it into separate, focused sub-issues that make abstract sense on their own.
 - **No Code Blocks (Code-As-Context Trap):** Strictly no fenced code blocks. Code snippets are a trap: they feel like documentation, but become stale snapshots that fail to explain why something breaks. Use file and line pointers (`file:line`) only. The repository holds the code; the issue holds the context and location pointers.

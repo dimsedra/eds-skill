@@ -2,7 +2,7 @@
 
 A session record is a brief markdown file in `.journal/comprehend/records/0001-<slug>.md`. Each `/comprehend` session has its own focused mission and record combined in one file.
 
-The agent initializes the **Mission** section at session start, and completes the **Session Summary & Insights** section as the session finishes.
+You initialize the **Mission** section at session start, and complete the **Session Summary & Insights** section as the session finishes.
 
 ---
 
@@ -52,7 +52,7 @@ mode: {gating | paying-down}
 
 ---
 
-## Guidelines for the Agent
+## Guidelines for Writing Records
 
 - **Do NOT write code blocks in records.** Keep records focused on high-level shape, driver, and questions.
 - **Do NOT score or grade.** State the session shape and questions objectively.

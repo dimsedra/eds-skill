@@ -14,10 +14,10 @@ An HTML walkthrough report is created for the user returning to this code weeks 
 
 A walkthrough report is created **only** when all three conditions are met:
 1. The walkthrough dialogue reaches a natural conclusion or stopping point.
-2. The agent offers the report concisely.
+2. You offer the report concisely.
 3. The user explicitly accepts.
 
-The agent does **not** judge or grade ownership.
+You do **not** judge or grade ownership.
 
 ---
 

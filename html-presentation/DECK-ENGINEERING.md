@@ -1,17 +1,31 @@
 # Deck Engineering Guidelines
 
-Unified reference guide for architectural patterns, design system construction, interactive navigation, and exact PDF export for HTML slide decks.
-
----
-
 ## 1. Architectural Patterns
 
 Match presentation deck architecture to project scale, distribution context, and output requirements:
 
 ### Modular Multi-File Pattern
-- **Concept:** A central shell script orchestrates dynamic fetching of standalone slide HTML files.
+- **Concept:** A central shell orchestrates dynamic fetching of standalone slide HTML files.
 - **Application:** Multi-slide decks requiring isolated slide editing, clean file separation, or modular maintenance.
 - **Center of Gravity:** Isolate slide content into dedicated files; maintain viewer state in a central shell.
+
+Scaffold the deck as:
+
+```
+presentation/
+  index.html              # shell: viewport, controls bar, CDN libs, loads css + js
+  css/styles.css          # design tokens (:root) + component styles
+  js/slide-loader.js      # fetches slides/slide-NN.html, re-renders MathJax/Mermaid, syncs hash + controls
+  js/pdf-exporter.js      # print/PDF assembly
+  js/main.js              # keyboard navigation, fullscreen, control bindings
+  slides/slide-01.html    # one slide fragment per file, zero-padded
+  slides/slide-02.html
+  ...
+  export_pdf.html         # print assembly root: fetches fragments, sizes @page, opens print dialog
+  DECK-DESIGN.md          # the design language of this deck
+```
+
+Each `slides/slide-NN.html` is a self-contained `<section class="slide" id="slide-N">` fragment: optional `slide-cover` variant, a `<header>` (title + slide number), an `<article class="slide-body">` (lead text, grids, cards, callouts), and a `<footer>` (references, tags). Speaker notes live as HTML comments. Fragments stay content-only — the shell owns layout, state, and rendering.
 
 ### Single-File Dynamic Pattern
 - **Concept:** All slide sections reside within a single HTML file, controlled via CSS visibility or DOM state toggles.
@@ -23,16 +37,36 @@ Match presentation deck architecture to project scale, distribution context, and
 - **Application:** Any deck requiring clean, multi-page PDF generation.
 - **Center of Gravity:** Separate interactive screen presentation logic from multi-page document printing logic.
 
+Scaffold `export_pdf.html` as a print-only root: it loads the same stylesheet and render libraries as the shell, fetches each `slides/slide-NN.html` fragment at runtime, wraps every fragment in a `.print-slide-page` sized to the deck's aspect ratio (page-break rules and exact color adjustment applied), typesets MathJax and renders Mermaid once assembled, waits for graphics to settle, then opens the print dialog.
+
+Assemble by fetching fragments, never by inlining slide content into the export — a static copy duplicates content and goes stale the moment a slide changes.
+
 ---
 
 ## 2. Design System & Token Construction
 
 Construct domain-agnostic presentation design systems derived strictly from user discovery:
 
+### Design Language Document
+- Once discovery settles the design direction, scaffold a `DECK-DESIGN.md` next to the deck files: palette, typography scale, aspect ratio, surfaces, spacing, and interaction choices.
+- Write it for the user to read and steer — plain language, concrete tokens — not a technical appendix.
+- Keep it the single source of truth: CSS tokens derive from it, and later slides and later sessions stay consistent with it.
+
+Scaffold `DECK-DESIGN.md` with these sections, filled as alignment settles them:
+
+1. **Deck Context** — purpose, delivery setting, audience, tone.
+2. **Palette** — each color's role (primary, surfaces, text, semantic), its value, where it appears.
+3. **Typography** — families and their roles (heading, body, mono), scale, weights, tracking.
+4. **Aspect Ratio & Viewport** — target ratio and fitting strategy.
+5. **Surfaces & Spacing** — cards, callouts, grids; padding and border tokens.
+6. **Components** — the slide anatomy: header, body, footer, cover variant, tags, highlights.
+7. **Interaction & Navigation** — keyboard map, controls, hash sync.
+8. **Print & PDF** — assembly approach, page breaks, color preservation.
+
 ### Dynamic Token Construction
 - Build CSS custom properties (`:root`) derived entirely from user alignment.
 - Establish distinct token layers for canvas background surfaces, secondary containers, primary typography, muted labels, structural borders, and focal accents.
-- Never impose preset color schemes, default theme names, or arbitrary color hexes.
+- Build tokens from discovery alone — presets make every deck identical and erase the user's context.
 
 ### Typography Scaling & Calibration
 - Import typography families explicitly chosen by or aligned with the user.
@@ -65,8 +99,12 @@ Construct domain-agnostic presentation design systems derived strictly from user
 
 ### Dedicated Assembly & Page Breaks
 - Assemble all slide sections sequentially into a continuous print document layout.
+- Fetch slide fragments at runtime like the shell does — an inlined static copy goes stale the moment slides change.
 - Set `@page` sizing to match target aspect ratio (e.g. 16:9 landscape) with zero margins.
 - Apply CSS page-break rules (`page-break-after: always` and `page-break-inside: avoid`) to force exactly 1 slide per PDF page.
+
+### Render Before Print
+- Typeset formulas and diagrams (MathJax, Mermaid) after assembly, and let the renderer settle before opening the print dialog — printing before rendering yields blank formulas and empty diagrams.
 
 ### Exact Color Preservation
 - Apply exact print color adjustment rules (`print-color-adjust: exact !important` and `-webkit-print-color-adjust: exact !important`) to root and slide containers.

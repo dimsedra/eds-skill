@@ -9,7 +9,7 @@ _Avoid_: "knowledge gap" (too generic), "blind spot" (overloaded with bug-fixing
 
 ## Ownership signal
 
-An observable moment in the conversation where the user demonstrates real comprehension, not just fluency. Signals: recital (user explains without re-reading), question depth (user asks *why*, not *what*), pushback (user disagrees with the agent with reason), connection (user links the slice to other code unprompted), defence (user can answer a sharp review-style question). 2–3 signals for a slice is the threshold for offering the walkthrough doc.
+An observable moment in the conversation where the user demonstrates real comprehension, not just fluency. Signals: recital (user explains without re-reading), question depth (user asks *why*, not *what*), pushback (user challenges your explanation with reason), connection (user links the slice to other code unprompted), defence (user can answer a sharp review-style question). You observe signals to sense when ownership is landing — they don't gate the offer; the walkthrough doc is offered when the dialogue concludes and the user accepts.
 _Avoid_: "ownership claim" (overloaded with the project-management sense of *claim*)
 
 ## Walkthrough
