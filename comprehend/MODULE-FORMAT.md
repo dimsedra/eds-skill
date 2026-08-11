@@ -27,8 +27,8 @@ An HTML walkthrough report consists of two distinct sections separated by a divi
 
 ### 1. Primary Walkthrough (Top Section - Agent-Authored)
 - **Big-Picture Re-Orientation First:** Always start with a 1–2 paragraph high-level system overview. Explain what component or slice this document covers, where it sits in the broader architecture, and why this walkthrough was conducted.
-- **Dialogue Progression (A → C → D):** Author the core walkthrough with maximum technical clarity, directly following the progression of topics discussed during the session (e.g. if the dialogue walked through topics A, C, and D, the report covers A, C, and D in that order).
-- **Technical Precision & Invariants:** Detail code architecture, entry/exit points, non-obvious logic, load-bearing invariants, and adjacent seams.
+- **Dialogue Progression (A → C → D):** Author the core walkthrough tailored to the user's preferred explanation style (saved in `NOTES.md`), directly following the progression of topics discussed during the session (e.g. if the dialogue walked through topics A, C, and D, the report covers A, C, and D in that order).
+- **Architecture & Invariants:** Detail code architecture, entry/exit points, non-obvious logic, load-bearing invariants, and adjacent seams according to `NOTES.md` preferences.
 - **Citations:** Include precise `file:line` references for every claim.
 
 ### 2. Divider (`<hr>`)
