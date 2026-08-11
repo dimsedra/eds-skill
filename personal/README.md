@@ -6,6 +6,6 @@ Personal skills follow the same structure as the other skills (a folder with a `
 
 ## Skills
 
-- **`front-end-designer`** — Front-end design execution: brand-anchored design via `front-end-design-spec.md` (the Visual Source of Truth), with a non-negotiable UX 101 boundary.
+- **`front-end-designer`** — Front-end design execution: brand-anchored design via `brand-design-guidelines.md` (the user's voice, the Visual Source of Truth), with a non-negotiable UX 101 boundary.
 
 To add a skill: create a folder here (e.g. `personal/<skill-name>/SKILL.md`), following the conventions in `write-skills/SKILL.md`. If the skill is meant to be invoked by you only, set `disable-model-invocation: true` in the frontmatter.

@@ -1,6 +1,6 @@
 # Principles: The Deep Derivations
 
-The operating principles of front-end-designer, in depth. They exist to express the anchor (spec § 1) within the UX 101 boundary (spec § 6) — they are not co-equal with the anchor.
+The operating principles of front-end-designer, in depth. They exist to express the brand anchor (from `brand-design-guidelines.md`) within the UX 101 boundary — they are not co-equal with the anchor.
 
 ---
 
@@ -30,15 +30,15 @@ Translate brand personality into physical-feeling surfaces. Process:
 
 Whitespace is an active instrument of pacing and perception, not passive empty area. Its values are never pre-set — they are derived from the brand moat.
 
-1. **Read the brand personality** from spec § 1.
+1. **Read the brand personality** from `brand-design-guidelines.md`.
 2. **Let the personality determine the breath of the design**: how fast the eye moves, how much room an idea gets before the next one lands. An editorial brand gives ideas room to settle; a clinical brand keeps everything tight and immediate. Neither value is right or wrong — what matters is that the pacing follows from what the brand is.
 3. **Choose a base unit and scale** that matches that breath (4, 8, 12, 16 — or other; not pre-set).
-4. **Document the choice and rationale** in spec § 3 — the WHY, not just the value. *"Section padding 120px because the brand is editorial-slow; smaller would feel rushed, larger would feel pretentious."*
+4. **State the rationale when presenting** — the WHY, not just the value. *"Section padding 120px because the brand is editorial-slow; smaller would feel rushed, larger would feel pretentious."*
 5. **Apply consistently** — same scale across the system, with semantic naming (`--space-between-sections`, not just `--space-2`).
 
 **One primary focal per viewport** — its size and weight are brand-dependent, not pre-set. A maximalist brand might have a focal at 80% of the viewport; a zen brand at 10% with 90% negative space. Both serve the moat.
 
-**Validation gate:** every numeric spacing value in the spec traces back to a brand personality adjective and a documented why. Numbers without rationale are rejected.
+**Validation gate:** every numeric spacing value traces back to a brand personality adjective and a why. Numbers without rationale are rejected.
 
 ---
 
@@ -46,12 +46,12 @@ Whitespace is an active instrument of pacing and perception, not passive empty a
 
 Typography is the brand's vocal signature — not just legible text. Faces, sizes, and ratios derive from the brand moat; only the legibility floors (the Hard Guardrails) are fixed.
 
-1. **Read the brand personality** from spec § 1.
+1. **Read the brand personality** from `brand-design-guidelines.md`.
 2. **Choose a display face by what the brand's voice sounds like.** A face is a voice, not a category: pick the face whose tone matches how the brand would speak — serious, playful, clinical, raw. Read the brand, not a genre list.
 3. **Choose a body font** that pairs with the display and respects the legibility floors.
 4. **Choose a type scale that expresses the hierarchy intensity** — how loudly the brand announces its structure. Calm brands whisper; loud brands shout. The scale follows the volume, not a preset ratio.
 5. **Choose color tokens** that carry brand emotion, not just contrast: surface, text, accent, high-contrast focus.
-6. **Document the choice and rationale** in spec § 4 — font X because personality Y, scale Z because hierarchy intensity W.
+6. **State the rationale when presenting** — font X because personality Y, scale Z because hierarchy intensity W.
 
 **Hard floors (UX 101, not aesthetic):** body text 16px+, line-height 1.5+, line length 50–75ch, WCAG AA contrast.
 
@@ -76,5 +76,5 @@ Never ship the first idea. The first idea is the answer that arrives without the
 
 The rule has two forms:
 
-- **Upstream (spec § 1):** not "is this idea obvious?" but "is this idea anchored in the brand's mental model?"
+- **Upstream (brand anchor):** not "is this idea obvious?" but "is this idea anchored in the brand's mental model?"
 - **Downstream (components):** if a component design is the obvious solution, iterate twice before shipping.
