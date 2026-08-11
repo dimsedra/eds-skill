@@ -1,12 +1,12 @@
 ---
-name: authoring-agent-skills
+name: write-skills
 description: Meta-skill guide for writing, refining, and engineering universal, predictable, non-overfitted agent skills. Use when designing new agent skills, refactoring existing skills, or auditing skill instructions for verbosity and overfitting.
 disable-model-invocation: false
 ---
 
-# Authoring Agent Skills
+# Write Skills
 
-`authoring-agent-skills` provides the meta-methodology to engineer high-impact, universal agent skills that steer LLM probabilistic reasoning to a targeted center of gravity without overfitting or template fixation.
+`write-skills` provides the meta-methodology to engineer high-impact, universal agent skills that steer LLM probabilistic reasoning to a targeted center of gravity without overfitting or template fixation.
 
 ---
 
