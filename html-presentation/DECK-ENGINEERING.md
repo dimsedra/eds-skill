@@ -2,11 +2,11 @@
 
 ## 1. Architectural Patterns
 
-Match presentation deck architecture to project scale, distribution context, and output requirements:
+Every presentation deck follows the modular multi-file architecture paired with a dedicated print assembly:
 
 ### Modular Multi-File Pattern
 - **Concept:** A central shell orchestrates dynamic fetching of standalone slide HTML files.
-- **Application:** Multi-slide decks requiring isolated slide editing, clean file separation, or modular maintenance.
+- **Application:** All slide decks requiring clean file separation, isolated slide editing, and modular maintenance.
 - **Center of Gravity:** Isolate slide content into dedicated files; maintain viewer state in a central shell.
 
 Scaffold the deck as:
@@ -15,7 +15,7 @@ Scaffold the deck as:
 presentation/
   index.html              # shell: viewport, controls bar, CDN libs, loads css + js
   css/styles.css          # design tokens (:root) + component styles
-  js/slide-loader.js      # fetches slides/slide-NN.html, re-renders MathJax/Mermaid, syncs hash + controls
+  js/slide-loader.js      # fetches slides/slide-NN.html, re-renders MathJax/Mermaid/Prism, syncs hash + controls
   js/pdf-exporter.js      # print/PDF assembly
   js/main.js              # keyboard navigation, fullscreen, control bindings
   slides/slide-01.html    # one slide fragment per file, zero-padded
@@ -25,19 +25,14 @@ presentation/
   DECK-DESIGN.md          # the design language of this deck
 ```
 
-Each `slides/slide-NN.html` is a self-contained `<section class="slide" id="slide-N">` fragment: optional `slide-cover` variant, a `<header>` (title + slide number), an `<article class="slide-body">` (lead text, grids, cards, callouts), and a `<footer>` (references, tags). Speaker notes live as HTML comments. Fragments stay content-only; the shell owns layout, state, and rendering.
-
-### Single-File Dynamic Pattern
-- **Concept:** All slide sections reside within a single HTML file, controlled via CSS visibility or DOM state toggles.
-- **Application:** Compact presentations, rapid prototypes, or self-contained single-file distribution without web server constraints.
-- **Center of Gravity:** Minimize fetch dependencies while preserving clean section boundaries.
+Each `slides/slide-NN.html` is a self-contained `<section class="slide" id="slide-N">` fragment structured with semantic HTML tailored to the slide's specific purpose (e.g., headings, paragraphs, lists, figures, `<pre><code class="language-*">` code blocks, or modular content containers). Speaker notes live as HTML comments if needed. Fragments stay content-only; the shell owns layout, state, and rendering. Slide fragments are pure HTML documents: never leave raw Markdown formatting inside them (convert `**bold**`, `*italic*`, `` `code` ``, `[text](url)` to native HTML tags). Slide fragments must also contain zero inline CSS or `<style>` blocks—all layout, spacing, colors, and component styles must reside in `css/styles.css` so slide markup remains clean and easy for humans to read and edit.
 
 ### Dedicated Print Assembly Pattern
 - **Concept:** A dedicated print document layout concatenates all slide sections sequentially into a continuous, page-broken structure.
-- **Application:** Any deck requiring clean, multi-page PDF generation.
+- **Application:** Generating clean, multi-page PDF exports for the deck.
 - **Center of Gravity:** Separate interactive screen presentation logic from multi-page document printing logic.
 
-Scaffold `export_pdf.html` as a print-only root: it loads the same stylesheet and render libraries as the shell, fetches each `slides/slide-NN.html` fragment at runtime, wraps every fragment in a `.print-slide-page` sized to the deck's aspect ratio (page-break rules and exact color adjustment applied), typesets MathJax and renders Mermaid once assembled, waits for graphics to settle, then opens the print dialog.
+Scaffold `export_pdf.html` as a print-only root: it loads the same stylesheet and render libraries as the shell, fetches each `slides/slide-NN.html` fragment at runtime, wraps every fragment in a `.print-slide-page` sized to the deck's aspect ratio (page-break rules and exact color adjustment applied), typesets MathJax, renders Mermaid, and highlights Prism code blocks once assembled, waits for graphics to settle, then opens the print dialog.
 
 Assemble by fetching fragments, never by inlining slide content into the export, as a static copy duplicates content and goes stale the moment a slide changes.
 
@@ -58,8 +53,8 @@ Scaffold `DECK-DESIGN.md` with these sections, filled as alignment settles them:
 2. **Palette**: each color's role (primary, surfaces, text, semantic), its value, where it appears.
 3. **Typography**: families and their roles (heading, body, mono), scale, weights, tracking.
 4. **Aspect Ratio & Viewport**: target ratio and fitting strategy.
-5. **Surfaces & Spacing**: cards, callouts, grids; padding and border tokens.
-6. **Components**: the slide anatomy (header, body, footer, cover variant, tags, highlights).
+5. **Surfaces & Spacing**: containers, spacing scale, padding, and border tokens.
+6. **Components**: reusable slide patterns and components identified during discovery (e.g., slide variants, layouts, callouts, media blocks).
 7. **Interaction & Navigation**: keyboard map, controls, hash sync.
 8. **Print & PDF**: assembly approach, page breaks, color preservation.
 
@@ -70,11 +65,11 @@ Scaffold `DECK-DESIGN.md` with these sections, filled as alignment settles them:
 
 ### Typography Scaling & Calibration
 - Import typography families explicitly chosen by or aligned with the user.
-- Pair heading sizes with tight tracking (letter-spacing) to keep title shapes crisp and avoid loose word wrapping.
+- Tune heading sizes, tracking (letter-spacing), and line-heights to maintain strong hierarchy and prevent awkward line wraps.
 - Maintain readable line-heights and visual contrast hierarchy across headings, body text, lists, and metadata.
 
 ### Spatial & Surface Chunking
-- Group related ideas into visual surfaces (cards, callout blocks, columns, parameter grids) to prevent cluttered slide canvases.
+- Group related ideas logically to maintain clear visual hierarchy and prevent cluttered slide canvases.
 - Maintain consistent padding, border tokens, and alignment across all slide layouts.
 - Enforce strict viewport boundary containment so elements never cause unintended slide scrollbars.
 
@@ -91,7 +86,10 @@ Scaffold `DECK-DESIGN.md` with these sections, filled as alignment settles them:
 - Keep visual controls (slide counters, dropdown jumpers, progress indicators) synchronized with current state.
 
 ### Dynamic Re-rendering Passes
-- Automatically trigger typesetting or diagram rendering passes (MathJax, Mermaid, syntax highlighters) whenever slide DOM content updates.
+- Automatically trigger typesetting, diagram rendering, and syntax highlighting passes whenever slide DOM content updates:
+  - **MathJax**: `MathJax.typesetPromise([currentSlide])`
+  - **Mermaid**: `mermaid.run({ nodes: currentSlide.querySelectorAll('.mermaid') })`
+  - **Prism**: `Prism.highlightAllUnder(currentSlide)`
 
 ---
 
@@ -104,7 +102,7 @@ Scaffold `DECK-DESIGN.md` with these sections, filled as alignment settles them:
 - Apply CSS page-break rules (`page-break-after: always` and `page-break-inside: avoid`) to force exactly 1 slide per PDF page.
 
 ### Render Before Print
-- Typeset formulas and diagrams (MathJax, Mermaid) after assembly, and let the renderer settle before opening the print dialog, as printing before rendering yields blank formulas and empty diagrams.
+- Typeset formulas (MathJax), render diagrams (Mermaid), and highlight code blocks (Prism) after assembly, and let the renderers settle before opening the print dialog, as printing before rendering yields blank graphics or unformatted code.
 
 ### Exact Color Preservation
 - Apply exact print color adjustment rules (`print-color-adjust: exact !important` and `-webkit-print-color-adjust: exact !important`) to root and slide containers.

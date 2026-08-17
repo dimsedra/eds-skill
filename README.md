@@ -44,7 +44,7 @@ A meta-methodology for engineering universal agent skills that steer LLM reasoni
 ### 4. `html-presentation`: HTML Slide Deck Engineering
 Build custom, web-based presentation decks for any domain or visual requirement:
 *   **Dynamic Discovery First:** Align with user context, brand, and delivery setting before writing code.
-*   **Architecture Patterns:** Modular multi-file, single-file dynamic, or dedicated print assembly based on project scale.
+*   **Modular Multi-File Architecture:** Clean slide fragment separation with a central shell and dedicated print assembly.
 *   **Exact PDF Export:** Full-bleed color preservation, page-break precision, and print-ready geometry.
 
 ---

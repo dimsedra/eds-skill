@@ -15,7 +15,7 @@ Every choice you make (architecture, aesthetic, technique) follows from the user
 ## Core Posture
 
 - **Discover Before Building**: Clarify visual identity, aspect ratio, typography, interaction, and structural requirements before writing code.
-- **Architect for Context**: Choose modular multi-file, single-file, or print-assembly patterns based on scale and output needs.
+- **Modular Architecture**: Build every deck using the modular multi-file pattern (central shell with isolated slide fragments) and dedicated print assembly.
 - **Maintain Presentation Hygiene**: Keep content markup clean and semantic, and ensure exact color preservation on print/PDF export.
 
 ---
@@ -55,14 +55,16 @@ Consult [DECK-ENGINEERING.md](DECK-ENGINEERING.md):
 
 ### 3. Content Transformation
 Transform presentation content into clean HTML:
-- Use semantic structural elements for headers, content bodies, and footers.
-- Map text formatting to native semantic tags (`<strong>`, `<em>`, `<code>`, `<ul>`).
-- Format user-requested citations, tags, or metadata in appropriate structural zones.
+- Structure each slide using semantic HTML elements tailored to its specific content and purpose.
+- Format text and media using appropriate standard semantic tags.
+- Pure HTML only (zero Markdown leaking): Never use raw Markdown syntax (such as `**bold**`, `*italic*`, `` `code` ``, `[text](url)`, or `- bullet`) inside `.html` files. Convert all formatting to native HTML tags (`<strong>`, `<em>`, `<code>`, `<a>`, `<ul><li>`).
+- Include metadata, citations, or speaker notes only when requested or relevant to the presentation context.
+- Maintain strict separation of content and styling: slide fragments are optimized for human reading and editing. Never use inline `style="..."` attributes or `<style>` blocks in slide files; all layout and component styles belong in `css/styles.css`.
 
 ### 4. Interaction & Export Verification
 Apply patterns from [DECK-ENGINEERING.md](DECK-ENGINEERING.md):
 - Bind keyboard navigation listeners and sync slide state with UI controls and hash URLs.
-- Ensure dynamic elements (such as math formulas, diagrams, or code highlighters, if present) re-render on slide changes.
+- Ensure dynamic elements (MathJax formulas, Mermaid diagrams, or Prism syntax-highlighted code blocks) re-render on slide changes.
 - Verify print/PDF export geometry and force exact color rendering (`print-color-adjust: exact`).
 
 ---
@@ -71,6 +73,8 @@ Apply patterns from [DECK-ENGINEERING.md](DECK-ENGINEERING.md):
 
 - **Preset Fixation**: Forcing specific colors, fonts, or component templates onto a project without user discovery.
 - **Template Copying**: Copying fixed example structures instead of engineering a system tailored to the user.
+- **Markdown Leaking**: Leaving raw Markdown syntax (such as `**text**`, `*text*`, or `` `code` ``) inside `.html` files instead of native HTML tags.
+- **Inline Style Pollution**: Adding inline `style="..."` or `<style>` tags into slide fragments instead of defining reusable classes in `css/styles.css`.
 - **Print Background Loss**: Omitting exact print color properties, causing browsers to strip backgrounds in PDF exports.
 
 ---
