@@ -6,7 +6,7 @@ Reference template for structuring user-centered GitHub issues produced by `/iss
 
 ## Core Mental Model: The "Cold-Me Six Weeks Later" Rule
 
-Every section in an issue exists for a specific cognitive reason — serving the user reading it six weeks later with zero active memory of the conversation.
+Every section in an issue exists for a specific cognitive reason: serving the user reading it six weeks later with zero active memory of the conversation.
 
 ---
 

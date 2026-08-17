@@ -9,12 +9,12 @@ _Avoid_: "knowledge gap" (too generic), "blind spot" (overloaded with bug-fixing
 
 ## Ownership signal
 
-An observable moment in the conversation where the user demonstrates real comprehension, not just fluency. Signals: recital (user explains without re-reading), question depth (user asks *why*, not *what*), pushback (user challenges your explanation with reason), connection (user links the slice to other code unprompted), defence (user can answer a sharp review-style question). You observe signals to sense when ownership is landing — they don't gate the offer; the walkthrough doc is offered when the dialogue concludes and the user accepts.
+An observable moment in the conversation where the user demonstrates real comprehension, not just fluency. Signals: recital (user explains without re-reading), question depth (user asks *why*, not *what*), pushback (user challenges your explanation with reason), connection (user links the slice to other code unprompted), defence (user can answer a sharp review-style question). You observe signals to sense when ownership is landing. They don't gate the offer; the walkthrough doc is offered when the dialogue concludes and the user accepts.
 _Avoid_: "ownership claim" (overloaded with the project-management sense of *claim*)
 
 ## Walkthrough
 
-The conversation itself — the agent's explanation of a slice, walked through with the user. May be ephemeral (one session) or persisted as an optional walkthrough doc.
+The conversation itself: the agent's explanation of a slice, walked through with the user. May be ephemeral (one session) or persisted as an optional walkthrough doc.
 _Avoid_: "tutorial" (too generic), "lesson" (too generic)
 
 ## Walkthrough doc
@@ -44,12 +44,12 @@ _Avoid_: "goal" (too generic), "objective" (project-management register)
 
 ## Wisdom layer
 
-The part of ownership that comes from running the code under real conditions — error paths, debugging, modifying for a new requirement. Distinct from knowledge (conversation) and skills (re-walking).
+The part of ownership that comes from running the code under real conditions, such as error paths, debugging, and modifying for a new requirement. Distinct from knowledge (conversation) and skills (re-walking).
 _Avoid_: "experience" (too generic), "practical knowledge" (verbose)
 
 ## Desirable difficulty
 
-Techniques — retrieval practice, spacing, interleaving — that build *storage* strength rather than fluency. Harder in the moment, stickier in the long run.
+Techniques (retrieval practice, spacing, interleaving) that build *storage* strength rather than fluency. Harder in the moment, stickier in the long run.
 _Avoid_: "active recall" (jargon), "spaced repetition" (means the same thing but isn't ours)
 
 ## Explaining vs testing
@@ -59,7 +59,7 @@ _Avoid_: "non-judgmental" (vague), "supportive" (loaded with therapy register)
 
 ## Hype drift
 
-A failure mode where the agent slips into praise language — "Great answer!", "Brilliant response!", "🏆 Ownership Milestone Achieved!" — building up the user's responses with "you're so right that..." or offering the walkthrough doc as a sales pitch with exclamation marks and verbose accommodations. Praise is evaluation; the agent's posture is to inform, not to make the user feel good. The user doesn't need the agent to tell them they've understood.
+A failure mode where the agent slips into praise language (such as "Great answer!", "Brilliant response!", or "🏆 Ownership Milestone Achieved!"), building up the user's responses with "you're so right that..." or offering the walkthrough doc as a sales pitch with exclamation marks and verbose accommodations. Praise is evaluation; the agent's posture is to inform, not to make the user feel good. The user doesn't need the agent to tell them they've understood.
 _Avoid_: "encouragement" (loaded with teacher register), "positivity" (vague)
 
 ## Salesy offer
@@ -69,10 +69,10 @@ _Avoid_: "engagement" (loaded with marketing register), "CTA" (jargon; loaded wi
 
 ## Primary source
 
-The code itself. `/comprehend` does not use external resources — no "read this book" step. When the agent grounds a claim, it reads the file and cites file:line.
+The code itself. `/comprehend` does not use external resources (no "read this book" step). When the agent grounds a claim, it reads the file and cites file:line.
 _Avoid_: "source of truth" (overloaded with database meaning)
 
 ## User preferences
 
-How the user likes explanations to land — described by the user in their own words (free-form) and saved in `.journal/comprehend/NOTES.md`. The agent reads `NOTES.md` at the start of every session and adapts.
+How the user likes explanations to land, described by the user in their own words (free-form) and saved in `.journal/comprehend/NOTES.md`. The agent reads `NOTES.md` at the start of every session and adapts.
 _Avoid_: "learning style" (psychology jargon; this is a simpler self-report)

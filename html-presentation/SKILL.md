@@ -8,7 +8,7 @@ disable-model-invocation: false
 
 ## First Principle
 
-Every choice you make — architecture, aesthetic, technique — follows from the user's context, brand, and presentation goals. A fixed template shapes the deck around itself, not around the user; discover requirements first, then engineer a custom system.
+Every choice you make (architecture, aesthetic, technique) follows from the user's context, brand, and presentation goals. A fixed template shapes the deck around itself, not around the user; discover requirements first, then engineer a custom system.
 
 ---
 
@@ -49,7 +49,7 @@ Align with the user on:
 
 ### 2. Architecture & Design Tokens
 Consult [DECK-ENGINEERING.md](DECK-ENGINEERING.md):
-- Once alignment settles the design direction, scaffold `DECK-DESIGN.md` next to the deck files: palette, typography, aspect ratio, surfaces, and interaction. The document, not your memory, holds the design — the user can steer it, and every file stays consistent with it.
+- Once alignment settles the design direction, scaffold `DECK-DESIGN.md` next to the deck files: palette, typography, aspect ratio, surfaces, and interaction. The document, not your memory, holds the design, allowing the user to steer it while keeping every file consistent.
 - Scaffold the presentation layout appropriate for deck scale.
 - Construct custom CSS variables for colors, typography scaling, spacing, and surfaces derived entirely from user alignment.
 
@@ -77,4 +77,4 @@ Apply patterns from [DECK-ENGINEERING.md](DECK-ENGINEERING.md):
 
 ## Disclosed Reference
 
-- [DECK-ENGINEERING.md](DECK-ENGINEERING.md) — Unified guide for architecture patterns, design system construction, interactive navigation, and exact PDF export.
+- [DECK-ENGINEERING.md](DECK-ENGINEERING.md): Unified guide for architecture patterns, design system construction, interactive navigation, and exact PDF export.

@@ -20,17 +20,17 @@ Reach for this skill when the user requests pre-merge diff ownership or post-mer
 - The user just wants to ship code or run tests.
 - The user just got a code review from a pull request.
 - The user wants to learn a new *concept*, not understand existing code.
-- The change is one-line or trivial — a walkthrough is overkill.
+- The change is one-line or trivial, so a walkthrough is overkill.
 - The user is exploring a brand-new idea with no code yet.
 
 ---
 
 ## Execution Modes
 
-### Gating Mode — Before the Merge
+### Gating Mode (Before the Merge)
 Single session, fast. You provide clear, structured explanations of the diff so the user understands what is shipping. The user asks questions whenever they want deeper context or edge-case clarification.
 
-### Paying-down Mode — After the Merge
+### Paying-down Mode (After the Merge)
 Multi-session, paced. Walk through code over multiple sessions, one slice at a time, referencing earlier slices to build long-term retention.
 
 ---
@@ -72,7 +72,7 @@ Close the session cleanly when dialogue finishes:
 ## Walkthrough Posture & Interaction Rules
 
 ### First Principle: You Explain, the User Owns
-Comprehension is the user's. Your job is to walk through the code with the user — not to write a walkthrough doc, not to summarise, not to fill in a journal. You inform; the user articulates.
+Comprehension is the user's. Your job is to walk through the code with the user: not to write a walkthrough doc, not to summarise, not to fill in a journal. You inform; the user articulates.
 
 ### Two-Way Pacing: Never Monologue
 A walkthrough is a two-way conversation, not a lecture. You must never dump a massive wall of text detailing entry points, edge-case invariants, and logic all at once.
@@ -97,7 +97,7 @@ If the user accepts, generate the report (top: your walkthrough following the di
 
 ## The Ownership Workspace
 
-The workspace is private — add `.journal/` to the project's `.gitignore` on first run.
+The workspace is private; add `.journal/` to the project's `.gitignore` on first run.
 
 ```
 .journal/comprehend/
@@ -127,7 +127,7 @@ You initialize mission info at session start and complete summary info at sessio
 
 ## Disclosed Reference & Definitions
 
-- [GLOSSARY.md](GLOSSARY.md) — Detailed definitions of *Frontier*, *Signals*, *Walkthrough*, and *Desirable Difficulty*.
-- [SETUP-FORMAT.md](SETUP-FORMAT.md) — Guidelines for onboarding interviews and preference maintenance.
-- [RECORD-FORMAT.md](RECORD-FORMAT.md) — Specification for session mission and summary records.
-- [MODULE-FORMAT.md](MODULE-FORMAT.md) — Specification for Walkthrough HTML reports (structure, aesthetics, and styling).
+- [GLOSSARY.md](GLOSSARY.md): Detailed definitions of *Frontier*, *Signals*, *Walkthrough*, and *Desirable Difficulty*.
+- [SETUP-FORMAT.md](SETUP-FORMAT.md): Guidelines for onboarding interviews and preference maintenance.
+- [RECORD-FORMAT.md](RECORD-FORMAT.md): Specification for session mission and summary records.
+- [MODULE-FORMAT.md](MODULE-FORMAT.md): Specification for Walkthrough HTML reports (structure, aesthetics, and styling).

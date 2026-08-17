@@ -38,5 +38,5 @@ Update the preferences in `NOTES.md` when the user:
 *   **Preserve Custom User Notes:** Do not modify or delete bullet points that the user manually wrote or explicitly requested to keep.
 *   **Incremental Refinement:** Add new insights as bullet points at the bottom or refine existing agent-written bullets.
 *   **Keep it Actionable:** Every preference bullet must translate directly into how you structure your next message (e.g., "Use ASCII sequence diagrams for data flow").
-*   **Limit Sprawl:** Keep the preferences lean — when a new insight arrives, merge or prune the less useful bullets.
+*   **Limit Sprawl:** Keep the preferences lean. When a new insight arrives, merge or prune the less useful bullets.
 *   **Notify the User:** When you update `NOTES.md`, state briefly and flatly what changed and why. Don't ask for confirmation unless unsure.

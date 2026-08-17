@@ -4,21 +4,21 @@ This repository hosts pluggable agent skills (`disable-model-invocation` varies 
 
 ## Repository Layout
 
-*   `comprehend/` — User-invoked skill for dialogue-based code walkthroughs and private comprehension journals.
-    *   `comprehend/SKILL.md` — Core instructions.
-    *   `comprehend/GLOSSARY.md` — Domain vocabulary.
-    *   `comprehend/SETUP-FORMAT.md` — Preference onboarding and dynamic maintenance.
+*   `comprehend/`: User-invoked skill for dialogue-based code walkthroughs and private comprehension journals.
+    *   `comprehend/SKILL.md`: Core instructions.
+    *   `comprehend/GLOSSARY.md`: Domain vocabulary.
+    *   `comprehend/SETUP-FORMAT.md`: Preference onboarding and dynamic maintenance.
     *   `comprehend/MODULE-FORMAT.md`, `RECORD-FORMAT.md`.
-*   `issue-it/` — User-invoked skill for user-centered GitHub issue creation.
-    *   `issue-it/SKILL.md` — Core instructions and failure modes.
-    *   `issue-it/ISSUE-FORMAT.md` — Issue template structure.
-    *   `issue-it/agents/openai.yaml` — Skill metadata.
-*   `write-skills/` — Meta-skill for engineering universal agent skills.
-    *   `write-skills/SKILL.md` — Core meta-methodology.
-    *   `write-skills/SKILL-ENGINEERING.md` — Overfitting prevention and posture nudging.
-*   `html-presentation/` — Skill for engineering custom HTML slide decks.
-    *   `html-presentation/SKILL.md` — Core deck engineering instructions.
-    *   `html-presentation/DECK-ENGINEERING.md` — Architecture, design systems, navigation, and PDF export.
+*   `issue-it/`: User-invoked skill for user-centered GitHub issue creation.
+    *   `issue-it/SKILL.md`: Core instructions and failure modes.
+    *   `issue-it/ISSUE-FORMAT.md`: Issue template structure.
+    *   `issue-it/agents/openai.yaml`: Skill metadata.
+*   `write-skills/`: Meta-skill for engineering universal agent skills.
+    *   `write-skills/SKILL.md`: Core meta-methodology.
+    *   `write-skills/SKILL-ENGINEERING.md`: Overfitting prevention and posture nudging.
+*   `html-presentation/`: Skill for engineering custom HTML slide decks.
+    *   `html-presentation/SKILL.md`: Core deck engineering instructions.
+    *   `html-presentation/DECK-ENGINEERING.md`: Architecture, design systems, navigation, and PDF export.
 
 ## Authoring Guidelines
 
