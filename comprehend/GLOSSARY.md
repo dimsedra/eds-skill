@@ -19,8 +19,13 @@ _Avoid_: "tutorial" (too generic), "lesson" (too generic)
 
 ## Walkthrough doc
 
-An optional HTML file in `.journal/comprehend/modules/`, titled `0001-<slug>.html`. Contains the agent-authored walkthrough following the dialogue progression (top section) and the session log with user notes and framing (bottom section).
+A standalone HTML file in `.journal/comprehend/modules/`, titled `0001-<slug>.html`, compiled upfront by the Comprehend Subagent. Contains the agent-authored walkthrough following the dialogue progression (top section) and the session log with user notes and framing (bottom section).
 _Avoid_: "module" (the old name; loaded with a meaning the skill no longer supports), "doc" (overloaded)
+
+## Comprehend Subagent
+
+A specialized, isolated subagent dispatched by the parent agent to inspect code with a fresh context window ("clean head") and directly compile the HTML walkthrough report to disk.
+_Avoid_: "background bot" (ambiguous), "compiler bot" (too mechanical)
 
 ## Session record
 

@@ -12,10 +12,10 @@ An HTML walkthrough report is created for the user returning to this code weeks 
 
 ## Creation Criterion
 
-A walkthrough report is created **only** when all three conditions are met:
-1. The walkthrough dialogue reaches a natural conclusion or stopping point.
-2. You offer the report concisely.
-3. The user explicitly accepts.
+A walkthrough report is created **upfront** whenever `/comprehend` is invoked:
+1. The parent agent dispatches a dedicated **Comprehend Subagent** with the target slice and active preferences (`NOTES.md`).
+2. The subagent inspects the target code with a fresh context window and compiles the standalone HTML report directly to `.journal/comprehend/modules/0001-<slug>.html`.
+3. The parent agent delivers a clickable file link to the user and remains available for interactive dialogue and follow-up Q&A.
 
 You do **not** judge or grade ownership.
 

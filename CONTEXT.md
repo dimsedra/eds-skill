@@ -17,7 +17,7 @@ The slice of codebase the user is trying to own, and the specific reason why the
 _Avoid_: goal, objective.
 
 **Walkthrough Doc**:
-An optional HTML file in `.journal/comprehend/modules/` capturing the walkthrough in the user's voice.
+A standalone HTML file in `.journal/comprehend/modules/` compiled upfront by a dedicated subagent, capturing the walkthrough in the user's voice.
 _Avoid_: module.
 
 **Session Record**:
@@ -29,5 +29,5 @@ _Avoid_: log, transcript.
 - A **Mission** defines the scope of the **Ownership Frontier** we are trying to expand.
 - A walkthrough session moves the **Ownership Frontier** outward by walking through code slices.
 - Each walkthrough session produces a **Session Record**.
+- The parent agent dispatches a clean-head subagent to compile the **Walkthrough Doc** directly to disk upfront upon invocation.
 - Multiple sessions are conducted until **Ownership Signals** are observed.
-- Upon successful ownership, the agent may generate a **Walkthrough Doc** in the user's voice.

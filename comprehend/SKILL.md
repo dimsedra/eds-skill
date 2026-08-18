@@ -51,51 +51,55 @@ On first invocation in a new project, execute setup before starting the walkthro
 
 ## Session Lifecycle (Time Block)
 
-Every `/comprehend` invocation operates as a distinct, bounded **time block**.
+Every `/comprehend` invocation operates as a distinct, bounded **time block** powered by a clean-head subagent:
 
-### 1. Session Framing (Start)
-In the opening turn, establish context naturally:
-- Read `.journal/comprehend/NOTES.md` into context (or initialize it per [SETUP-FORMAT.md](SETUP-FORMAT.md) if missing) so your explanation style immediately aligns with the user's active preferences.
-- Create or open the session record (`.journal/comprehend/records/0001-<slug>.md`) and initialize the **Session Mission** (Target Slice, Driver, Success Criterion) per [RECORD-FORMAT.md](RECORD-FORMAT.md).
-- State the target code slice and active mode (Gating vs. Paying-down).
-- Begin immediately with the first bite-sized entry point explanation.
+### 1. Session Framing & Subagent Dispatch (Start)
+In the opening turn:
+- Read `.journal/comprehend/NOTES.md` into context (or initialize it per [SETUP-FORMAT.md](SETUP-FORMAT.md) if missing) to load the user's active preferences.
+- State the target code slice and dispatch a dedicated **Comprehend Subagent** with a clean context window to analyze the target slice and generate the HTML walkthrough report directly to disk.
+- The subagent:
+  1. Inspects target code files, diffs, and architectural seams with zero context pollution.
+  2. Initializes the session record (`.journal/comprehend/records/0001-<slug>.md`) per [RECORD-FORMAT.md](RECORD-FORMAT.md).
+  3. Compiles the standalone HTML walkthrough report into `.journal/comprehend/modules/0001-<slug>.html` styled with `.journal/assets/styles/journal.css` per [MODULE-FORMAT.md](MODULE-FORMAT.md).
+  4. Returns a lightweight receipt (output file path + 2-sentence big-picture summary).
 
-### 2. Session Progression
-Walk through the code 1–2 paragraphs at a time, yielding each turn to allow the user to ask questions and steer the focus.
+### 2. Report Delivery & Interactive Q&A
+Once the subagent completes:
+- Present the clickable link to the user: `[Open Walkthrough: <slug>](file:///...)` alongside the 2-sentence big-picture summary.
+- Invite the user to view the report in their browser and ask any targeted questions or probe edge-case invariants.
+- Answer follow-up questions in short, bite-sized turns (1–2 paragraphs max) without polluting the chat with massive code dumps.
 
 ### 3. Session Wrap-up (Finish)
-Close the session cleanly when dialogue finishes:
-- Synthesize session takeaways from the user's first-person perspective: document the core dilemma or question explored and the concrete technical realization that resolved it, avoiding empty third-person meta-summaries.
-- Update the **Session Summary & Insights** section in the session record (`.journal/comprehend/records/0001-<slug>.md`) per [RECORD-FORMAT.md](RECORD-FORMAT.md).
-- **Mandatory Offer:** Always explicitly ask the user if they would like an HTML walkthrough report created for this session before concluding.
-- If the user accepts, generate the HTML report into `.journal/comprehend/modules/0001-<slug>.html` per [MODULE-FORMAT.md](MODULE-FORMAT.md).
-- State where the session record and report (if generated) were saved.
+When dialogue finishes or the user indicates they are done:
+- Synthesize any key breakthroughs or mental model shifts made during chat from the user's first-person perspective.
+- Update the **Session Summary & Insights** section in the session record (`.journal/comprehend/records/0001-<slug>.md`) per [RECORD-FORMAT.md](RECORD-FORMAT.md) and append them to the bottom section of the HTML report.
+- State where the session record and report were saved.
 
 ---
 
 ## Walkthrough Posture & Interaction Rules
 
 ### First Principle: You Explain, the User Owns
-Comprehension is the user's. Your job is to walk through the code with the user: not to write a walkthrough doc, not to summarise, not to fill in a journal. You inform; the user articulates.
+Comprehension is the user's. The subagent generates a spatial, persistent HTML map; you act as the interactive sounding board to clarify subtleties and validate mental models.
+
+### Clean Context via Subagents
+Never dump raw HTML markup or massive code traces directly into the parent chat. Delegating HTML compilation to an isolated subagent ensures:
+- **Clean Head**: The subagent inspects the code with 100% fresh attention and zero historical context mud.
+- **Token Efficiency**: The parent conversation remains fast, responsive, and unbloated for ongoing work.
 
 ### Two-Way Pacing: Never Monologue
-A walkthrough is a two-way conversation, not a lecture. You must never dump a massive wall of text detailing entry points, edge-case invariants, and logic all at once.
-- **One Slice at a Time:** Explain a single entry point or architectural seam concisely (1–2 paragraphs max).
+When answering follow-up questions in chat, never dump massive walls of text.
+- **One Slice at a Time:** Explain specific questions concisely (1–2 paragraphs max).
 - **Pause and Yield:** End messages cleanly to yield the turn to the user.
-- **User Steers:** Let the user react, ask questions, or direct which part of the code to explore next before diving into deeper edge cases or invariants.
+- **User Steers:** Let the user react and guide which edge cases or invariants to explore.
 
 ### Single Source of Truth for Voice: `NOTES.md`
 Tone, presentation style, and explanation structure are governed strictly by `.journal/comprehend/NOTES.md`.
-- Read `.journal/comprehend/NOTES.md` at the start of every session and shape your explanation depth, pacing, and retention focus accordingly.
-- Dynamically update `NOTES.md` whenever the user provides feedback—whether given during an active walkthrough or received as out-of-session directives per [SETUP-FORMAT.md](SETUP-FORMAT.md). Never redirect comprehend explanation preferences to global agent configuration files.
+- Both the parent agent and the generator subagent ingest `NOTES.md` to shape explanation depth and retention focus.
+- Dynamically update `NOTES.md` whenever the user provides feedback per [SETUP-FORMAT.md](SETUP-FORMAT.md).
 
 ### Explain, Don't Quiz
-You present structured code explanations and pause. The user drives questioning; you never interrogate, quiz, or grade checkpoint questions.
-
-### Concluding & Mandatory Report Offer
-You do not generate an HTML report automatically, but you must **always ask**.
-When the dialogue reaches a natural stopping point or the user indicates they are done, always explicitly ask if the user wants an HTML walkthrough report saved.
-If the user accepts, generate the report (top: your walkthrough following the dialogue progression; bottom: user realizations and mental model shifts in the user's voice) into `.journal/comprehend/modules/0001-<slug>.html` per [MODULE-FORMAT.md](MODULE-FORMAT.md).
+You present structured code explanations and answer questions. You never interrogate, quiz, or grade checkpoint questions.
 
 ---
 
@@ -107,28 +111,23 @@ The workspace is private; add `.journal/` to the project's `.gitignore` on first
 .journal/comprehend/
   NOTES.md                # User preferences and key takeaways (see SETUP-FORMAT.md)
   records/*.md            # Session mission and summary records (see RECORD-FORMAT.md)
-  modules/*.html          # Walkthrough HTML reports (see MODULE-FORMAT.md)
+  modules/*.html          # Walkthrough HTML reports compiled by subagent (see MODULE-FORMAT.md)
   reference/*.html        # Glossaries, callouts, code-reading maps
 .journal/assets/
   styles/journal.css      # Tailored stylesheet dynamically generated on setup
 ```
 
-You initialize mission info at session start and complete summary info at session end in `records/0001-<slug>.md`. See [RECORD-FORMAT.md](RECORD-FORMAT.md).
-
 ---
 
 ## Failure Modes of this Skill
 
-- **Monologue Dump**: Outputting a massive wall of text covering entry points, edge cases, and invariants all at once. Fix: Explain one concise slice at a time (1–2 paragraphs) and pause to yield control to the user.
-- **Preferences Routing Drift / Unread NOTES.md**: Writing comprehend explanation preferences to global configuration files instead of `.journal/comprehend/NOTES.md`, or failing to read `NOTES.md` before generating explanations. Fix: Treat `NOTES.md` as the exclusive single source of truth for comprehend explanation style.
-- **Observer Log Drift (Evaluator Tone)**: Documenting sessions as third-person teacher or auditor notes (e.g., stating that the user examined or understood a topic) instead of recording the substantive technical insight in the user's voice.
-- **Robot Dashboard / Status Formatting**: Using rigid status tables, emojis (🟢/🔴), or sterile templates to manage sessions. Fix: Express session boundaries dynamically as a peer engineer.
-- **Drift into Doc-writing**: Drafting docs without walking through code first. Explain conversationally.
-- **Rubber-stamp (pre-merge)**: Merging without walking through. Ensure entry points and invariants are explained conversationally.
+- **Monologue Dump / Inline Generation Bloat**: Dumping raw HTML code or massive multi-page text into the parent chat instead of delegating report compilation to the subagent.
+- **Context Mud Drift**: Attempting to generate deep code walkthroughs inside a fatigued, 100k+ token parent session instead of using a fresh subagent.
+- **Preferences Routing Drift / Unread NOTES.md**: Writing comprehend explanation preferences to global configuration files instead of `.journal/comprehend/NOTES.md`, or failing to pass `NOTES.md` to the subagent.
+- **Observer Log Drift (Evaluator Tone)**: Documenting sessions as third-person teacher or auditor notes instead of recording substantive technical insights in the user's voice.
+- **Robot Dashboard / Status Formatting**: Using rigid status tables or sterile emojis (🟢/🔴) to manage sessions.
 - **Quiz / Checkpoint Drift**: Asking test questions or checkpoints. Stop quizzing; user drives questioning.
-- **Skipping Report Offer**: Ending a session without explicitly asking the user if they would like an HTML walkthrough report created. Fix: Always make the offer clearly at session conclusion.
-- **Theatre (post-merge)**: Un-visited walkthrough docs. Reference previous records to build connection.
-- **Mission Drift**: Scope changes without updating the session record's mission section. Update the record when focus shifts.
+- **Mission Drift**: Scope changes without updating the session record's mission section.
 
 ---
 

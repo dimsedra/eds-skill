@@ -24,10 +24,11 @@ npx skills@latest add dimsedra/eds-skill
 ## Skills Included
 
 ### 1. `/comprehend`: Code Walkthrough & Ownership
-In agent-led development, code is produced at an unprecedented speed, creating instant **comprehension debt**. `/comprehend` runs a bounded session time block to walk through code slices 1–2 paragraphs at a time.
+In agent-led development, code is produced at an unprecedented speed, creating instant **comprehension debt**. `/comprehend` compiles standalone HTML walkthrough reports upfront using a clean-head subagent, then pairs you with the parent agent for interactive Q&A:
 
 *   **Pre-Merge (Gating Mode):** Understand a diff before merging so you can defend it in code review.
 *   **Post-Merge (Paying-down Mode):** Walk through complex modules over time to build long-term retention.
+*   **Subagent-Driven HTML Generation:** Isolated subagent inspects code with fresh context and compiles `.journal/comprehend/modules/*.html` directly to disk, keeping the main chat session clean and responsive.
 
 ### 2. `/issue-it`: User-Centered Issue Drafting
 Agents often write issues catered to themselves (filled with verbose prompt language, agent register, and pasted code blocks). `/issue-it` enforces user-centered issue drafting:
@@ -37,9 +38,9 @@ Agents often write issues catered to themselves (filled with verbose prompt lang
 *   **High-Level Fix Direction:** Outlines strategic design intent without pasting code implementations into the issue tracker.
 
 ### 3. `/write-skills`: Skill Engineering Meta-Skill
-A meta-methodology for engineering universal agent skills that steer LLM reasoning without overfitting or template fixation:
-*   **Nudge Center of Gravity:** Shift the LLM's posture through principles and dynamic discovery, not hardcoded code blocks or preset themes.
-*   **Anti-Overfitting Audit:** Strip code block fixation, single-project bias, preset color hardcoding, and arbitrary numeric thresholds.
+A meta-methodology for engineering universal agent skills that steer LLM reasoning without overfitting, while maintaining critical operational invariants:
+*   **Directional Reasoning & State Gates:** Guide judgment with principles; enforce deterministic step-by-step state machines where causal order and safety invariants matter.
+*   **Invariants vs. Vanity Numbers:** Enforce hard operational thresholds (loop limits, token caps, 0 failing tests) while avoiding arbitrary cosmetic quotas.
 
 ### 4. `html-presentation`: HTML Slide Deck Engineering
 Build custom, web-based presentation decks for any domain or visual requirement:

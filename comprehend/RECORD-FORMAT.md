@@ -37,7 +37,7 @@ mode: {gating | paying-down}
 {1-3 bullets: core dilemma or question explored → the concrete technical realization that clicked.}
 
 ## Report Status
-{Path to HTML walkthrough report (.journal/comprehend/modules/0001-<slug>.html) if created, or 'None' if declined.}
+{Path to HTML walkthrough report (.journal/comprehend/modules/0001-<slug>.html) compiled by subagent.}
 
 ## Next Steps
 {1-2 sentences: what the next session should pick up.}
@@ -47,8 +47,8 @@ mode: {gating | paying-down}
 
 ## Execution Workflow
 
-1. **Session Start:** Create or open `records/0001-<slug>.md`. Fill in the **Session Mission** (Target Slice, Driver, Success Criterion).
-2. **Session Finish:** Update the **Session Summary & Insights** section (Covered, Dilemmas & Insights, Report Status, Next Steps).
+1. **Session Start (Subagent):** Create or open `records/0001-<slug>.md`. Fill in the **Session Mission** (Target Slice, Driver, Success Criterion) and link the generated HTML module path.
+2. **Session Finish (Parent Agent):** Update the **Session Summary & Insights** section with any key breakthroughs or Q&A insights from the user's perspective.
 
 ---
 
