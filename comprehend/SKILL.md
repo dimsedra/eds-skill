@@ -64,8 +64,11 @@ Walk through the code 1–2 paragraphs at a time, yielding each turn to allow th
 
 ### 3. Session Wrap-up (Finish)
 Close the session cleanly when dialogue finishes:
+- Synthesize session takeaways from the user's first-person perspective: document the core dilemma or question explored and the concrete technical realization that resolved it, avoiding empty third-person meta-summaries.
 - Update the **Session Summary & Insights** section in the session record (`.journal/comprehend/records/0001-<slug>.md`) per [RECORD-FORMAT.md](RECORD-FORMAT.md).
-- State where the session record and optional HTML report were saved.
+- **Mandatory Offer:** Always explicitly ask the user if they would like an HTML walkthrough report created for this session before concluding.
+- If the user accepts, generate the HTML report into `.journal/comprehend/modules/0001-<slug>.html` per [MODULE-FORMAT.md](MODULE-FORMAT.md).
+- State where the session record and report (if generated) were saved.
 
 ---
 
@@ -88,10 +91,10 @@ Tone, presentation style, and explanation structure are governed strictly by `.j
 ### Explain, Don't Quiz
 You present structured code explanations and pause. The user drives questioning; you never interrogate, quiz, or grade checkpoint questions.
 
-### Concluding & Optional Walkthrough Report
-You do not write a walkthrough report by default. The walkthrough is the conversation itself.
-When the dialogue reaches a natural conclusion or stopping point, concisely ask if the user wants an HTML walkthrough report saved.
-If the user accepts, generate the report (top: your walkthrough following the dialogue progression; bottom: session log for user notes) into `.journal/comprehend/modules/0001-<slug>.html` per [MODULE-FORMAT.md](MODULE-FORMAT.md).
+### Concluding & Mandatory Report Offer
+You do not generate an HTML report automatically, but you must **always ask**.
+When the dialogue reaches a natural stopping point or the user indicates they are done, always explicitly ask if the user wants an HTML walkthrough report saved.
+If the user accepts, generate the report (top: your walkthrough following the dialogue progression; bottom: user realizations and mental model shifts in the user's voice) into `.journal/comprehend/modules/0001-<slug>.html` per [MODULE-FORMAT.md](MODULE-FORMAT.md).
 
 ---
 
@@ -116,10 +119,12 @@ You initialize mission info at session start and complete summary info at sessio
 ## Failure Modes of this Skill
 
 - **Monologue Dump**: Outputting a massive wall of text covering entry points, edge cases, and invariants all at once. Fix: Explain one concise slice at a time (1–2 paragraphs) and pause to yield control to the user.
+- **Observer Log Drift (Evaluator Tone)**: Documenting sessions as third-person teacher or auditor notes (e.g., stating that the user examined or understood a topic) instead of recording the substantive technical insight in the user's voice.
 - **Robot Dashboard / Status Formatting**: Using rigid status tables, emojis (🟢/🔴), or sterile templates to manage sessions. Fix: Express session boundaries dynamically as a peer engineer.
 - **Drift into Doc-writing**: Drafting docs without walking through code first. Explain conversationally.
 - **Rubber-stamp (pre-merge)**: Merging without walking through. Ensure entry points and invariants are explained conversationally.
 - **Quiz / Checkpoint Drift**: Asking test questions or checkpoints. Stop quizzing; user drives questioning.
+- **Skipping Report Offer**: Ending a session without explicitly asking the user if they would like an HTML walkthrough report created. Fix: Always make the offer clearly at session conclusion.
 - **Theatre (post-merge)**: Un-visited walkthrough docs. Reference previous records to build connection.
 - **Mission Drift**: Scope changes without updating the session record's mission section. Update the record when focus shifts.
 

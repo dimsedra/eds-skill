@@ -12,7 +12,7 @@ Overfitting binds you to the artifacts of one situation (such as a snippet, a pr
 Showing exact snippets, fixed classes, or complete templates in a skill invites copying instead of reasoning about the actual requirements. Describe the direction (architectural intent, design principles, structural patterns) and let the specifics follow.
 
 ### Single-Project Bias
-Turning one user's one-off request (speaker notes in comments, blue theme cards) into a mandatory rule forces irrelevant edge cases onto everyone else. One-off specifics belong in the discovery phase of the situation that produced them, not in the rule.
+Turning one user's one-off preference into a mandatory rule forces irrelevant edge cases onto everyone else. One-off specifics belong in the discovery phase of the situation that produced them, not in the rule.
 
 ### Preset Uniformity
 Preset themes and hardcoded colors make every output identical regardless of context. Build tokens dynamically from what the user tells you during discovery.

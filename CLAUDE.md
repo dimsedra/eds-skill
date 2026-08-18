@@ -23,7 +23,7 @@ This repository hosts pluggable agent skills (`disable-model-invocation` varies 
 ## Authoring Guidelines
 
 1.  **No Verbatim Script Trapping:** Do not include hardcoded quote scripts (`""`) in `SKILL.md` files. State behavioral rules cleanly to prevent LLMs from parroting fixed scripts.
-2.  **User-Centered Issue Design:** `/issue-it` outputs must strictly omit code snippets (` ``` `), relying instead on location pointers (`file:line`). Titles must remain problem-focused.
+2.  **User-Centered Issue Design:** `/issue-it` outputs must strictly omit code snippets (` ``` `), relying instead on durable file and symbol pointers (`file` -> `symbol()`). Titles must remain problem-focused.
 3.  **User-Invoked Frontmatter:** `/comprehend` and `/issue-it` set `disable-model-invocation: true`. `write-skills` and `html-presentation` allow model invocation.
 4.  **Anti-Overfitting:** Never include hardcoded code blocks, fixed color hexes, preset theme names, or arbitrary numeric thresholds in skill files.
 5.  **Distribution:** Distributed via `npx skills` pointing directly to this repository.

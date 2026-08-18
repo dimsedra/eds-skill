@@ -33,7 +33,7 @@ In agent-led development, code is produced at an unprecedented speed, creating i
 Agents often write issues catered to themselves (filled with verbose prompt language, agent register, and pasted code blocks). `/issue-it` enforces user-centered issue drafting:
 *   **Problem-Focused Titles:** Describe the failure condition, not generic solution actions.
 *   **Big-Picture & Localized Context:** 1–2 sentence architecture context followed by digestible problem details.
-*   **Location Pointers, Zero Code Snippets:** Strict prohibition on code blocks (` ``` `). Refers to files and line ranges (`path/to/file:L10-L20`) so issues stay clean and readable for the user.
+*   **Durable Location Pointers, Zero Code Snippets:** Strict prohibition on code blocks (` ``` `). Refers to files and durable symbols (`path/to/file` -> `symbolName()`) so issues stay clean and durable over time.
 *   **High-Level Fix Direction:** Outlines strategic design intent without pasting code implementations into the issue tracker.
 
 ### 3. `/write-skills`: Skill Engineering Meta-Skill

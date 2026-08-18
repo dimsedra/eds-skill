@@ -33,9 +33,10 @@ An HTML walkthrough report consists of two distinct sections separated by a divi
 
 ### 2. Divider (`<hr>`)
 
-### 3. Session Log (Bottom Section - User Notes & Framing)
-- **User's Interactive Notes:** Placed at the bottom below the `<hr>` divider.
-- **User's Words & Framing:** Capture the user's interactive session notes, questions, pushbacks, key connections, and dictated insights recorded during the conversation.
+### 3. User Realizations & Mental Model Shifts (Bottom Section - User's Voice)
+- **User's Interactive Realizations:** Placed at the bottom below the `<hr>` divider.
+- **First-Person Voice & Framing:** Capture interactive session notes strictly from the user's perspective. Document the core questions or dilemmas explored and the concrete technical insights that resolved them.
+- **Zero Observer Evaluator Language:** Avoid third-person auditor phrases (such as stating what the user examined or understood); record the substantive technical explanation that settled the mental model so a reader returning six weeks later can instantly re-anchor.
 
 ---
 

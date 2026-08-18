@@ -29,10 +29,11 @@ Every section in an issue exists for a specific cognitive reason: serving the us
 - Why it manifests and under what conditions.
 - Operational or system impact.
 
-### 4. Affected Code Locations (Pointers, Not Code)
-*Rationale: Code-as-context is a trap. Code snippets feel like documentation, but become stale snapshots that do not explain why by themselves. The repository holds the code; the issue holds location pointers.*
-- List relevant file paths, function signatures, or line ranges.
-- **Allowed:** `src/auth/session-store.ts:L42-L58`, `validateSessionToken()`
+### 4. Affected Code Locations (Durable Pointers, Not Code)
+*Rationale: Code snippets become stale snapshots that do not explain why by themselves. Line numbers alone also decay quickly as files grow and change. Anchor references to stable symbols (functions, classes, methods, endpoints) and file paths so they remain searchable and durable over time.*
+- List relevant file paths and durable symbol names (function, method, class, component, or endpoint).
+- **Preferred:** `src/auth/session-store.ts` -> `validateSessionToken()`
+- **Permalinks (Optional):** If exact line snapshotting is critical, use commit-anchored permalinks.
 - **Strict Prohibition:** Do NOT include fenced code blocks.
 
 ### 5. Fix Direction (Strategy, Not Implementation - Optional)
@@ -53,7 +54,7 @@ Every section in an issue exists for a specific cognitive reason: serving the us
 [Clear explanation of the specific failure condition and why it manifests]
 
 ## Affected Locations
-- `path/to/file.ext:L10-L20` (`FunctionName`)
+- `path/to/file.ext` -> `FunctionName()`
 
 ## Proposed Direction (Optional)
 [High-level architectural approach or resolution strategy]
