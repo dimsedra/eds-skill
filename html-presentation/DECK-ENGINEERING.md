@@ -77,37 +77,108 @@ Scaffold `DECK-DESIGN.md` with these sections, filled as alignment settles them:
 
 ## 3. Navigation & Interactive Controls
 
-### Keyboard Navigation Engine
-- Bind standard navigation triggers: forward (Right Arrow, Page Down, Space), backward (Left Arrow, Page Up), jump (Home, End), and fullscreen toggle (F key).
-- Prevent default page scrolling when navigating, while maintaining form input accessibility.
+### Shell & Controller Architecture
+Structure the presentation shell and scripts with clear separation of responsibilities:
+- **Viewer Shell (`index.html`)**:
+  - Encapsulates `<div id="presentation-app">`.
+  - Main viewport: `<main class="slide-viewport"><div id="slide-container"></div></main>`.
+  - Floating controls bar: `<nav class="controls-bar">` containing:
+    - Previous button (`#btn-prev`)
+    - Slide counter display (`#slide-counter-display`, e.g., `1 / 20`)
+    - Slide jump dropdown (`#slide-select-dropdown`)
+    - Next button (`#btn-next`)
+    - Fullscreen toggle button (`#btn-fullscreen`)
+    - PDF export trigger (`#btn-export-pdf`, opens `export_pdf.html` in a new tab)
 
-### State & Hash Synchronization
-- Synchronize current slide index with hash URLs (`#slide-XX`) for deep-linking and page refresh resilience.
-- Keep visual controls (slide counters, dropdown jumpers, progress indicators) synchronized with current state.
+### Slide Loader Engine (`js/slide-loader.js`)
+Maintain presentation state in `window.SlideLoader`:
+- Properties: `totalSlides`, `currentSlide`.
+- `loadSlide(index)`:
+  - Fetches zero-padded fragment path `slides/slide-NN.html`.
+  - Injects HTML into `#slide-container`.
+  - Executes dynamic re-rendering passes (MathJax, Mermaid, Prism).
+  - Updates counter text (`index / totalSlides`) and dropdown selected value.
+  - Updates URL hash: `window.location.hash = 'slide-' + index`.
+- `nextSlide()` and `prevSlide()`: Bounds-checked step methods.
+
+### Keyboard & Event Controller (`js/main.js`)
+- Populate `#slide-select-dropdown` dynamically from `1` to `totalSlides`.
+- Bind button listeners: next, prev, fullscreen (`requestFullscreen()` / `exitFullscreen()`), and export PDF.
+- Bind keyboard listeners (ignoring input/select focus):
+  - Forward: `ArrowRight`, `PageDown`, `Space`
+  - Backward: `ArrowLeft`, `PageUp`
+  - Jump: `Home` (slide 1), `End` (last slide)
+  - Fullscreen: `F` key
+- Read initial hash on load (`window.location.hash.match(/slide-(\d+)/)`) and load initial slide.
 
 ### Dynamic Re-rendering Passes
-- Automatically trigger typesetting, diagram rendering, and syntax highlighting passes whenever slide DOM content updates:
-  - **MathJax**: `MathJax.typesetPromise([currentSlide])`
-  - **Mermaid**: `mermaid.run({ nodes: currentSlide.querySelectorAll('.mermaid') })`
-  - **Prism**: `Prism.highlightAllUnder(currentSlide)`
+Automatically trigger typesetting, diagram rendering, and syntax highlighting passes whenever slide DOM content updates:
+- **MathJax**: `if (window.MathJax?.typesetPromise) window.MathJax.typesetPromise([container])`
+- **Mermaid**: `if (window.mermaid) window.mermaid.run({ nodes: container.querySelectorAll('.mermaid') })`
+- **Prism**: `if (window.Prism) Prism.highlightAllUnder(container)`
 
 ---
 
 ## 4. High-Fidelity PDF & Print Export Strategy
 
-### Dedicated Assembly & Page Breaks
-- Assemble all slide sections sequentially into a continuous print document layout.
-- Fetch slide fragments at runtime like the shell does: an inlined static copy goes stale the moment slides change.
-- Set `@page` sizing to match target aspect ratio (e.g. 16:9 landscape) with zero margins.
-- Apply CSS page-break rules (`page-break-after: always` and `page-break-inside: avoid`) to force exactly 1 slide per PDF page.
+### Dedicated Assembly Architecture (`export_pdf.html`)
+Scaffold `export_pdf.html` as an automated, multi-page print document:
+1. Include the deck stylesheet (`css/styles.css`) and render library CDN scripts (MathJax, Mermaid, Prism).
+2. Render a temporary `#loading-status` notice (hidden automatically on `@media print`).
+3. Root container: `<div id="pdf-print-deck"></div>`.
+4. Script sequentially fetches every slide (`slides/slide-01.html` to `slides/slide-NN.html`), wraps each in a `<div class="print-slide-page">`, and appends to `#pdf-print-deck`.
+5. Run all async rendering passes (`await MathJax.typesetPromise`, `await mermaid.run`, `Prism.highlightAll`).
+6. **Mandatory graphics pause**: `await new Promise(r => setTimeout(r, 1000))` to guarantee web fonts, formulas, and SVG diagrams settle before the print dialog opens.
+7. Hide the loading notice and trigger `window.print()`.
 
-### Render Before Print
-- Typeset formulas (MathJax), render diagrams (Mermaid), and highlight code blocks (Prism) after assembly, and let the renderers settle before opening the print dialog, as printing before rendering yields blank graphics or unformatted code.
+### Exact CSS Print Rules
+Embed these strict styling rules inside `export_pdf.html`:
 
-### Exact Color Preservation
-- Apply exact print color adjustment rules (`print-color-adjust: exact !important` and `-webkit-print-color-adjust: exact !important`) to root and slide containers.
-- Preserves full-bleed background colors, gradients, and surface styling even when browser print dialogs have background graphics unchecked.
+```css
+@page {
+    size: 16in 9in; /* Match 16:9 landscape aspect ratio */
+    margin: 0;
+}
+
+html, body {
+    width: 100%;
+    height: auto;
+    overflow: visible !important; /* Critical: allows multi-page print flow */
+    background: #ffffff;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+}
+
+#pdf-print-deck {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.print-slide-page {
+    width: 16in;
+    height: 9in;
+    page-break-after: always;
+    page-break-inside: avoid;
+    box-sizing: border-box;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+}
+
+@media print {
+    .print-loading-notice {
+        display: none !important;
+    }
+}
+```
 
 ### Print Pitfalls to Avoid
+- **Blank Screen / Premature Print:** Calling `window.print()` synchronously before fragments are fetched or before MathJax/Mermaid finishes rendering produces a blank white PDF. Always `await` all fetches, rendering promises, and a 1000ms settlement delay.
+- **Overflow Lock Truncation:** Setting `overflow: hidden` or `height: 100vh` on `html`/`body` in print mode locks the viewport to page 1 and truncates all subsequent slides. Always set `overflow: visible !important; height: auto;`.
+- **Dimension & Margin Mismatch:** Using relative units (`100vw`/`100vh`) instead of fixed physical inch dimensions matching `@page` (`16in 9in`) causes browser print engines to insert unwanted blank interstitial pages.
 - **Canvas Screenshot Fallback Trap:** Avoid using off-screen DOM positioning (`left: -9999px`) with canvas screenshot tools like `html2canvas`; off-screen rendering produces blank output. Use native browser print deck assembly instead.
-- **Missing Color Adjustment:** Omitting print color adjustment rules strips background styling in PDF exports.

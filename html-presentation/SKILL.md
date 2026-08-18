@@ -50,7 +50,7 @@ Align with the user on:
 ### 2. Architecture & Design Tokens
 Consult [DECK-ENGINEERING.md](DECK-ENGINEERING.md):
 - Once alignment settles the design direction, scaffold `DECK-DESIGN.md` next to the deck files: palette, typography, aspect ratio, surfaces, and interaction. The document, not your memory, holds the design, allowing the user to steer it while keeping every file consistent.
-- Scaffold the presentation layout appropriate for deck scale.
+- Scaffold the modular presentation layout matching the contracts in [DECK-ENGINEERING.md](DECK-ENGINEERING.md) (`index.html`, `js/slide-loader.js`, `js/main.js`, and `export_pdf.html`).
 - Construct custom CSS variables for colors, typography scaling, spacing, and surfaces derived entirely from user alignment.
 
 ### 3. Content Transformation
@@ -63,19 +63,21 @@ Transform presentation content into clean HTML:
 
 ### 4. Interaction & Export Verification
 Apply patterns from [DECK-ENGINEERING.md](DECK-ENGINEERING.md):
-- Bind keyboard navigation listeners and sync slide state with UI controls and hash URLs.
+- Bind keyboard navigation listeners and sync slide state with UI controls and hash URLs following the controller and loader contracts.
 - Ensure dynamic elements (MathJax formulas, Mermaid diagrams, or Prism syntax-highlighted code blocks) re-render on slide changes.
-- Verify print/PDF export geometry and force exact color rendering (`print-color-adjust: exact`).
+- Verify print/PDF export geometry and force exact color rendering (`print-color-adjust: exact`) using the runtime assembly script pattern in `export_pdf.html` (including fixed inch dimensions and the mandatory async rendering settlement delay).
 
 ---
 
 ## Failure Modes
 
 - **Preset Fixation**: Forcing specific colors, fonts, or component templates onto a project without user discovery.
-- **Template Copying**: Copying fixed example structures instead of engineering a system tailored to the user.
+- **Template Copying**: Copying fixed example content or themes instead of engineering a system tailored to the user's specific topic and brand.
 - **Markdown Leaking**: Leaving raw Markdown syntax (such as `**text**`, `*text*`, or `` `code` ``) inside `.html` files instead of native HTML tags.
 - **Inline Style Pollution**: Adding inline `style="..."` or `<style>` tags into slide fragments instead of defining reusable classes in `css/styles.css`.
-- **Print Background Loss**: Omitting exact print color properties, causing browsers to strip backgrounds in PDF exports.
+- **Premature Print / Blank Export**: Calling `window.print()` synchronously before fragments are fetched or before MathJax/Mermaid finishes rendering. Always await all async passes and a 1000ms delay before print.
+- **Print Overflow Lock**: Setting `overflow: hidden` or `height: 100vh` on `html`/`body` in print mode, which cuts off multi-page slide flow.
+- **Print Background Loss**: Omitting exact print color properties (`print-color-adjust: exact !important`), causing browsers to strip backgrounds in PDF exports.
 
 ---
 
