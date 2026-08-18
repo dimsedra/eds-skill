@@ -6,17 +6,17 @@ disable-model-invocation: false
 
 # Write Skills
 
-Write skills that steer your reasoning toward a center of gravity: clear direction, not rigid scripts. A skill is an instruction, not an essay: tell yourself where to aim, and let yourself rationalize the rest.
+Write skills that steer your reasoning toward a center of gravity: clear direction for judgment, and deterministic state gates for invariants. A skill is an instruction, not an essay: tell yourself where to aim, enforce hard boundaries, and let yourself rationalize the rest.
 
 ---
 
 ## How to Write
 
 - **Act as the user.** When you write a skill, you take the user's seat: write it the way this file writes to you (second person, direct, "you").
-- **Nudge, don't dictate.** Express each rule as a direction with a reason, so you can generalize it. A checklist of do-this/don't-do-that items makes you obey the items and miss the class of problem behind them.
+- **Nudge reasoning, gate state transitions.** Express open-ended rules as directions with reasons so you can generalize them. Use strict step-by-step state machines only when causal order or safety invariants require them (e.g. expand/contract migrations, destructive action approvals).
 - **Name failure modes, not forbidden artifacts.** Say what failure you're guarding against (fixation, brittleness, single-project bias). Don't list artifacts to strip, because you will hunt only those and miss the class.
 - **State directions positively.** Say where reasoning should land. Keep prohibitions only as hard guardrails, always paired with the direction they protect.
-- **Prefer qualitative criteria over numbers.** "10+ items" claims a precision the situation doesn't have and makes you optimize the number. "Scale, modularity, distribution" keeps judgment where it belongs.
+- **Distinguish invariants from vanity numbers.** Use hard numbers for functional invariants and safety bounds (loop limits, token caps, timeout budgets, 0 failing tests). Use qualitative criteria for design and style ("modularity, clarity, distribution") where hard numbers create false precision.
 - **Write the why.** When a direction protects against a failure mode, say so in one line, so you can generalize it to cases the rule never names.
 - **Stay lean.** Every line either steers reasoning or guards a boundary. Cut everything else.
 - **Demonstrate the direction.** This file is directions, not artifact lists. Your skill should read the same way.
@@ -51,10 +51,10 @@ Write skills that steer your reasoning toward a center of gravity: clear directi
 
 ## Failure Modes
 
-- **Checklist Fixation**: writing the skill as a compliance list of do-this/don't-do-that items; you obey the items and stop reasoning about the class of problem. Fix: name the failure mode, state the direction, delete the artifact list.
+- **Checklist Fixation**: reducing cognitive/design reasoning to mindless compliance checkboxes. (Note: Deterministic state machines with explicit phase gates are NOT checklist fixation). Fix: name the failure mode, state the direction, keep step-ordering only for causal/safety invariants.
 - **Template Overfitting**: including specific code blocks or preset styles that invite blind copying instead of dynamic reasoning.
 - **Project Over-indexing**: turning one user's one-off preference into a mandatory global rule, forcing irrelevant edge-case logic onto future users. Put it in discovery, not in the rule.
-- **Arbitrary Thresholds**: hardcoded numbers that claim precision the situation doesn't have and make you optimize the number instead of the outcome.
+- **Vanity Metrics vs. Missing Invariants**: either enforcing cosmetic numbers that claim false precision (e.g. "write exactly 5 bullets"), or omitting critical quantitative guardrails (e.g. loop termination limits, test pass criteria, chunk caps).
 - **Verbosity Sprawl**: narrative prose that inflates token load without steering reasoning anywhere new.
 - **No-Payload Lines**: lines you would follow by default anyway; they cost load and say nothing. Cut them.
 

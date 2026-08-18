@@ -17,8 +17,14 @@ Turning one user's one-off preference into a mandatory rule forces irrelevant ed
 ### Preset Uniformity
 Preset themes and hardcoded colors make every output identical regardless of context. Build tokens dynamically from what the user tells you during discovery.
 
-### False Precision
-A hardcoded number ("10+ items", "under 10") claims a precision the situation doesn't have, and you optimize the number instead of the structure. Use qualitative criteria (scale, modularity, distribution) and keep the judgment where it belongs.
+### Vanity Numbers vs. Functional Invariants
+Differentiate cosmetic metrics from operational invariants:
+- **Vanity Numbers (Avoid)**: Hardcoding cosmetic quotas ("write 10+ items", "under 5 lines") claims precision the situation doesn't have and encourages optimizing the count over quality. Use qualitative criteria (scale, modularity, clarity) instead.
+- **Functional Invariants (Enforce)**: Quantitative bounds are mandatory when protecting against system failure, runaway agent loops, or safety violations (e.g., loop termination counters, token caps, 0 failing tests, p99 latency SLOs, chunk size thresholds).
+
+### Mindless Compliance vs. Deterministic State Machines
+- **Mindless Compliance (Avoid)**: Turning open-ended judgment into rigid do-this/don't-do-that checklists that prevent root-cause reasoning.
+- **Deterministic State Machines (Enforce)**: Requiring strict sequential gates where causal ordering or safety invariants are absolute (e.g., Expand -> Migrate -> Contract migrations, Plan -> Approve -> Execute for destructive commands, Red -> Green -> Refactor in TDD).
 
 ---
 
@@ -31,7 +37,7 @@ Anchor the skill's posture with compact concepts you already hold (*Discover Fir
 Say where reasoning should land, with the why in one line. When a prohibition is unavoidable, pair it with the direction it protects, because a bare prohibition names what to avoid and makes it more available.
 
 ### Checkable Completion
-Close each phase with a condition you can check (done vs. not done) so the work ends when it is genuinely complete, not when it feels complete.
+Close each phase with a condition you can objectively verify (binary state transitions, zero-failure test runs, invariant proofs) so work ends when it is genuinely complete, not when it feels complete.
 
 ---
 
