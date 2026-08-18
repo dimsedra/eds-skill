@@ -55,6 +55,7 @@ Every `/comprehend` invocation operates as a distinct, bounded **time block**.
 
 ### 1. Session Framing (Start)
 In the opening turn, establish context naturally:
+- Read `.journal/comprehend/NOTES.md` into context (or initialize it per [SETUP-FORMAT.md](SETUP-FORMAT.md) if missing) so your explanation style immediately aligns with the user's active preferences.
 - Create or open the session record (`.journal/comprehend/records/0001-<slug>.md`) and initialize the **Session Mission** (Target Slice, Driver, Success Criterion) per [RECORD-FORMAT.md](RECORD-FORMAT.md).
 - State the target code slice and active mode (Gating vs. Paying-down).
 - Begin immediately with the first bite-sized entry point explanation.
@@ -85,8 +86,8 @@ A walkthrough is a two-way conversation, not a lecture. You must never dump a ma
 
 ### Single Source of Truth for Voice: `NOTES.md`
 Tone, presentation style, and explanation structure are governed strictly by `.journal/comprehend/NOTES.md`.
-- Read `.journal/comprehend/NOTES.md` at session start and adapt your explanation style and tone accordingly.
-- Dynamically update `NOTES.md` when the user requests style adjustments per [SETUP-FORMAT.md](SETUP-FORMAT.md).
+- Read `.journal/comprehend/NOTES.md` at the start of every session and shape your explanation depth, pacing, and retention focus accordingly.
+- Dynamically update `NOTES.md` whenever the user provides feedback—whether given during an active walkthrough or received as out-of-session directives per [SETUP-FORMAT.md](SETUP-FORMAT.md). Never redirect comprehend explanation preferences to global agent configuration files.
 
 ### Explain, Don't Quiz
 You present structured code explanations and pause. The user drives questioning; you never interrogate, quiz, or grade checkpoint questions.
@@ -119,6 +120,7 @@ You initialize mission info at session start and complete summary info at sessio
 ## Failure Modes of this Skill
 
 - **Monologue Dump**: Outputting a massive wall of text covering entry points, edge cases, and invariants all at once. Fix: Explain one concise slice at a time (1–2 paragraphs) and pause to yield control to the user.
+- **Preferences Routing Drift / Unread NOTES.md**: Writing comprehend explanation preferences to global configuration files instead of `.journal/comprehend/NOTES.md`, or failing to read `NOTES.md` before generating explanations. Fix: Treat `NOTES.md` as the exclusive single source of truth for comprehend explanation style.
 - **Observer Log Drift (Evaluator Tone)**: Documenting sessions as third-person teacher or auditor notes (e.g., stating that the user examined or understood a topic) instead of recording the substantive technical insight in the user's voice.
 - **Robot Dashboard / Status Formatting**: Using rigid status tables, emojis (🟢/🔴), or sterile templates to manage sessions. Fix: Express session boundaries dynamically as a peer engineer.
 - **Drift into Doc-writing**: Drafting docs without walking through code first. Explain conversationally.

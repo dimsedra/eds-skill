@@ -30,13 +30,15 @@ Preferences are not static. Continuously observe how the user reacts to explanat
 
 ### Triggers for Updating Preferences
 Update the preferences in `NOTES.md` when the user:
-1.  **Explicitly requests a change:** "Explain this differently," "Avoid high-level summaries, just show me the code," or "Can you trace the exact method call?"
-2.  **Demonstrates strong ownership signals:** If the user easily recites, pushbacks, or defends code when explained using a specific structure (e.g. flow diagrams), note that format as highly effective.
-3.  **Shows confusion or fluency friction:** If the user struggles or asks for repeated clarification under the current explanation style, note the friction points to avoid (e.g., "Avoid jumping straight to lines of code without architectural context").
+1.  **Gives Out-of-Session Directives:** Direct feedback given outside of an active walkthrough targeting comprehend explanation style, conceptual depth, pacing, or retention goals must be written directly to `NOTES.md`.
+2.  **Explicitly Requests Adjustments During Walkthrough:** Structural shifts requested during dialogue (such as asking for higher-level architectural context or deeper line execution traces).
+3.  **Demonstrates Strong Ownership Signals:** If explanations structured in a specific pattern generate immediate clarity, synthesis, or effective questioning, record that approach as preferred.
+4.  **Shows Fluency Friction:** If an explanation style causes repeated confusion or stalls momentum, record the friction point to avoid in future sessions.
 
 ### Rules for Updating `NOTES.md`
+*   **Exclusive Destination:** All preferences governing `/comprehend` explanation depth, pacing, and retention focus belong strictly in `.journal/comprehend/NOTES.md`, never in global agent configuration files.
 *   **Preserve Custom User Notes:** Do not modify or delete bullet points that the user manually wrote or explicitly requested to keep.
 *   **Incremental Refinement:** Add new insights as bullet points at the bottom or refine existing agent-written bullets.
-*   **Keep it Actionable:** Every preference bullet must translate directly into how you structure your next message (e.g., "Use ASCII sequence diagrams for data flow").
-*   **Limit Sprawl:** Keep the preferences lean. When a new insight arrives, merge or prune the less useful bullets.
-*   **Notify the User:** When you update `NOTES.md`, state briefly and flatly what changed and why. Don't ask for confirmation unless unsure.
+*   **Keep it Actionable:** Every preference bullet must translate directly into how you structure your next explanation turn.
+*   **Limit Sprawl:** Keep the preferences lean. When a new insight arrives, merge or prune less useful bullets.
+*   **Notify the User:** When you update `NOTES.md`, state briefly what changed and why. Don't ask for confirmation unless unsure.
