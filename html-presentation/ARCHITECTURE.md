@@ -1,4 +1,4 @@
-﻿# Presentation Architecture & Engine
+# Presentation Architecture & Engine
 
 Specifications for modular shell architecture, full-bleed viewport CSS, and high-fidelity PDF print export.
 
@@ -132,3 +132,27 @@ html, body {
 - **No Overflow Locking**: Never apply `overflow: hidden` or `height: 100vh` to `html`/`body` in print mode (locks output to page 1).
 - **Physical Print Units**: Use explicit inch units (`16in 9in`) matching `@page` to prevent empty interstitial pages.
 - **Exact Color Preservation**: Always declare `-webkit-print-color-adjust: exact !important` and `print-color-adjust: exact !important`.
+
+---
+
+## 4. Local Live Server & CORS Hygiene
+
+Slide decks dynamically fetch HTML fragments (`slides/slide-NN.html`) via JavaScript `fetch()`. Browsers block local `fetch()` requests when opened via raw `file:///` protocols.
+
+### Background Daemon Execution
+The agent automatically starts a lightweight local HTTP server as a background daemon process in the presentation root using cascading auto-fallback:
+
+1. **Primary Choice (Python)**:
+   ```bash
+   python -m http.server 8000
+   ```
+   *(or `python3 -m http.server 8000`)*
+
+2. **Cascading Fallback (Node / NPX)**:
+   If Python is not available in PATH, fallback automatically to zero-install Node tooling:
+   ```bash
+   npx serve -p 8000
+   ```
+   *(or `npx http-server -p 8000`)*
+
+3. **Port & Persistence**: If port 8000 is occupied, increment to 8001 or 8080. Keep the server daemon alive throughout the conversation session so the user can interactively test and view slides at `http://localhost:8000`.

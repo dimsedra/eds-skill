@@ -46,10 +46,13 @@ Build modular, responsive HTML presentation slide decks with dedicated print/PDF
  - Interactive loader and controller scripts (`js/slide-loader.js`, `js/main.js`) per [SCRIPTS.md](SCRIPTS.md).
  - Slide fragments (`slides/slide-01.html` ... `slides/slide-NN.html`) implementing the presentation strategy from `STORYLINE.md` matching schemas in [SLIDE-FORMAT.md](SLIDE-FORMAT.md).
 
-### Gate 3: Verification & Initial Delivery
-- Verify slide fragment count matches `totalSlides` in `js/slide-loader.js`.
-- Check hash navigation (`#slide-1`), keyboard shortcuts, and dropdown synchronization.
-- Inspect slide markup for pure HTML hygiene (confirm zero Markdown syntax and zero inline styles).
+### Gate 3: Verification, Live Server & Delivery
+- **Verification**: Verify slide fragment count matches `totalSlides`, check hash navigation, and inspect slide markup for pure HTML hygiene.
+- **Auto-Launch Local Live Server**:
+  - Automatically launch a lightweight local HTTP server in the presentation directory as a background daemon process using cascading auto-fallback (e.g. `python -m http.server 8000` / `python3 -m http.server 8000`, falling back to `npx serve -p 8000` / `npx http-server -p 8000`).
+  - Keep the server alive in the background throughout the session so dynamic slide fragment `fetch()` calls work seamlessly without browser CORS errors.
+- **Deliver Live Link & Yield Turn**:
+  - Output the clickable link `👉 Open Presentation: http://localhost:8000` (or the active port) along with the 2-sentence summary, then yield the turn.
 - Verify `export_pdf.html` contains the 1000ms rendering settlement pause and exact print color CSS.
 
 ### Gate 4: Iterative Revision & Narrative Surgery (Conditional - User-Triggered Only)
@@ -72,6 +75,7 @@ Accommodate non-linear human iteration across 4 distinct revision depths:
 
 ## Failure Modes
 
+- **Raw File URL Drift**: Providing a raw `file:///` link instead of automatically launching a background live server, causing browser CORS errors when loading slide fragments.
 - **Rigid Interrogation Drift**: Forcing the user to answer formulaic questions instead of sifting their raw, unstructured thoughts.
 - **Question Dump Bloat**: Dumping all alignment questions at once in a massive wall of text instead of conversational, round-by-round turns.
 - **Unground Deck Generation**: Generating slide files before locking in `STORYLINE.md` and `DECK-DESIGN.md`.
