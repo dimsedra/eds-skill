@@ -35,7 +35,7 @@ An HTML walkthrough report consists of two distinct sections separated by a divi
     </section>
 
     <section class="mechanics">
-      <!-- Core logic, invariants, step-by-step traces with exact file:line citations -->
+      <!-- Core logic, invariants, step-by-step traces with semantic anchors (file paths, function/class names, interface types) -->
     </section>
   </main>
 
@@ -54,7 +54,7 @@ An HTML walkthrough report consists of two distinct sections separated by a divi
 
 ## Standards & Invariants
 
-- **Accurate Citations**: Every code reference must cite exact `file:line` locations.
+- **Semantic Code Anchoring**: Every code reference must cite stable semantic anchors (file path paired with named function, method, class, or type) rather than brittle line numbers.
 - **Clean Semantic HTML**: Use semantic tags (`<header>`, `<main>`, `<section>`, `<aside>`, `<figure>`).
 - **External Stylesheet**: Link `../../assets/styles/journal.css` without polluting the file with bloated inline `<style>` tags.
 - **Perspective Separation**:
