@@ -15,8 +15,6 @@ The comprehension workspace is private to the project:
 │       └── journal.css       # Dynamic project-tailored stylesheet
 └── comprehend/
     ├── NOTES.md              # User explanation preferences & takeaways
-    ├── records/
-    │   └── 0001-<slug>.md    # Session mission & summary records
     ├── modules/
     │   └── 0001-<slug>.html  # Standalone HTML walkthrough reports
     └── reference/
@@ -29,7 +27,7 @@ The comprehension workspace is private to the project:
 
 If `.journal/comprehend/` does not exist on invocation:
 
-1. **Create Directories**: Create `records/`, `modules/`, `reference/`, and `.journal/assets/styles/`.
+1. **Create Directories**: Create `modules/`, `reference/`, and `.journal/assets/styles/`.
 2. **Gitignore Protection**: Append `.journal/` to the project's `.gitignore` file.
 3. **Dynamic CSS Generation**:
    - Inspect project styling, fonts, and dark/light themes.

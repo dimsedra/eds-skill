@@ -12,7 +12,7 @@ The document is designed for the user returning six weeks later with zero active
 
 ## Document Layout
 
-An HTML walkthrough report consists of two distinct sections separated by a divider:
+An HTML walkthrough report is a self-contained, clean visual guide:
 
 ```html
 <!DOCTYPE html>
@@ -23,29 +23,22 @@ An HTML walkthrough report consists of two distinct sections separated by a divi
   <link rel="stylesheet" href="../../assets/styles/journal.css">
 </head>
 <body>
-  <!-- SECTION 1: Agent Walkthrough -->
   <header>
     <h1>{Title}</h1>
-    <p class="subtitle">{1-2 sentence high-level orientation & driver}</p>
+    <p class="subtitle">{1-2 sentence high-level orientation of what this code does and why}</p>
   </header>
 
   <main>
     <section class="overview">
-      <!-- High-level architectural role, entry/exit points -->
+      <h2>System Overview</h2>
+      <!-- High-level architectural role, data inputs, and entry/exit points -->
     </section>
 
     <section class="mechanics">
-      <!-- Core logic, invariants, step-by-step traces with semantic anchors (file paths, function/class names, interface types) -->
+      <h2>Mechanics & Execution</h2>
+      <!-- Core logic, invariants, and step-by-step traces with semantic anchors (file paths, function/class names, interface types) -->
     </section>
   </main>
-
-  <hr>
-
-  <!-- SECTION 2: User Insights & Breakthroughs -->
-  <section class="user-insights">
-    <h2>Realizations & Mental Model Shifts</h2>
-    <!-- Core technical dilemmas explored and the realization that resolved them, written in the user's first-person perspective -->
-  </section>
 </body>
 </html>
 ```
@@ -55,9 +48,6 @@ An HTML walkthrough report consists of two distinct sections separated by a divi
 ## Standards & Invariants
 
 - **Semantic Code Anchoring**: Every code reference must cite stable semantic anchors (file path paired with named function, method, class, or type) rather than brittle line numbers.
-- **Clean Semantic HTML**: Use semantic tags (`<header>`, `<main>`, `<section>`, `<aside>`, `<figure>`).
+- **Clean Semantic HTML**: Use standard semantic tags (`<header>`, `<main>`, `<section>`, `<aside>`, `<figure>`).
 - **External Stylesheet**: Link `../../assets/styles/journal.css` without polluting the file with bloated inline `<style>` tags.
-- **Perspective Separation**:
-  - Top Section: Agent-authored structural walkthrough.
-  - Bottom Section: Substantive technical insights in the user's voice (no third-person observer commentary).
-- **Print & Responsive Ready**: Ensure clean rendering across display sizes and PDF export.
+- **Print & Responsive Ready**: Ensure clean rendering across display sizes and clean export to PDF.

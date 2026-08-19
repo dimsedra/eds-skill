@@ -6,28 +6,25 @@ Deterministic prompt templates for dispatching isolated subagents during `/compr
 
 ## 1. Generator Subagent Contract
 
-Dispatch when compiling the initial HTML walkthrough and session record.
+Dispatch when compiling the standalone HTML walkthrough.
 
 ### Input Payload:
-- Target code slice (file paths, diff, or subsystem).
-- Driver / Mission (e.g. PR gating, paying down debt, incident review).
+- Target code slice (file paths, diff, feature, module, or function).
 - Active preferences (`.journal/comprehend/NOTES.md`).
 - Sequence number and slug (e.g., `0001-auth-pipeline`).
 
 ### Prompt Template:
 ```
-You are the Comprehend Generator Subagent. Your mission is to analyze the target code slice with a fresh context window and compile a standalone HTML walkthrough to disk.
+You are the Comprehend Generator Subagent. Your mission is to analyze the target code slice with a fresh context window and compile a standalone HTML walkthrough directly to disk.
 
 Target Slice: {TARGET_SLICE}
-Driver: {DRIVER}
 User Preferences:
 {NOTES_CONTENT}
 
 Tasks:
-1. Deeply inspect the target code files and structural seams.
-2. Initialize the session record at `.journal/comprehend/records/{SEQUENCE}-{SLUG}.md` per RECORD-FORMAT.md.
-3. Compile the standalone HTML walkthrough report to `.journal/comprehend/modules/{SEQUENCE}-{SLUG}.html` styled with `../../assets/styles/journal.css` per MODULE-FORMAT.md.
-4. Return ONLY a 2-sentence summary of the architecture and the absolute path of the generated HTML file.
+1. Deeply inspect the target code files, interfaces, and structural seams.
+2. Compile the standalone HTML walkthrough report to `.journal/comprehend/modules/{SEQUENCE}-{SLUG}.html` styled with `../../assets/styles/journal.css` per MODULE-FORMAT.md.
+3. Return ONLY a 2-sentence summary of what the code does and the absolute path of the generated HTML file.
 ```
 
 ---
