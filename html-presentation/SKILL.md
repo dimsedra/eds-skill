@@ -1,4 +1,4 @@
-﻿---
+---
 name: html-presentation
 description: Build modular HTML presentation slide decks with responsive viewport fitting, custom keyboard navigation, and exact PDF/print export. Use when the user asks to create HTML slides, build a presentation deck, convert slides to HTML, generate slide presentations, or export HTML slides to PDF.
 disable-model-invocation: false
@@ -52,7 +52,9 @@ Build modular, responsive HTML presentation slide decks with dedicated print/PDF
 - Inspect slide markup for pure HTML hygiene (confirm zero Markdown syntax and zero inline styles).
 - Verify `export_pdf.html` contains the 1000ms rendering settlement pause and exact print color CSS.
 
-### Gate 4: Iterative Revision & Narrative Surgery
+### Gate 4: Iterative Revision & Narrative Surgery (Conditional - User-Triggered Only)
+*This gate is strictly event-driven and ONLY executes if the user requests edits, slide additions/cuts, or narrative pivots after reviewing the deck. If no revision is requested, the run ends at Gate 3.*
+
 Accommodate non-linear human iteration across 4 distinct revision depths:
 - **Micro Polish**: Direct text wording, typo fixes, or minor CSS tweaks in `slides/slide-NN.html` or `css/styles.css`.
 - **Slide-Level Claim & Content Shifts**: Changing a single slide's narrative assertion (Action Headline), data points, or presentation strategy (e.g., swapping code for a diagram):

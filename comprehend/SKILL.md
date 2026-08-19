@@ -48,7 +48,9 @@ Every `/comprehend` execution follows deterministic phase gates:
 - Yield turn immediately to the user.
 - If the user asks follow-up technical questions, answer concisely in 1–2 paragraphs without code dumping.
 
-### Gate 4: Feedback & Revision Gate
+### Gate 4: Feedback & Revision Gate (Conditional - User-Triggered Only)
+*This gate is strictly event-driven and ONLY executes if the user explicitly replies with feedback or change requests after reviewing the walkthrough. If no revision is requested, the run ends at Gate 3.*
+
 When the user provides feedback or requests changes (which may apply to long-term memory, the current artifact, or both):
 1. **Capture Lasting Preferences (`NOTES.md`)**:
    - If feedback introduces a lasting preference for explanation style, depth, visual structure, or terminology (e.g. "Focus more on data flow", "Keep code blocks minimal", "Always highlight error edge cases"):
