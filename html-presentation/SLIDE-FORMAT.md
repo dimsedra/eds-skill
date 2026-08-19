@@ -36,7 +36,7 @@ Every slide fragment MUST be wrapped in a `<section>` tag with class `slide` and
 
 ## 2. Standard Layout Patterns
 
-Use semantic class names defined in `css/styles.css` for consistent slide compositions:
+Every layout primitive is structured to substantiate its **Action Headline** (the lead claim in `<header class="slide-header"><h2>...</h2></header>`), with the body element providing the concrete visual proof:
 
 ### Title / Hero Slide
 ```html

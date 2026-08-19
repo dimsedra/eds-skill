@@ -34,19 +34,25 @@ presentation/
 ## 2. Design System & Token Construction
 
 ### The `DECK-DESIGN.md` Contract
-Before generating slide code, scaffold `DECK-DESIGN.md` in the presentation root. This file serves as the single source of truth for human steering and programmatic styling:
+Before generating slide code, scaffold `DECK-DESIGN.md` in the presentation root. This file serves as the single source of truth for both narrative structure and programmatic styling:
 
-1. **Deck Context**: Purpose, audience, setting (pitch, lecture, defense, workshop), and tone.
-2. **Palette**: Color roles (`--bg-primary`, `--bg-surface`, `--text-primary`, `--text-muted`, `--border-color`, `--accent-color`).
-3. **Typography**: Font families (heading, body, code), modular scale, weights, and tracking.
-4. **Aspect Ratio & Dimensions**: Target ratio (16:9 default: 16in × 9in / 1920px × 1080px) and fitting rules.
-5. **Surfaces & Spacing**: Container styles, padding scale, border radius, and elevation tokens.
-6. **Component Catalog**: Identified layout primitives (hero, split 2-col, metric cards, code window, comparison).
-7. **Navigation & Controls**: Keyboard mapping, counter format, and dropdown behavior.
-8. **Print & PDF**: Page dimensions, page breaks, and color preservation settings.
+#### Part A: Narrative Blueprint & Slide Content Framework
+1. **Topic & Audience**: Topic, setting, audience profile, and their baseline mindset.
+2. **The 1-Sentence "Big Idea"**: The single governing takeaway the audience must remember.
+3. **Delivery Modality & Budget**: Live spoken companion (minimal text, visual punch) vs. Standalone read-ahead document (structured detail), plus locked slide count.
+4. **Slide Content Framework (Action Headlines Sequence)**:
+   - Every slide defined by an **Action Headline** (active assertion, e.g. *"Isolated Subagents Cut Chat Clutter by 80%"*).
+   - Reading headlines from Slide 1 to Slide $N$ forms a complete, coherent narrative (the 30-second skim test).
+   - Mapping each headline to its supporting proof layout (Hero, Split 2-Col, Metric Grid, Code Window, Architecture Diagram).
+
+#### Part B: Design Tokens & Visual Hierarchy
+1. **Palette**: Color roles (`--bg-primary`, `--bg-surface`, `--text-primary`, `--text-muted`, `--border-color`, `--accent-color`).
+2. **Typography**: Font families (heading, body, code), modular scale, weights, and tracking.
+3. **Aspect Ratio & Dimensions**: Target ratio (16:9 default: 16in × 9in / 1920px × 1080px) and full-bleed fitting rules.
+4. **Surfaces & Spacing**: Internal slide padding, component layout classes, and clean contrast.
 
 ### Dynamic Token Construction
-All values in `css/styles.css` derive from `DECK-DESIGN.md`. Avoid arbitrary hardcoded color hexes or ad-hoc margins across slide components.
+All values in `css/styles.css` derive directly from `DECK-DESIGN.md`. Avoid arbitrary hardcoded color hexes or ad-hoc margins across slide components.
 
 ### Full-Bleed Viewport Architecture (Zero Floating Cards)
 To ensure slides render as a true full-bleed presentation on screen and in fullscreen:

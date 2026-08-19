@@ -28,10 +28,12 @@ Build modular, responsive HTML presentation slide decks with dedicated print/PDF
 
 ## Deterministic Phase Gates
 
-### Gate 1: Alignment & Design
-- Align on presentation context, aspect ratio (e.g., 16:9), typography, and color palette.
-- Scaffold `DECK-DESIGN.md` in the presentation root as the single source of truth for all design tokens and layouts.
-- Consult [DECK-ENGINEERING.md](DECK-ENGINEERING.md) for architecture rules and token specifications.
+### Gate 1: Alignment & Design (Paced Grilling Session)
+Run a strictly paced, 3-round alignment session (ask only 1–2 questions per turn; wait for response before advancing):
+- **Turn 1 (Round 1: Topic, Audience & Core Takeaway)**: Ask the presentation subject, target audience, and the single main takeaway they must remember.
+- **Turn 2 (Round 2: Modality & Slide Budget)**: Ask delivery format (live spoken companion vs. standalone read-ahead document) and target slide count.
+- **Turn 3 (Round 3: Slide Content Framework & Vibe)**: Propose the sequence of **Action Headlines** (the Slide Content Framework) for user confirmation, and confirm visual mood/palette.
+- Lock all decisions into `DECK-DESIGN.md` in the presentation root per [DECK-ENGINEERING.md](DECK-ENGINEERING.md) before building.
 
 ### Gate 2: Delegated Deck Generation
 - Dispatch a clean-head subagent to generate all project files on disk to prevent chat bloat:
@@ -51,6 +53,8 @@ Build modular, responsive HTML presentation slide decks with dedicated print/PDF
 
 ## Failure Modes
 
+- **Question Dump Bloat**: Dumping all alignment questions at once in a massive wall of text instead of conversational, round-by-round turns.
+- **Unground Deck Generation**: Generating slide files before locking in the Slide Content Framework and Big Idea in `DECK-DESIGN.md`.
 - **Chat Bloat**: Emitting dozens of slide HTML fragments in the main conversation instead of delegating file generation to a subagent.
 - **Floating Card Slide Drift**: Adding outer margins, rounded borders, or drop shadows to the slide container so slides look like floating cards in a gray void instead of a true full-bleed presentation.
 - **Preset Fixation**: Imposing arbitrary palettes or fonts without grounding them in user discovery and `DECK-DESIGN.md`.
