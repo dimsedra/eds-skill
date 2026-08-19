@@ -1,5 +1,0 @@
-interface:
-  display_name: Issue It
-  short_description: User-invoked command (/issue-it) to draft user-centered GitHub issues
-policy:
-  allow_implicit_invocation: false

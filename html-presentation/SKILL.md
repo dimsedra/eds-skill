@@ -6,81 +6,60 @@ disable-model-invocation: false
 
 # HTML Presentation
 
-## First Principle
-
-Every choice you make (architecture, aesthetic, technique) follows from the user's context, brand, and presentation goals. A fixed template shapes the deck around itself, not around the user; discover requirements first, then engineer a custom system.
+Build modular, responsive HTML presentation slide decks with dedicated print/PDF export capabilities.
 
 ---
 
 ## Core Posture
 
-- **Discover Before Building**: Clarify visual identity, aspect ratio, typography, interaction, and structural requirements before writing code.
-- **Modular Architecture**: Build every deck using the modular multi-file pattern (central shell with isolated slide fragments) and dedicated print assembly.
-- **Maintain Presentation Hygiene**: Keep content markup clean and semantic, and ensure exact color preservation on print/PDF export.
+- **Discover Before Building**: Clarify visual identity, aspect ratio, typography, and structure before writing code.
+- **Modular Multi-File Architecture**: Isolate slides into clean HTML fragments; orchestrate viewer state in a central shell.
+- **Pure Presentation Hygiene**: Enforce strict semantic HTML without inline styles or leaked Markdown syntax.
 
 ---
 
-## Triggers
+## Invocation Models
 
-Reach for this skill when the user requests:
-- Creating HTML slides or web presentation decks.
-- Converting raw text, markdown, or existing documents into web slides.
-- Implementing navigation, viewport scaling, or PDF export for HTML slide decks.
+- **User-Invoked (`/html-presentation`)**: Pair interactively with the user to discover deck goals, audience, tone, palette, and slide outline.
+- **Agent-Invoked**: When given an existing presentation outline or specification, proceed directly to Gate 1 artifact scaffolding.
 
 ---
 
-## When NOT to Invoke
+## Deterministic Phase Gates
 
-- Generating a static document or academic manuscript.
-- Providing a plain text outline without web UI engineering → respond directly.
-- Building a standalone web application or landing page.
+### Gate 1: Alignment & Design
+- Align on presentation context, aspect ratio (e.g., 16:9), typography, and color palette.
+- Scaffold `DECK-DESIGN.md` in the presentation root as the single source of truth for all design tokens and layouts.
+- Consult [DECK-ENGINEERING.md](DECK-ENGINEERING.md) for architecture rules and token specifications.
 
----
+### Gate 2: Delegated Deck Generation
+- Dispatch a clean-head subagent to generate all project files on disk to prevent chat bloat:
+  - Presentation shell (`index.html`) and PDF print assembler (`export_pdf.html`).
+  - Central stylesheet (`css/styles.css`) implementing tokens from `DECK-DESIGN.md`.
+  - Interactive loader and controller scripts (`js/slide-loader.js`, `js/main.js`).
+  - Slide fragments (`slides/slide-01.html` ... `slides/slide-NN.html`) matching schemas in [SLIDE-FORMAT.md](SLIDE-FORMAT.md).
+- Follow loader and controller lifecycle contracts in [SCRIPTS.md](SCRIPTS.md).
 
-## Execution Workflow
-
-### 1. Requirements Discovery
-Align with the user on:
-- Purpose, domain, and delivery setting (pitch, defense, lecture, report, workshop).
-- Aesthetic direction (palette contrast, typography family, surface styling).
-- Aspect ratio (16:9 landscape, 4:3, responsive viewport).
-- Control requirements (keyboard navigation, UI indicators, PDF export target).
-- Content structural requirements (citations, tags, or author notes if requested).
-
-### 2. Architecture & Design Tokens
-Consult [DECK-ENGINEERING.md](DECK-ENGINEERING.md):
-- Once alignment settles the design direction, scaffold `DECK-DESIGN.md` next to the deck files: palette, typography, aspect ratio, surfaces, and interaction. The document, not your memory, holds the design, allowing the user to steer it while keeping every file consistent.
-- Scaffold the modular presentation layout matching the contracts in [DECK-ENGINEERING.md](DECK-ENGINEERING.md) (`index.html`, `js/slide-loader.js`, `js/main.js`, and `export_pdf.html`).
-- Construct custom CSS variables for colors, typography scaling, spacing, and surfaces derived entirely from user alignment.
-
-### 3. Content Transformation
-Transform presentation content into clean HTML:
-- Structure each slide using semantic HTML elements tailored to its specific content and purpose.
-- Format text and media using appropriate standard semantic tags.
-- Pure HTML only (zero Markdown leaking): Never use raw Markdown syntax (such as `**bold**`, `*italic*`, `` `code` ``, `[text](url)`, or `- bullet`) inside `.html` files. Convert all formatting to native HTML tags (`<strong>`, `<em>`, `<code>`, `<a>`, `<ul><li>`).
-- Include metadata, citations, or speaker notes only when requested or relevant to the presentation context.
-- Maintain strict separation of content and styling: slide fragments are optimized for human reading and editing. Never use inline `style="..."` attributes or `<style>` blocks in slide files; all layout and component styles belong in `css/styles.css`.
-
-### 4. Interaction & Export Verification
-Apply patterns from [DECK-ENGINEERING.md](DECK-ENGINEERING.md):
-- Bind keyboard navigation listeners and sync slide state with UI controls and hash URLs following the controller and loader contracts.
-- Ensure dynamic elements (MathJax formulas, Mermaid diagrams, or Prism syntax-highlighted code blocks) re-render on slide changes.
-- Verify print/PDF export geometry and force exact color rendering (`print-color-adjust: exact`) using the runtime assembly script pattern in `export_pdf.html` (including fixed inch dimensions and the mandatory async rendering settlement delay).
+### Gate 3: Verification & Delivery
+- Verify slide fragment count matches `totalSlides` in `js/slide-loader.js`.
+- Check hash navigation (`#slide-1`), keyboard shortcuts, and dropdown synchronization.
+- Inspect slide markup for pure HTML hygiene (confirm zero Markdown syntax and zero inline styles).
+- Verify `export_pdf.html` contains the 1000ms rendering settlement pause and exact print color CSS.
 
 ---
 
 ## Failure Modes
 
-- **Preset Fixation**: Forcing specific colors, fonts, or component templates onto a project without user discovery.
-- **Template Copying**: Copying fixed example content or themes instead of engineering a system tailored to the user's specific topic and brand.
-- **Markdown Leaking**: Leaving raw Markdown syntax (such as `**text**`, `*text*`, or `` `code` ``) inside `.html` files instead of native HTML tags.
-- **Inline Style Pollution**: Adding inline `style="..."` or `<style>` tags into slide fragments instead of defining reusable classes in `css/styles.css`.
-- **Premature Print / Blank Export**: Calling `window.print()` synchronously before fragments are fetched or before MathJax/Mermaid finishes rendering. Always await all async passes and a 1000ms delay before print.
-- **Print Overflow Lock**: Setting `overflow: hidden` or `height: 100vh` on `html`/`body` in print mode, which cuts off multi-page slide flow.
-- **Print Background Loss**: Omitting exact print color properties (`print-color-adjust: exact !important`), causing browsers to strip backgrounds in PDF exports.
+- **Chat Bloat**: Emitting dozens of slide HTML fragments in the main conversation instead of delegating file generation to a subagent.
+- **Preset Fixation**: Imposing arbitrary palettes or fonts without grounding them in user discovery and `DECK-DESIGN.md`.
+- **Markdown Leaking**: Leaving unparsed Markdown syntax (`**bold**`, `` `code` ``, `- list`) inside slide HTML fragments.
+- **Inline Style Pollution**: Adding inline `style="..."` attributes or `<style>` blocks into slide fragments instead of `css/styles.css`.
+- **Premature Print Export**: Triggering `window.print()` before fragments are fetched or before dynamic rendering (MathJax/Mermaid) settles.
 
 ---
 
-## Disclosed Reference
+## Disclosed References
 
-- [DECK-ENGINEERING.md](DECK-ENGINEERING.md): Unified guide for architecture patterns, design system construction, interactive navigation, and exact PDF export.
+- [DECK-ENGINEERING.md](DECK-ENGINEERING.md): Multi-file architecture, token system, and high-fidelity PDF export engine.
+- [SLIDE-FORMAT.md](SLIDE-FORMAT.md): Semantic slide fragment schemas, layout patterns, and pure HTML hygiene.
+- [SCRIPTS.md](SCRIPTS.md): JS controller, slide loader lifecycle, and dynamic re-rendering engines.
