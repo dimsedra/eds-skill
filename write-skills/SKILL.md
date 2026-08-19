@@ -28,7 +28,7 @@ Write skills that steer your reasoning toward a center of gravity: clear directi
 - **Principle Over Template**: guide by posture, structural boundaries, and intent discovery, not copy-paste artifacts.
 - **Universal Context**: keep instructions at the level of the class of problem, so any user, domain, or visual preference fits without hardcoded assumptions.
 - **Zero Verbosity**: no fluff, narrative filler, or duplicate definitions; every line serves direction or guardrails.
-- **Flat File Hierarchy**: keep supplementary reference files flat in the skill folder (`UPPERCASE-SLUG.md`), no nested sprawl.
+- **Universal Flat File Architecture**: `SKILL.md` is the lean master overview, core orchestrator, posture, and behavior. All domain specifics, schemas, workspace setups, and prompt contracts live in flat `UPPERCASE-SLUG.md` files directly in the skill root with zero nested folder sprawl.
 
 ---
 
@@ -43,7 +43,7 @@ Write skills that steer your reasoning toward a center of gravity: clear directi
 ## Workflow
 
 1. **Discover the intent.** Before writing anything, determine what posture the skill should establish: where should your thinking land, what boundaries should it respect, where should your judgment stay free? Pick leading words (compact concepts you already hold) that anchor that posture.
-2. **Architect the skill.** Write a lean `SKILL.md`: frontmatter, posture, workflow, failure modes, and pointers. Push detail into flat `UPPERCASE-SLUG.md` reference files only where you need it on demand.
+2. **Architect the skill.** Write `SKILL.md` as the lean master orchestrator (frontmatter, posture, phase gates, behavior, failure modes, pointers). Push all domain specifics, prompt templates, and operational schemas into flat `UPPERCASE-SLUG.md` reference files directly in the skill root.
 3. **Write with direction.** State each rule as a direction with its reason. Keep discovery dynamic by aligning with the user's context and brand instead of applying defaults.
 4. **Read it back as you will meet it.** Does it steer reasoning, or dictate artifacts? Would a literal reading of any line send you wrong? The skill passes when the direction survives contact with cases it never names.
 

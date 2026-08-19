@@ -41,8 +41,16 @@ Close each phase with a condition you can objectively verify (binary state trans
 
 ---
 
-## 3. File Structure
+## 3. Universal Flat File Architecture
 
-- **`SKILL.md`**: frontmatter, first principle, posture, workflow, failure modes, and pointers.
-- **Flat `UPPERCASE-SLUG.md` files**: reference detail lives directly in the skill folder, reached on demand. No nested subdirectories.
-- **Lean**: every line steers reasoning or guards a boundary; nothing else survives.
+A skill must maintain a clean division between orchestration and domain reference, organized strictly in a flat root:
+
+### A. The Master Orchestrator (`SKILL.md`)
+- **What belongs here**: Frontmatter, first principles, core posture, invocation playbook or state gates, behavior, failure modes, and reference pointers.
+- **What to exclude**: Full prompt templates, large schema definitions, lengthy workspace bootstrap steps, and verbose domain glossaries.
+- **Role**: Serves as the lean cognitive entry point that steers agent judgment and enforces phase transitions.
+
+### B. Flat Domain References (`UPPERCASE-SLUG.md`)
+- **What belongs here**: Deep specifications, detailed prompt templates, directory schemas, and domain reference material placed directly in the skill root (e.g. `WORKSPACE.md`, `PROMPTS.md`, `FORMAT.md`, `GLOSSARY.md`).
+- **No Nested Sprawl**: Keep all reference files flat in the skill directory. Avoid subfolder nesting (`subfolder/detail.md`) so any agent can resolve references immediately without directory hopping.
+- **On-Demand Loading**: Handled as focused, self-contained reference documents loaded only when executing that specific phase.
