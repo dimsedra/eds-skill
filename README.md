@@ -1,4 +1,6 @@
-﻿# Eds' Agent Skills
+# Eds' Agent Skills
+
+[![skills.sh](https://skills.sh/b/dimsedra/eds-skill)](https://skills.sh/dimsedra/eds-skill)
 
 A collection of user-centered, modular skills for AI coding agents. These skills help agents communicate clearly, avoid bloated output, and produce clean, production-ready work.
 
