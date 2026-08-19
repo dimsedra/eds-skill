@@ -76,7 +76,8 @@ Accommodate non-linear human iteration based on user feedback:
 
 ## Disclosed References
 
-- [ALIGNMENT.md](ALIGNMENT.md): Paced 3-round grilling protocol, storyline blueprints, and `DECK-DESIGN.md` schema.
+- [ALIGNMENT.md](ALIGNMENT.md): 4-pass funnel grilling protocol, storyline blueprints, and output schemas.
 - [ARCHITECTURE.md](ARCHITECTURE.md): Multi-file shell architecture, full-bleed viewport CSS, and PDF export engine.
 - [SLIDE-FORMAT.md](SLIDE-FORMAT.md): Semantic slide fragment schemas, layout patterns, and pure HTML hygiene.
+- [EXTENSIONS.md](EXTENSIONS.md): Adaptable visual cookbook for Prism.js code blocks, Mermaid diagrams, MathJax formulas, and SVGs.
 - [SCRIPTS.md](SCRIPTS.md): JS controller, slide loader lifecycle, and dynamic re-rendering engines.
