@@ -40,11 +40,8 @@ Build modular, responsive HTML presentation slide decks with dedicated print/PDF
 - Consult [ARCHITECTURE.md](ARCHITECTURE.md) for shell architecture and full-bleed viewport tokens.
 
 ### Gate 2: Delegated Deck Generation
-- Dispatch a clean-head subagent to generate all project files on disk to prevent chat bloat:
- - Presentation shell (`index.html`) and PDF print assembler (`export_pdf.html`) per [ARCHITECTURE.md](ARCHITECTURE.md).
- - Central stylesheet (`css/styles.css`) implementing tokens from `DECK-DESIGN.md`.
- - Interactive loader and controller scripts (`js/slide-loader.js`, `js/main.js`) per [SCRIPTS.md](SCRIPTS.md).
- - Slide fragments (`slides/slide-01.html` ... `slides/slide-NN.html`) implementing the presentation strategy from `STORYLINE.md` matching schemas in [SLIDE-FORMAT.md](SLIDE-FORMAT.md).
+- Dispatch a clean-head subagent using the Generator Subagent Contract in [PROMPTS.md](PROMPTS.md) to generate all project files on disk to prevent chat bloat.
+- The subagent must read all reference files ([ARCHITECTURE.md](ARCHITECTURE.md), [SCRIPTS.md](SCRIPTS.md), [SLIDE-FORMAT.md](SLIDE-FORMAT.md), [EXTENSIONS.md](EXTENSIONS.md)) and dual sources of truth (`STORYLINE.md`, `DECK-DESIGN.md`) line-by-line before creating files.
 
 ### Gate 3: Verification, Live Server & Delivery
 - **Verification**: Verify slide fragment count matches `totalSlides`, check hash navigation, and inspect slide markup for pure HTML hygiene.
@@ -62,19 +59,20 @@ Accommodate non-linear human iteration across 4 distinct revision depths:
 - **Micro Polish**: Direct text wording, typo fixes, or minor CSS tweaks in `slides/slide-NN.html` or `css/styles.css`.
 - **Slide-Level Claim & Content Shifts**: Changing a single slide's narrative assertion (Action Headline), data points, or presentation strategy (e.g., swapping code for a diagram):
  - Update that slide's row in `STORYLINE.md`.
- - Rewrite `slides/slide-NN.html` to substantiate the new claim.
+ - Dispatch a subagent using the Revision Contract in [PROMPTS.md](PROMPTS.md) (or apply targeted inline edit) to rewrite `slides/slide-NN.html` to substantiate the new claim.
 - **Storyline Narrative Surgery (Adding / Cutting Arguments)**: Inserting or removing entire narrative points or sections:
  - Update the Action Headlines sequence in `STORYLINE.md` (inserting/deleting rows).
- - Generate new or remove obsolete slide fragments.
+ - Dispatch a subagent per [PROMPTS.md](PROMPTS.md) to generate new or remove obsolete slide fragments.
  - Re-index sequential filenames (`slide-01.html` ... `slide-NN.html`) and update `totalSlides` in `slide-loader.js`.
 - **Macro Narrative Pivot**: Overhauling the core thesis / Big Idea:
  - Re-enter Gate 1 per [ALIGNMENT.md](ALIGNMENT.md) to re-synthesize the 1-Sentence Big Idea and draft a new `STORYLINE.md`.
- - Re-dispatch subagent to regenerate all slide fragments in one clean pass.
+ - Re-dispatch generator subagent per [PROMPTS.md](PROMPTS.md) to regenerate all slide fragments in one clean pass.
 
 ---
 
 ## Failure Modes
 
+- **Subagent Context Drift**: Dispatching subagents without providing reference file paths or without mandating a read-first step, causing subagents to guess code conventions and break scripts or styles.
 - **Raw File URL Drift**: Providing a raw `file:///` link instead of automatically launching a background live server, causing browser CORS errors when loading slide fragments.
 - **Rigid Interrogation Drift**: Forcing the user to answer formulaic questions instead of sifting their raw, unstructured thoughts.
 - **Question Dump Bloat**: Dumping all alignment questions at once in a massive wall of text instead of conversational, round-by-round turns.
@@ -96,3 +94,4 @@ Accommodate non-linear human iteration across 4 distinct revision depths:
 - [SLIDE-FORMAT.md](SLIDE-FORMAT.md): Semantic slide fragment schemas, layout patterns, and pure HTML hygiene.
 - [EXTENSIONS.md](EXTENSIONS.md): Adaptable visual cookbook for Prism.js code blocks, Mermaid diagrams, MathJax formulas, and SVGs.
 - [SCRIPTS.md](SCRIPTS.md): JS controller, slide loader lifecycle, and dynamic re-rendering engines.
+- [PROMPTS.md](PROMPTS.md): Deterministic subagent dispatch contracts for generator and revision agents.
