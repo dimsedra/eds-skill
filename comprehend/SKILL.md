@@ -56,12 +56,12 @@ Every `/comprehend` invocation operates as a distinct, bounded **time block** po
 ### 1. Session Framing & Subagent Dispatch (Start)
 In the opening turn:
 - Read `.journal/comprehend/NOTES.md` into context (or initialize it per [SETUP-FORMAT.md](SETUP-FORMAT.md) if missing) to load the user's active preferences.
-- State the target code slice and dispatch a dedicated **Comprehend Generator Subagent** using template [generator-prompt.md](generator-prompt.md).
+- State the target code slice and dispatch a dedicated **Comprehend Subagent** with a clean context window to analyze the target slice and generate the HTML walkthrough report directly to disk.
 - The subagent:
   1. Inspects target code files, diffs, and architectural seams with zero context pollution.
   2. Initializes the session record (`.journal/comprehend/records/0001-<slug>.md`) per [RECORD-FORMAT.md](RECORD-FORMAT.md).
   3. Compiles the standalone HTML walkthrough report into `.journal/comprehend/modules/0001-<slug>.html` styled with `.journal/assets/styles/journal.css` per [MODULE-FORMAT.md](MODULE-FORMAT.md).
-  4. Returns a lightweight receipt (output file paths + 2-sentence big-picture summary).
+  4. Returns a lightweight receipt (output file path + 2-sentence big-picture summary).
 
 ### 2. Report Delivery, Interactive Q&A & Module Revisions
 Once the subagent completes:
@@ -70,7 +70,7 @@ Once the subagent completes:
 - Answer follow-up questions in short, bite-sized turns (1–2 paragraphs max) without polluting the chat with massive code dumps.
 - **Handling User Feedback & Walkthrough Revisions**:
   - Update `.journal/comprehend/NOTES.md` inline so new preferences are permanently remembered.
-  - **Never edit or regenerate the HTML module inline**: If the user requests module changes, additions, code-block restructuring, or formatting adjustments, dispatch a **Comprehend Revision Subagent** using template [revision-prompt.md](revision-prompt.md).
+  - **Never edit or regenerate the HTML module inline**: If the user requests module changes, additions, code-block restructuring, or formatting adjustments, dispatch a **Revision Subagent** with the target file path and user feedback.
   - The revision subagent updates `.journal/comprehend/modules/0001-<slug>.html` on disk and returns a clean 1-line receipt, keeping our main conversation context pristine.
 
 ### 3. Session Wrap-up (Finish)
@@ -78,28 +78,6 @@ When dialogue finishes or the user indicates they are done:
 - Synthesize any key breakthroughs or mental model shifts made during chat from the user's first-person perspective.
 - Update the **Session Summary & Insights** section in the session record (`.journal/comprehend/records/0001-<slug>.md`) per [RECORD-FORMAT.md](RECORD-FORMAT.md) and append them to the bottom section of the HTML report.
 - State where the session record and report were saved.
-
----
-
-## Subagent Contracts & Dispatch Recipes
-
-### 1. Generator Subagent Contract
-- **Template:** [generator-prompt.md](generator-prompt.md)
-- **Model Selection:** Inherit default or use standard/capable model for deep code analysis.
-- **Inputs Handed to Subagent:** Target file paths/diff, `NOTES.md` path, `journal.css` path, output HTML and MD paths.
-- **Subagent Mandate:** Inspects code -> Writes `records/0001-<slug>.md` -> Writes `modules/0001-<slug>.html` -> Returns receipt only.
-- **Code Block Standard:** Breaks down code chunks using the 4-question framework:
-  1. *What goes in? (Input)*
-  2. *How is it transformed? (Transformation)*
-  3. *What rule is guarded? (Invariant / Gatekeeper)*
-  4. *What comes out? (Output / Action)*
-
-### 2. Revision Subagent Contract
-- **Template:** [revision-prompt.md](revision-prompt.md)
-- **Model Selection:** Fast/Standard tier (targeted HTML refactoring).
-- **Inputs Handed to Subagent:** Existing HTML path, `NOTES.md` path, exact user feedback text.
-- **Subagent Mandate:** Reads HTML + feedback -> Rewrites `.html` module directly on disk -> Returns receipt only.
-
 
 ---
 
