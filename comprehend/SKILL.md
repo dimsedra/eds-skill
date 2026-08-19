@@ -14,7 +14,7 @@ argument-hint: What code do you want to comprehend?
 ## When to Use
 
 Reach for `/comprehend` when:
-- The user wants to understand code that is about to be shipped or was just shipped.
+- The user wants to understand a **git diff**, pull request, or changes that are about to be shipped or were just shipped.
 - The user wants a structured walkthrough of specific modules, functions, or features.
 - The user asks to explore, comprehend, or map out how a part of the codebase works.
 
