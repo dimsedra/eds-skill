@@ -1,44 +1,46 @@
 # Alignment & Grilling Protocol
 
-Interactive prep session guide for discovering presentation intent, structuring the storyline, and locking in design decisions before generating slide code.
+Interactive prep session guide for discovering presentation intent, sifting raw human thoughts, structuring the storyline, and locking in design decisions before generating slide code.
 
 ---
 
-## Core Mental Model: The Pre-Flight Narrative Lock
+## Core Posture: The Sifter & Mirror Pattern
 
-Slides are purely the visual rendering layer; the narrative architecture must be locked in beforehand. Never generate slide files until the audience transformation, 1-sentence takeaway, and slide-by-slide Action Headlines are explicitly approved by the user.
+Human thinking is exploratory, unstructured, and messy. When the user blurts out raw thoughts, half-formed ideas, or rambling context:
+- **Never force rigid forms**: Do not demand bullet points or interrogate the user with rigid checklists.
+- **Sift the stream**: Actively parse the raw input to extract: (1) Core Topic & Setting, (2) Audience Profile & Baseline Mindset, (3) 1-Sentence Core Takeaway ("Big Idea"), and (4) Specific raw slide ideas or anecdotes.
+- **Reflect a structured mirror**: Synthesize the extracted pieces into a clean draft sequence of **Action Headlines** and reflect it back to the user in plain English for confirmation.
 
 ---
 
-## 1. Paced 3-Round Grilling Protocol
+## 1. Paced Alignment Dialogue
 
-Ask questions **strictly one round per message turn** (1–2 concise questions max). Wait for the user's response before proceeding to the next round. Never dump all rounds at once.
+Keep questions focused and paced (ask strictly 1–2 questions per turn; wait for response before advancing):
 
-### Round 1: Topic, Audience & Core Takeaway
-*Goal: Understand the subject matter, the audience's starting mindset, and the single main message.*
-- **Question 1**: *"What is the presentation topic/subject, and who is your target audience?"*
-- **Question 2**: *"What is the single main takeaway or point you want them to remember if they forget everything else next week?"*
+### Turn 1: Topic, Audience & Core Takeaway
+*Goal: Anchor the subject matter, audience context, and the single main message.*
+- **Prompt**: *"What is the presentation about, who is your audience, and what is the single main point you want them to walk away with?"*
+- **Sifting Task**: Parse the user's response into Topic, Target Audience, and a tentative 1-sentence Big Idea.
 
-### Round 2: Delivery Modality & Slide Budget
+### Turn 2: Delivery Modality & Slide Budget
 *Goal: Lock in presentation format and length.*
-- **Question 1**: *"Is this presented live with you speaking (visual backdrop, minimal text), or sent as a standalone read-ahead document (self-explanatory cards)?"*
-- **Question 2**: *"How many slides are we aiming for (e.g., 5-slide crisp brief vs. 10-slide complete walkthrough)?"*
+- **Prompt**: *"Is this presented live with you speaking (visual punch, minimal text), or sent as a standalone read-ahead document (self-explanatory cards)? How many slides are we aiming for?"*
 
-### Round 3: Slide Content Framework (Action Headlines) & Visual Vibe
-*Goal: Synthesize Rounds 1 & 2 into a draft storyline and lock the visual mood.*
-- **Action Headline Proposal**: The agent proposes a draft sequence of **Action Headlines** (active assertions that form a complete story when skimmed top-to-bottom):
+### Turn 3: Storyline Reflection (Action Headlines) & Visual Vibe
+*Goal: Present the synthesized Slide Content Framework for user validation.*
+- **Sifting Task**: Assemble the user's ideas into a sequence of **Action Headlines** (assertions that tell a complete story top-to-bottom):
   - *Slide 1: [Hero Title & Subtitle]*
-  - *Slide 2: [Action Headline: Current problem or context]*
-  - *Slide 3: [Action Headline: Core proposal or solution]*
+  - *Slide 2: [Action Headline: Current challenge or context]*
+  - *Slide 3: [Action Headline: Core proposal or mechanism]*
   - *Slide 4: [Action Headline: Architecture / Proof / Data]*
   - *Slide 5: [Action Headline: Next steps or call to action]*
-- **Question**: *"Does this headline sequence tell the exact story you want, and what visual tone and palette fits best (e.g. dark modern engineering vs. clean executive light)?"*
+- **Prompt**: Present the draft sequence and ask: *"Does this headline sequence tell the exact story you want, and what visual tone and palette fits best (e.g. dark modern engineering vs. clean executive light)?"*
 
 ---
 
 ## 2. The `DECK-DESIGN.md` Blueprint Schema
 
-Once Round 3 is confirmed, scaffold `DECK-DESIGN.md` in the presentation root as the single source of truth:
+Once the storyline and design choices are agreed, lock them into `DECK-DESIGN.md` in the presentation root:
 
 ```markdown
 # Deck Design Specifications
