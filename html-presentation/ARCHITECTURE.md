@@ -1,6 +1,6 @@
-# Deck Engineering Guidelines
+# Presentation Architecture & Engine
 
-Guidelines for presentation architecture, design token contracts, and high-fidelity PDF export.
+Specifications for modular shell architecture, full-bleed viewport CSS, and high-fidelity PDF print export.
 
 ---
 
@@ -20,7 +20,7 @@ presentation/
   slides/slide-02.html
   ...
   export_pdf.html         # Dedicated print assembly root for PDF generation
-  DECK-DESIGN.md          # Design token and layout specification
+  DECK-DESIGN.md          # Storyline blueprint and design token specification
 ```
 
 ### Separation of Concerns
@@ -31,28 +31,10 @@ presentation/
 
 ---
 
-## 2. Design System & Token Construction
-
-### The `DECK-DESIGN.md` Contract
-Before generating slide code, scaffold `DECK-DESIGN.md` in the presentation root. This file serves as the single source of truth for both narrative structure and programmatic styling:
-
-#### Part A: Narrative Blueprint & Slide Content Framework
-1. **Topic & Audience**: Topic, setting, audience profile, and their baseline mindset.
-2. **The 1-Sentence "Big Idea"**: The single governing takeaway the audience must remember.
-3. **Delivery Modality & Budget**: Live spoken companion (minimal text, visual punch) vs. Standalone read-ahead document (structured detail), plus locked slide count.
-4. **Slide Content Framework (Action Headlines Sequence)**:
-   - Every slide defined by an **Action Headline** (active assertion, e.g. *"Isolated Subagents Cut Chat Clutter by 80%"*).
-   - Reading headlines from Slide 1 to Slide $N$ forms a complete, coherent narrative (the 30-second skim test).
-   - Mapping each headline to its supporting proof layout (Hero, Split 2-Col, Metric Grid, Code Window, Architecture Diagram).
-
-#### Part B: Design Tokens & Visual Hierarchy
-1. **Palette**: Color roles (`--bg-primary`, `--bg-surface`, `--text-primary`, `--text-muted`, `--border-color`, `--accent-color`).
-2. **Typography**: Font families (heading, body, code), modular scale, weights, and tracking.
-3. **Aspect Ratio & Dimensions**: Target ratio (16:9 default: 16in × 9in / 1920px × 1080px) and full-bleed fitting rules.
-4. **Surfaces & Spacing**: Internal slide padding, component layout classes, and clean contrast.
+## 2. Dynamic Token Construction & Full-Bleed Viewport
 
 ### Dynamic Token Construction
-All values in `css/styles.css` derive directly from `DECK-DESIGN.md`. Avoid arbitrary hardcoded color hexes or ad-hoc margins across slide components.
+All values in `css/styles.css` derive directly from `DECK-DESIGN.md` (scaffolded via [ALIGNMENT.md](ALIGNMENT.md)). Avoid arbitrary hardcoded color hexes or ad-hoc margins across slide components.
 
 ### Full-Bleed Viewport Architecture (Zero Floating Cards)
 To ensure slides render as a true full-bleed presentation on screen and in fullscreen:

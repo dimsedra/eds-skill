@@ -29,19 +29,19 @@ Build modular, responsive HTML presentation slide decks with dedicated print/PDF
 ## Deterministic Phase Gates
 
 ### Gate 1: Alignment & Design (Paced Grilling Session)
-Run a strictly paced, 3-round alignment session (ask only 1–2 questions per turn; wait for response before advancing):
-- **Turn 1 (Round 1: Topic, Audience & Core Takeaway)**: Ask the presentation subject, target audience, and the single main takeaway they must remember.
-- **Turn 2 (Round 2: Modality & Slide Budget)**: Ask delivery format (live spoken companion vs. standalone read-ahead document) and target slide count.
-- **Turn 3 (Round 3: Slide Content Framework & Vibe)**: Propose the sequence of **Action Headlines** (the Slide Content Framework) for user confirmation, and confirm visual mood/palette.
-- Lock all decisions into `DECK-DESIGN.md` in the presentation root per [DECK-ENGINEERING.md](DECK-ENGINEERING.md) before building.
+- Execute the paced 3-round alignment session per [ALIGNMENT.md](ALIGNMENT.md) (ask 1–2 questions per turn; wait for response before advancing):
+  - **Turn 1 (Round 1)**: Topic, Audience & Core Takeaway.
+  - **Turn 2 (Round 2)**: Delivery Modality & Slide Budget.
+  - **Turn 3 (Round 3)**: Slide Content Framework (Action Headlines sequence) & Visual Vibe.
+- Scaffold `DECK-DESIGN.md` in the presentation root as the single source of truth for narrative flow and design tokens.
+- Consult [ARCHITECTURE.md](ARCHITECTURE.md) for shell architecture and full-bleed viewport tokens.
 
 ### Gate 2: Delegated Deck Generation
 - Dispatch a clean-head subagent to generate all project files on disk to prevent chat bloat:
-  - Presentation shell (`index.html`) and PDF print assembler (`export_pdf.html`).
+  - Presentation shell (`index.html`) and PDF print assembler (`export_pdf.html`) per [ARCHITECTURE.md](ARCHITECTURE.md).
   - Central stylesheet (`css/styles.css`) implementing tokens from `DECK-DESIGN.md`.
-  - Interactive loader and controller scripts (`js/slide-loader.js`, `js/main.js`).
+  - Interactive loader and controller scripts (`js/slide-loader.js`, `js/main.js`) per [SCRIPTS.md](SCRIPTS.md).
   - Slide fragments (`slides/slide-01.html` ... `slides/slide-NN.html`) matching schemas in [SLIDE-FORMAT.md](SLIDE-FORMAT.md).
-- Follow loader and controller lifecycle contracts in [SCRIPTS.md](SCRIPTS.md).
 
 ### Gate 3: Verification & Delivery
 - Verify slide fragment count matches `totalSlides` in `js/slide-loader.js`.
@@ -66,6 +66,7 @@ Run a strictly paced, 3-round alignment session (ask only 1–2 questions per tu
 
 ## Disclosed References
 
-- [DECK-ENGINEERING.md](DECK-ENGINEERING.md): Multi-file architecture, token system, and high-fidelity PDF export engine.
+- [ALIGNMENT.md](ALIGNMENT.md): Paced 3-round grilling protocol, storyline blueprints, and `DECK-DESIGN.md` schema.
+- [ARCHITECTURE.md](ARCHITECTURE.md): Multi-file shell architecture, full-bleed viewport CSS, and PDF export engine.
 - [SLIDE-FORMAT.md](SLIDE-FORMAT.md): Semantic slide fragment schemas, layout patterns, and pure HTML hygiene.
 - [SCRIPTS.md](SCRIPTS.md): JS controller, slide loader lifecycle, and dynamic re-rendering engines.
