@@ -49,12 +49,12 @@ Every `/comprehend` execution follows deterministic phase gates:
 - If the user asks follow-up technical questions, answer concisely in 1–2 paragraphs without code dumping.
 
 ### Gate 4: Feedback & Revision Gate
-When the user provides feedback, categorize and apply it across two distinct channels:
-1. **User Preference Steering (`NOTES.md`)**:
-   - If feedback expresses a lasting preference for explanation style, depth, visual structure, or terminology (e.g. "Focus more on data flow", "Keep code blocks minimal", "Always highlight error edge cases"):
+When the user provides feedback or requests changes (which may apply to long-term memory, the current artifact, or both):
+1. **Capture Lasting Preferences (`NOTES.md`)**:
+   - If feedback introduces a lasting preference for explanation style, depth, visual structure, or terminology (e.g. "Focus more on data flow", "Keep code blocks minimal", "Always highlight error edge cases"):
    - Immediately update `.journal/comprehend/NOTES.md` under `# User Preferences` so all future walkthroughs automatically adopt it.
-2. **Walkthrough HTML Artifact Revision**:
-   - If feedback requests additions, corrections, or restructurings to the current walkthrough:
+2. **Apply HTML Artifact Revision**:
+   - If the current walkthrough needs updates, corrections, or realignment with the new preference:
    - **Never edit HTML inline**. Dispatch a **Revision Subagent** using the prompt template in [PROMPTS.md](PROMPTS.md) to modify `.journal/comprehend/modules/NNNN-<slug>.html` directly on disk.
    - Return a clean 1-line receipt with the refreshed local file link.
 
