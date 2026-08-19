@@ -16,12 +16,17 @@ Human thinking is exploratory, unstructured, and messy. When the user blurts out
 
 ## 1. The 4-Pass Funnel Alignment Dialogue
 
-Structure the alignment as a funnel—moving from wide, loose exploration down to precise narrative and visual decisions. Ask questions strictly **one pass per message turn**; wait for response before advancing.
+Structure the alignment as a progressive funnel—moving from wide, exploratory brain dumps down to precise narrative and visual lock-in.
+
+### Stage Gate Pacing Invariants
+- **Passes are Stage Gates, Not Turn Counters**: Spend as many conversational turns as needed exploring, bouncing ideas, and refining within the current pass. Never prematurely jump to the next pass on the next turn.
+- **Advance Only on Mutual Agreement**: Progress to the next pass only when the active stage is genuinely understood, clarified, and confirmed by the user.
+- **Single-Stage Focus**: Focus questions and discussions strictly on the active pass; never mix or dump questions from future stages into a single turn.
 
 ### Pass 1: The Open Brain Dump (Wide & Loose)
 *Goal: Give the user full freedom to dump raw thoughts without interrogation pressure.*
 - **Opening Invitation**: *"What do you have in mind for this presentation? Feel free to dump your raw thoughts, topic, target audience, rough ideas, or any specific points you want to cover."*
-- **Sifting Task**: Actively parse the user's raw stream to extract tentative topic, audience angle, core thesis, and any specific slide anecdotes.
+- **Sifting Task**: Actively parse the user's raw stream to extract tentative topic, audience angle, core thesis, and any specific slide anecdotes. Continue exploring and clarifying until the core topic and direction feel clear.
 
 ### Pass 2: Sift & Clarify (Target Missing Context)
 *Goal: Mirror the extracted core back to the user and clarify only what's missing.*

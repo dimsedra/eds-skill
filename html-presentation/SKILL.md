@@ -30,9 +30,10 @@ Build modular, responsive HTML presentation slide decks with dedicated print/PDF
 ## Deterministic Phase Gates
 
 ### Gate 1: Alignment & Design (4-Pass Funnel Session)
-- Execute the funnel alignment session per [ALIGNMENT.md](ALIGNMENT.md) (ask strictly 1 pass per turn; wait for response):
+- Execute the progressive funnel alignment session per [ALIGNMENT.md](ALIGNMENT.md):
+  - **Passes are Stage Gates**: Spend as many conversational turns as needed exploring within each pass; advance only when that stage is mutually agreed upon.
   - **Pass 1 (Open Brain Dump)**: Wide-open invitation for raw thoughts, topic, audience, and ideas with zero interrogation pressure.
-  - **Pass 2 (Sift & Clarify)**: Mirror extracted core message and clarify only missing format/budget parameters.
+  - **Pass 2 (Sift & Clarify)**: Mirror extracted core message and clarify missing format/budget parameters.
   - **Pass 3 (Storyline Lock-In)**: Propose synthesized Action Headlines sequence and presentation strategy ("how to present this content"), locking `STORYLINE.md`.
   - **Pass 4 (Visual Styling & Theme)**: Lock visual mood, color palette tokens, and typography, locking `DECK-DESIGN.md`.
 - Scaffold `STORYLINE.md` and `DECK-DESIGN.md` in the presentation root as the dual sources of truth before building.
