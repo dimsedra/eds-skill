@@ -63,11 +63,15 @@ In the opening turn:
   3. Compiles the standalone HTML walkthrough report into `.journal/comprehend/modules/0001-<slug>.html` styled with `.journal/assets/styles/journal.css` per [MODULE-FORMAT.md](MODULE-FORMAT.md).
   4. Returns a lightweight receipt (output file path + 2-sentence big-picture summary).
 
-### 2. Report Delivery & Interactive Q&A
+### 2. Report Delivery, Interactive Q&A & Module Revisions
 Once the subagent completes:
 - Present the clickable link to the user: `[Open Walkthrough: <slug>](file:///...)` alongside the 2-sentence big-picture summary.
 - Invite the user to view the report in their browser and ask any targeted questions or probe edge-case invariants.
 - Answer follow-up questions in short, bite-sized turns (1–2 paragraphs max) without polluting the chat with massive code dumps.
+- **Handling User Feedback & Walkthrough Revisions**:
+  - Update `.journal/comprehend/NOTES.md` inline so new preferences are permanently remembered.
+  - **Never edit or regenerate the HTML module inline**: If the user requests module changes, additions, code-block restructuring, or formatting adjustments, dispatch a **Revision Subagent** with the target file path and user feedback.
+  - The revision subagent updates `.journal/comprehend/modules/0001-<slug>.html` on disk and returns a clean 1-line receipt, keeping our main conversation context pristine.
 
 ### 3. Session Wrap-up (Finish)
 When dialogue finishes or the user indicates they are done:
@@ -122,6 +126,7 @@ The workspace is private; add `.journal/` to the project's `.gitignore` on first
 ## Failure Modes of this Skill
 
 - **Monologue Dump / Inline Generation Bloat**: Dumping raw HTML code or massive multi-page text into the parent chat instead of delegating report compilation to the subagent.
+- **Inline Revision Bloat**: Attempting to rewrite or patch existing walkthrough `.html` files directly in the parent chat upon receiving user feedback instead of delegating the revision to a subagent.
 - **Context Mud Drift**: Attempting to generate deep code walkthroughs inside a fatigued, 100k+ token parent session instead of using a fresh subagent.
 - **Preferences Routing Drift / Unread NOTES.md**: Writing comprehend explanation preferences to global configuration files instead of `.journal/comprehend/NOTES.md`, or failing to pass `NOTES.md` to the subagent.
 - **Observer Log Drift (Evaluator Tone)**: Documenting sessions as third-person teacher or auditor notes instead of recording substantive technical insights in the user's voice.
