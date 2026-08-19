@@ -10,6 +10,7 @@ Human thinking is exploratory, unstructured, and messy. When the user blurts out
 - **Never force rigid forms**: Do not demand bullet points or interrogate the user with rigid checklists.
 - **Sift the stream**: Actively parse the raw input to extract: (1) Core Topic & Setting, (2) Audience Profile & Baseline Mindset, (3) 1-Sentence Core Takeaway ("Big Idea"), and (4) Specific raw slide ideas or anecdotes.
 - **Reflect a structured mirror**: Synthesize the extracted pieces into a clean draft sequence of **Action Headlines** and reflect it back to the user in plain English for confirmation.
+- **Living Blueprint for Narrative Surgery**: `STORYLINE.md` is a living document. Whenever narrative points, arguments, or slide claims are added, cut, or shifted during iteration, update `STORYLINE.md` first to keep the storyline spine coherent.
 
 ---
 

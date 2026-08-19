@@ -51,11 +51,19 @@ Build modular, responsive HTML presentation slide decks with dedicated print/PDF
 - Inspect slide markup for pure HTML hygiene (confirm zero Markdown syntax and zero inline styles).
 - Verify `export_pdf.html` contains the 1000ms rendering settlement pause and exact print color CSS.
 
-### Gate 4: Iterative Revision & Re-Entry Gate
-Accommodate non-linear human iteration based on user feedback:
-- **Slide Tweaks**: Edit targeted `slides/slide-NN.html` fragments or `css/styles.css` directly.
-- **Slide Additions / Deletions**: Update `STORYLINE.md`, generate or remove fragments, re-index sequential filenames (`slide-01.html` ... `slide-NN.html`), and update `totalSlides` in `slide-loader.js`.
-- **Storyline Pivots**: Re-enter Gate 1 per [ALIGNMENT.md](ALIGNMENT.md), update Action Headlines in `STORYLINE.md`, and re-dispatch subagent to regenerate the deck.
+### Gate 4: Iterative Revision & Narrative Surgery
+Accommodate non-linear human iteration across 4 distinct revision depths:
+- **Micro Polish**: Direct text wording, typo fixes, or minor CSS tweaks in `slides/slide-NN.html` or `css/styles.css`.
+- **Slide-Level Claim & Content Shifts**: Changing a single slide's narrative assertion (Action Headline), data points, or presentation strategy (e.g., swapping code for a diagram):
+  - Update that slide's row in `STORYLINE.md`.
+  - Rewrite `slides/slide-NN.html` to substantiate the new claim.
+- **Storyline Narrative Surgery (Adding / Cutting Arguments)**: Inserting or removing entire narrative points or sections:
+  - Update the Action Headlines sequence in `STORYLINE.md` (inserting/deleting rows).
+  - Generate new or remove obsolete slide fragments.
+  - Re-index sequential filenames (`slide-01.html` ... `slide-NN.html`) and update `totalSlides` in `slide-loader.js`.
+- **Macro Narrative Pivot**: Overhauling the core thesis / Big Idea:
+  - Re-enter Gate 1 per [ALIGNMENT.md](ALIGNMENT.md) to re-synthesize the 1-Sentence Big Idea and draft a new `STORYLINE.md`.
+  - Re-dispatch subagent to regenerate all slide fragments in one clean pass.
 
 ---
 
