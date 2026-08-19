@@ -1,4 +1,4 @@
-﻿---
+---
 name: comprehend
 description: User-invoked command (/comprehend) to generate an HTML code walkthrough for a git diff, module, function, or feature.
 disable-model-invocation: true
@@ -49,10 +49,14 @@ Every `/comprehend` execution follows deterministic phase gates:
 - If the user asks follow-up technical questions, answer concisely in 1–2 paragraphs without code dumping.
 
 ### Gate 4: Feedback & Revision Gate
-- When the user provides feedback or requests changes to the walkthrough:
- - Update `.journal/comprehend/NOTES.md` if the feedback introduces a lasting preference.
- - **Never edit HTML inline**. Dispatch a **Revision Subagent** using the prompt template in [PROMPTS.md](PROMPTS.md) to modify `.journal/comprehend/modules/0001-<slug>.html` on disk.
- - Return a clean 1-line update receipt with the refreshed file link.
+When the user provides feedback, categorize and apply it across two distinct channels:
+1. **User Preference Steering (`NOTES.md`)**:
+   - If feedback expresses a lasting preference for explanation style, depth, visual structure, or terminology (e.g. "Focus more on data flow", "Keep code blocks minimal", "Always highlight error edge cases"):
+   - Immediately update `.journal/comprehend/NOTES.md` under `# User Preferences` so all future walkthroughs automatically adopt it.
+2. **Walkthrough HTML Artifact Revision**:
+   - If feedback requests additions, corrections, or restructurings to the current walkthrough:
+   - **Never edit HTML inline**. Dispatch a **Revision Subagent** using the prompt template in [PROMPTS.md](PROMPTS.md) to modify `.journal/comprehend/modules/NNNN-<slug>.html` directly on disk.
+   - Return a clean 1-line receipt with the refreshed local file link.
 
 ---
 
