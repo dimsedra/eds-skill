@@ -1,4 +1,4 @@
----
+﻿---
 name: html-presentation
 description: Build modular HTML presentation slide decks with responsive viewport fitting, custom keyboard navigation, and exact PDF/print export. Use when the user asks to create HTML slides, build a presentation deck, convert slides to HTML, generate slide presentations, or export HTML slides to PDF.
 disable-model-invocation: false
@@ -31,20 +31,20 @@ Build modular, responsive HTML presentation slide decks with dedicated print/PDF
 
 ### Gate 1: Alignment & Design (4-Pass Funnel Session)
 - Execute the progressive funnel alignment session per [ALIGNMENT.md](ALIGNMENT.md):
-  - **Passes are Stage Gates**: Spend as many conversational turns as needed exploring within each pass; advance only when that stage is mutually agreed upon.
-  - **Pass 1 (Open Brain Dump)**: Wide-open invitation for raw thoughts, topic, audience, and ideas with zero interrogation pressure.
-  - **Pass 2 (Sift & Clarify)**: Mirror extracted core message and clarify missing format/budget parameters.
-  - **Pass 3 (Storyline Lock-In)**: Propose synthesized Action Headlines sequence and presentation strategy ("how to present this content"), locking `STORYLINE.md`.
-  - **Pass 4 (Visual Styling & Theme)**: Lock visual mood, color palette tokens, and typography, locking `DECK-DESIGN.md`.
+ - **Passes are Stage Gates**: Spend as many conversational turns as needed exploring within each pass; advance only when that stage is mutually agreed upon.
+ - **Pass 1 (Open Brain Dump)**: Wide-open invitation for raw thoughts, topic, audience, and ideas with zero interrogation pressure.
+ - **Pass 2 (Sift & Clarify)**: Mirror extracted core message and clarify missing format/budget parameters.
+ - **Pass 3 (Storyline Lock-In)**: Propose synthesized Action Headlines sequence and presentation strategy ("how to present this content"), locking `STORYLINE.md`.
+ - **Pass 4 (Visual Styling & Theme)**: Lock visual mood, color palette tokens, and typography, locking `DECK-DESIGN.md`.
 - Scaffold `STORYLINE.md` and `DECK-DESIGN.md` in the presentation root as the dual sources of truth before building.
 - Consult [ARCHITECTURE.md](ARCHITECTURE.md) for shell architecture and full-bleed viewport tokens.
 
 ### Gate 2: Delegated Deck Generation
 - Dispatch a clean-head subagent to generate all project files on disk to prevent chat bloat:
-  - Presentation shell (`index.html`) and PDF print assembler (`export_pdf.html`) per [ARCHITECTURE.md](ARCHITECTURE.md).
-  - Central stylesheet (`css/styles.css`) implementing tokens from `DECK-DESIGN.md`.
-  - Interactive loader and controller scripts (`js/slide-loader.js`, `js/main.js`) per [SCRIPTS.md](SCRIPTS.md).
-  - Slide fragments (`slides/slide-01.html` ... `slides/slide-NN.html`) implementing the presentation strategy from `STORYLINE.md` matching schemas in [SLIDE-FORMAT.md](SLIDE-FORMAT.md).
+ - Presentation shell (`index.html`) and PDF print assembler (`export_pdf.html`) per [ARCHITECTURE.md](ARCHITECTURE.md).
+ - Central stylesheet (`css/styles.css`) implementing tokens from `DECK-DESIGN.md`.
+ - Interactive loader and controller scripts (`js/slide-loader.js`, `js/main.js`) per [SCRIPTS.md](SCRIPTS.md).
+ - Slide fragments (`slides/slide-01.html` ... `slides/slide-NN.html`) implementing the presentation strategy from `STORYLINE.md` matching schemas in [SLIDE-FORMAT.md](SLIDE-FORMAT.md).
 
 ### Gate 3: Verification & Initial Delivery
 - Verify slide fragment count matches `totalSlides` in `js/slide-loader.js`.
@@ -56,15 +56,15 @@ Build modular, responsive HTML presentation slide decks with dedicated print/PDF
 Accommodate non-linear human iteration across 4 distinct revision depths:
 - **Micro Polish**: Direct text wording, typo fixes, or minor CSS tweaks in `slides/slide-NN.html` or `css/styles.css`.
 - **Slide-Level Claim & Content Shifts**: Changing a single slide's narrative assertion (Action Headline), data points, or presentation strategy (e.g., swapping code for a diagram):
-  - Update that slide's row in `STORYLINE.md`.
-  - Rewrite `slides/slide-NN.html` to substantiate the new claim.
+ - Update that slide's row in `STORYLINE.md`.
+ - Rewrite `slides/slide-NN.html` to substantiate the new claim.
 - **Storyline Narrative Surgery (Adding / Cutting Arguments)**: Inserting or removing entire narrative points or sections:
-  - Update the Action Headlines sequence in `STORYLINE.md` (inserting/deleting rows).
-  - Generate new or remove obsolete slide fragments.
-  - Re-index sequential filenames (`slide-01.html` ... `slide-NN.html`) and update `totalSlides` in `slide-loader.js`.
+ - Update the Action Headlines sequence in `STORYLINE.md` (inserting/deleting rows).
+ - Generate new or remove obsolete slide fragments.
+ - Re-index sequential filenames (`slide-01.html` ... `slide-NN.html`) and update `totalSlides` in `slide-loader.js`.
 - **Macro Narrative Pivot**: Overhauling the core thesis / Big Idea:
-  - Re-enter Gate 1 per [ALIGNMENT.md](ALIGNMENT.md) to re-synthesize the 1-Sentence Big Idea and draft a new `STORYLINE.md`.
-  - Re-dispatch subagent to regenerate all slide fragments in one clean pass.
+ - Re-enter Gate 1 per [ALIGNMENT.md](ALIGNMENT.md) to re-synthesize the 1-Sentence Big Idea and draft a new `STORYLINE.md`.
+ - Re-dispatch subagent to regenerate all slide fragments in one clean pass.
 
 ---
 

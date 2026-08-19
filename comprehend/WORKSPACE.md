@@ -1,4 +1,4 @@
-# Workspace & Preference Setup
+﻿# Workspace & Preference Setup
 
 Operational guide for the `.journal/` directory layout, initial bootstrap, and user preference management.
 
@@ -30,8 +30,8 @@ If `.journal/comprehend/` does not exist on invocation:
 1. **Create Directories**: Create `modules/`, `reference/`, and `.journal/assets/styles/`.
 2. **Gitignore Protection**: Append `.journal/` to the project's `.gitignore` file.
 3. **Dynamic CSS Generation**:
-   - Inspect project styling, fonts, and dark/light themes.
-   - Generate `.journal/assets/styles/journal.css` supporting clean typography, responsive layout, legible code blocks, and print-ready styles.
+  - Inspect project styling, fonts, and dark/light themes.
+  - Generate `.journal/assets/styles/journal.css` supporting clean typography, responsive layout, legible code blocks, and print-ready styles.
 4. **Preference Discovery**: Initialize `NOTES.md` per the Onboarding Interview below.
 
 ---
@@ -47,7 +47,7 @@ Ask one open-ended question with illustrative options:
 - **Conceptual / Analogy**: High-level mental models first, anchored by code.
 - **Interactive Q&A**: Minimal summary first, drill down on user request.
 
-Save the result as 3–5 actionable bullet points under `# User Preferences` in `.journal/comprehend/NOTES.md`.
+Save the result as 3-5 actionable bullet points under `# User Preferences` in `.journal/comprehend/NOTES.md`.
 
 ### Ongoing Maintenance Rules
 - **Direct Feedback**: Immediately update `NOTES.md` when the user requests shifts in depth, visual structure, or pacing.

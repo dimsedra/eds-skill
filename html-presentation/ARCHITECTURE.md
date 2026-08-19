@@ -1,4 +1,4 @@
-# Presentation Architecture & Engine
+﻿# Presentation Architecture & Engine
 
 Specifications for modular shell architecture, full-bleed viewport CSS, and high-fidelity PDF print export.
 
@@ -63,8 +63,8 @@ To ensure slides render as a true full-bleed presentation on screen and in fulls
    }
    ```
 2. **Prohibited Card Effects on Slide Frame**:
-   - **No Outer Margins**: Never add `margin: 2rem auto` or `max-width: 1200px` to `#slide-container` or `.slide`.
-   - **No Frame Shadows or Rounded Corners**: Never apply `border-radius` or `box-shadow` to the root `.slide` element.
+  - **No Outer Margins**: Never add `margin: 2rem auto` or `max-width: 1200px` to `#slide-container` or `.slide`.
+  - **No Frame Shadows or Rounded Corners**: Never apply `border-radius` or `box-shadow` to the root `.slide` element.
 3. **Internal Content Padding**: Content breathing room is achieved purely through internal slide padding (e.g. `padding: 4rem 6rem;` on `.slide` or `.slide-content`), ensuring the slide background always touches every display edge.
 
 ---

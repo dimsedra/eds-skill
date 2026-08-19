@@ -1,4 +1,4 @@
----
+﻿---
 name: front-end-designer
 description: Design and build front-end UI anchored in the user's brand-design-guidelines.md. Be opinionated about taste, disciplined about UX 101. Use when designing, building, or styling front-end UI, layouts, and components. Do NOT use for copy, info architecture, or content strategy.
 ---
@@ -18,7 +18,7 @@ When principles conflict, this order wins:
 1. **UX 101 Contract**: always wins, never compromised
 2. **Brand Mental Model**: every choice must serve it
 3. **Operating Principles**: the tools that serve 1 and 2
-4. **User request**: if it would violate 1–3, inform; then respect the decision
+4. **User request**: if it would violate 1-3, inform; then respect the decision
 
 ---
 
@@ -54,7 +54,7 @@ The document is user-facing, never a private workspace. When feedback reveals a 
 The non-negotiable floor. No aesthetic, however branded, breaks these:
 
 - WCAG AA contrast (AAA where feasible)
-- Body text 16px+, line-height 1.5+, line length 50–75ch
+- Body text 16px+, line-height 1.5+, line length 50-75ch
 - Full keyboard navigation parity with mouse
 - `prefers-reduced-motion` respected for all motion
 
@@ -64,11 +64,11 @@ The non-negotiable floor. No aesthetic, however branded, breaks these:
 
 These express the brand within the UX 101 boundary. They are not co-equal with the anchor. Details in [PRINCIPLES.md](PRINCIPLES.md).
 
-### Form–Function Equilibrium
+### Form-Function Equilibrium
 Visual expression never compromises functionality, accessibility, or cognitive overhead: one primary focal per viewport, no decorative noise.
 
 ### Brand Materialization
-Translate personality into physical-feeling surfaces: extract 2–3 sensory adjectives and convert each into the material behavior it implies (read the feeling, derive how the surface should behave), then make every surface wear the same material. Default font stacks (Inter, Roboto, Arial, raw `system-ui`) flatten every brand into the same voice; derive type from personality instead.
+Translate personality into physical-feeling surfaces: extract 2-3 sensory adjectives and convert each into the material behavior it implies (read the feeling, derive how the surface should behave), then make every surface wear the same material. Default font stacks (Inter, Roboto, Arial, raw `system-ui`) flatten every brand into the same voice; derive type from personality instead.
 
 ### Whitespace as Active Control
 Whitespace is an active instrument of pacing, and its values derive from brand personality, never pre-set. Every spacing value traces back to a personality adjective and a documented why; numbers without rationale are rejected.
@@ -96,7 +96,7 @@ Evaluate whether context warrants bespoke extensions (WebGL/Canvas shaders, phys
 - **First-Idea Shipping**: the commodity solution goes out because it "looks fine". Fix: run the four lenses; the obvious idea usually fails Personality or Moat.
 - **Generic Beauty**: beautiful but unanchored. Fix: the moat test: could a competitor ship this?
 - **Sycophancy**: agreeing because the user is confident. Fix: surface the observation with reason and a brand-anchored alternative; after informing, respect their choice.
-- **Moat–Implementation Conflict**: the implementation can't express the brand. Fix: the brand wins, refactor; if it truly can't, revisit the guidelines with the user, as the brand is theirs to adjust.
+- **Moat-Implementation Conflict**: the implementation can't express the brand. Fix: the brand wins, refactor; if it truly can't, revisit the guidelines with the user, as the brand is theirs to adjust.
 - **UX 101 Drift**: an aesthetic breaks the boundary. Fix: UX 101 wins, always.
 - **Silent Guidelines Editing**: updating `brand-design-guidelines.md` from feedback without showing the user. Fix: the document is their voice: propose the line, confirm, then write.
 - **Vibe Without Anchor**: polishing the visuals while the brand lenses drift. Fix: re-check the result against the guidelines before presenting; the vibe check validates it, it doesn't replace it.

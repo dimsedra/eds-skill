@@ -1,4 +1,4 @@
-# Eds' Agent Skills
+﻿# Eds' Agent Skills
 
 A collection of user-centered, modular skills for AI coding agents. These skills help agents communicate clearly, avoid bloated output, and produce clean, production-ready work.
 
@@ -30,7 +30,7 @@ npx skills@latest add dimsedra/eds-skill
 When AI writes code fast, it is easy to lose track of how things work. `/comprehend` spins off a background agent to generate a clean, interactive HTML walkthrough report on your disk, letting you review and understand changes at your own pace.
 
 ### 2. `/issue-it`: Write Clear, Durable GitHub Issues
-AI agents often write issues filled with walls of code that quickly become outdated. `/issue-it` enforces problem-focused titles, 1–2 sentence context summaries, and durable symbol links (`path/to/file` -> `functionName()`) instead of brittle line numbers or code blocks.
+AI agents often write issues filled with walls of code that quickly become outdated. `/issue-it` enforces problem-focused titles, 1-2 sentence context summaries, and durable symbol links (`path/to/file` -> `functionName()`) instead of brittle line numbers or code blocks.
 
 ### 3. `/write-skills`: Build Better Agent Skills
 A practical blueprint for engineering agent skills. It keeps the main `SKILL.md` lean as an orchestrator and puts domain details into flat reference files (`UPPERCASE-SLUG.md`) in the skill root, preventing messy nested folders.

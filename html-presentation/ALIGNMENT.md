@@ -1,4 +1,4 @@
-# Alignment & Grilling Protocol
+﻿# Alignment & Grilling Protocol
 
 Interactive prep session guide for discovering presentation intent, sifting raw human thoughts, structuring the storyline, and locking in design decisions before generating slide code.
 
@@ -16,7 +16,7 @@ Human thinking is exploratory, unstructured, and messy. When the user blurts out
 
 ## 1. The 4-Pass Funnel Alignment Dialogue
 
-Structure the alignment as a progressive funnel—moving from wide, exploratory brain dumps down to precise narrative and visual lock-in.
+Structure the alignment as a progressive funnel - moving from wide, exploratory brain dumps down to precise narrative and visual lock-in.
 
 ### Stage Gate Pacing Invariants
 - **Passes are Stage Gates, Not Turn Counters**: Spend as many conversational turns as needed exploring, bouncing ideas, and refining within the current pass. Never prematurely jump to the next pass on the next turn.
@@ -38,11 +38,11 @@ Structure the alignment as a progressive funnel—moving from wide, exploratory 
 ### Pass 3: Storyline & Slide Content Framework (Pure Narrative Lock)
 *Goal: Validate and lock the slide-by-slide narrative and presentation strategy ("how to present this content") before discussing visuals.*
 - **Action Headlines & Strategy Proposal**: Present the synthesized Slide Content Framework:
-  - *Slide 1: [Hero Title & Subtitle]* — How to present: **Hero Statement**
-  - *Slide 2: [Action Headline: Core problem / context]* — How to present: **Side-by-Side Comparison**
-  - *Slide 3: [Action Headline: Core proposal / mechanism]* — How to present: **Architecture Flow Diagram**
-  - *Slide 4: [Action Headline: Proof / Architecture / Data]* — How to present: **Metric Cards Grid**
-  - *Slide 5: [Action Headline: Next steps / Call to action]* — How to present: **Call to Action Callout**
+ - *Slide 1: [Hero Title & Subtitle]* -  How to present: **Hero Statement**
+ - *Slide 2: [Action Headline: Core problem / context]* -  How to present: **Side-by-Side Comparison**
+ - *Slide 3: [Action Headline: Core proposal / mechanism]* -  How to present: **Architecture Flow Diagram**
+ - *Slide 4: [Action Headline: Proof / Architecture / Data]* -  How to present: **Metric Cards Grid**
+ - *Slide 5: [Action Headline: Next steps / Call to action]* -  How to present: **Call to Action Callout**
 - **Validation Prompt**: *"Does this headline flow and presentation approach capture what you want to communicate, or should we adjust any slide?"*
 - **Scaffold**: Write the approved narrative blueprint into `STORYLINE.md` in the presentation root.
 
