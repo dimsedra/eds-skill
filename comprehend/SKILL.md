@@ -46,7 +46,7 @@ Every `/comprehend` execution follows deterministic phase gates:
 ### Gate 3: Deliver Receipt & Yield Turn
 - Output the clickable local link `[Open Walkthrough: <slug>](file:///...)` and the 2-sentence summary.
 - Yield turn immediately to the user.
-- If the user asks follow-up technical questions, answer concisely in 1-2 paragraphs without code dumping.
+- If the user asks follow-up technical questions, answer concisely in 1–2 paragraphs without code dumping.
 
 ### Gate 4: Feedback & Revision Gate
 - When the user provides feedback or requests changes to the walkthrough:

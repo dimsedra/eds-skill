@@ -11,7 +11,7 @@ Every section serves the reader reviewing the issue six weeks later with zero ac
 - **Title (Problem-First)**: State the exact failure condition or system gap. Skimming the title in a tracker list must convey what is broken without opening the issue.
  - *Good:* `Auth token expiration bypasses database check during high-load requests`
  - *Avoid:* `Fix token check in auth.ts`
-- **Big-Picture Context (Re-Orientation)**: 1-2 concise sentences framing where this component fits in the overall system architecture before detailing the defect.
+- **Big-Picture Context (Re-Orientation)**: 1–2 concise sentences framing where this component fits in the overall system architecture before detailing the defect.
 - **Problem Description & Impact**: Clear explanation of what breaks, under what conditions it manifests, and the operational impact.
 - **Affected Locations (Durable Symbol Pointers)**: Stable symbol names (functions, classes, methods, endpoints) and file paths. No fenced code blocks; code snippets quickly rot into stale snapshots.
 - **Proposed Direction (Optional)**: High-level architectural strategy and boundaries. Do NOT include pseudo-code or implementation snippets.
@@ -22,7 +22,7 @@ Every section serves the reader reviewing the issue six weeks later with zero ac
 
 ```markdown
 ## Context
-[1-2 sentences framing high-level system context for cold re-orientation]
+[1–2 sentences framing high-level system context for cold re-orientation]
 
 ## Problem Description
 [Clear explanation of the specific failure condition and why it manifests]

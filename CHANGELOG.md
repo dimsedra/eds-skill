@@ -1,15 +1,15 @@
-# eds-skill
+﻿# eds-skill
 
 A fork of [mattpocock/skills](https://github.com/mattpocock/skills). This CHANGELOG covers `eds-skill`-specific changes only. The full upstream history lives at [mattpocock/skills/CHANGELOG.md](https://github.com/mattpocock/skills/blob/main/CHANGELOG.md).
 
-## 1.1.0 (2026-08-19)
+## 1.1.0 (2026–08-19)
 
 **Architecture Upgrades:**
 
 - **`/comprehend` Subagent-Driven HTML Generation**: Upgraded `/comprehend` to delegate HTML walkthrough report compilation to a clean-head subagent upon invocation. The subagent inspects code in an isolated context window with zero context pollution and writes standalone HTML modules directly to disk, keeping the main conversation stream light and fast for follow-up Q&A.
 - **`/write-skills` Balancing (Invariants vs. Vanity Numbers)**: Refined the meta-skill to distinguish functional quantitative invariants (loop limits, token caps, 0 failing tests) from arbitrary vanity numbers, and deterministic state machines from checklist fixation.
 
-## 1.0.0 (2026-08-03)
+## 1.0.0 (2026–08-03)
 
 Initial fork.
 

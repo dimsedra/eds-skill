@@ -1,4 +1,4 @@
-# MODULE Format (HTML Walkthrough Reports)
+﻿# MODULE Format (HTML Walkthrough Reports)
 
 Specification for structuring and styling standalone walkthrough HTML documents compiled by `/comprehend`.
 
@@ -25,7 +25,7 @@ An HTML walkthrough report is a self-contained, clean visual guide:
 <body>
   <header>
     <h1>{Title}</h1>
-    <p class="subtitle">{1-2 sentence high-level orientation of what this code does and why}</p>
+    <p class="subtitle">{1–2 sentence high-level orientation of what this code does and why}</p>
   </header>
 
   <main>

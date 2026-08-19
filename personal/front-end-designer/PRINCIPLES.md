@@ -4,7 +4,7 @@ The operating principles of front-end-designer, in depth. They exist to express 
 
 ---
 
-## Form-Function Equilibrium
+## Form–Function Equilibrium
 
 Visual expression, surface textures, brand materialization must never compromise:
 
@@ -18,7 +18,7 @@ Visual expression, surface textures, brand materialization must never compromise
 
 Translate brand personality into physical-feeling surfaces. Process:
 
-1. Extract 2-3 sensory adjectives from the brand's personality.
+1. Extract 2–3 sensory adjectives from the brand's personality.
 2. Convert each adjective into the material behavior it implies. The craft lives in this conversion: the adjective names a *feeling*, the property names *how a surface behaves*. Read the feeling, then derive the behavior. Don't reach for a ready-made pair; the pair is where generic brands come from.
 3. Apply consistently: buttons, cards, and inputs all wear the same material. A brand that feels weighty on its buttons but flimsy on its cards isn't materialized, it's decorated.
 
@@ -53,7 +53,7 @@ Typography is the brand's vocal signature, not just legible text. Faces, sizes, 
 5. **Choose color tokens** that carry brand emotion, not just contrast: surface, text, accent, high-contrast focus.
 6. **State the rationale when presenting**: font X because personality Y, scale Z because hierarchy intensity W.
 
-**Hard floors (UX 101, not aesthetic):** body text 16px+, line-height 1.5+, line length 50-75ch, WCAG AA contrast.
+**Hard floors (UX 101, not aesthetic):** body text 16px+, line-height 1.5+, line length 50–75ch, WCAG AA contrast.
 
 **Validation gate:** every font and size traces back to a personality adjective and a why. Faces chosen for "clean look" or "modern feel" without brand anchoring are rejected.
 

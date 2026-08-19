@@ -47,7 +47,7 @@ Ask one open-ended question with illustrative options:
 - **Conceptual / Analogy**: High-level mental models first, anchored by code.
 - **Interactive Q&A**: Minimal summary first, drill down on user request.
 
-Save the result as 3-5 actionable bullet points under `# User Preferences` in `.journal/comprehend/NOTES.md`.
+Save the result as 3–5 actionable bullet points under `# User Preferences` in `.journal/comprehend/NOTES.md`.
 
 ### Ongoing Maintenance Rules
 - **Direct Feedback**: Immediately update `NOTES.md` when the user requests shifts in depth, visual structure, or pacing.
