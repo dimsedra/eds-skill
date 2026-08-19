@@ -18,6 +18,7 @@ Every slide fragment MUST be wrapped in a `<section>` tag with class `slide` and
 ```
 
 ### Pure HTML Hygiene Invariants
+- **Zero Outer Card Margins**: Never style the root `<section class="slide">` as a floating card widget (no outer margins, rounded corners on the slide canvas, or perimeter drop shadows). The slide element must remain a full-bleed 100vw/100vh canvas.
 - **Zero Markdown Leaking**: Never leave unrendered Markdown syntax inside `.html` files. Convert all Markdown into standard HTML tags:
   - `**text**` → `<strong>text</strong>`
   - `*text*` → `<em>text</em>`

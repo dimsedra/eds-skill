@@ -13,6 +13,7 @@ Build modular, responsive HTML presentation slide decks with dedicated print/PDF
 ## Core Posture
 
 - **Discover Before Building**: Clarify visual identity, aspect ratio, typography, and structure before writing code.
+- **Full-Bleed Viewport Fitting**: The presentation viewport and slide canvas must fit 100% edge-to-edge with zero outer margins or gaps. Content breathing room belongs strictly inside the slide padding.
 - **Modular Multi-File Architecture**: Isolate slides into clean HTML fragments; orchestrate viewer state in a central shell.
 - **Pure Presentation Hygiene**: Enforce strict semantic HTML without inline styles or leaked Markdown syntax.
 
@@ -51,6 +52,7 @@ Build modular, responsive HTML presentation slide decks with dedicated print/PDF
 ## Failure Modes
 
 - **Chat Bloat**: Emitting dozens of slide HTML fragments in the main conversation instead of delegating file generation to a subagent.
+- **Floating Card Slide Drift**: Adding outer margins, rounded borders, or drop shadows to the slide container so slides look like floating cards in a gray void instead of a true full-bleed presentation.
 - **Preset Fixation**: Imposing arbitrary palettes or fonts without grounding them in user discovery and `DECK-DESIGN.md`.
 - **Markdown Leaking**: Leaving unparsed Markdown syntax (`**bold**`, `` `code` ``, `- list`) inside slide HTML fragments.
 - **Inline Style Pollution**: Adding inline `style="..."` attributes or `<style>` blocks into slide fragments instead of `css/styles.css`.

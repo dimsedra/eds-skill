@@ -48,6 +48,34 @@ Before generating slide code, scaffold `DECK-DESIGN.md` in the presentation root
 ### Dynamic Token Construction
 All values in `css/styles.css` derive from `DECK-DESIGN.md`. Avoid arbitrary hardcoded color hexes or ad-hoc margins across slide components.
 
+### Full-Bleed Viewport Architecture (Zero Floating Cards)
+To ensure slides render as a true full-bleed presentation on screen and in fullscreen:
+
+1. **Root & Viewport Invariants**:
+   ```css
+   html, body {
+       margin: 0;
+       padding: 0;
+       width: 100vw;
+       height: 100vh;
+       overflow: hidden;
+       background: var(--bg-primary);
+   }
+
+   #slide-container, .slide {
+       width: 100vw;
+       height: 100vh;
+       margin: 0;
+       box-sizing: border-box;
+       overflow: hidden;
+       position: relative;
+   }
+   ```
+2. **Prohibited Card Effects on Slide Frame**:
+   - **No Outer Margins**: Never add `margin: 2rem auto` or `max-width: 1200px` to `#slide-container` or `.slide`.
+   - **No Frame Shadows or Rounded Corners**: Never apply `border-radius` or `box-shadow` to the root `.slide` element.
+3. **Internal Content Padding**: Content breathing room is achieved purely through internal slide padding (e.g. `padding: 4rem 6rem;` on `.slide` or `.slide-content`), ensuring the slide background always touches every display edge.
+
 ---
 
 ## 3. High-Fidelity PDF & Print Export Engine
