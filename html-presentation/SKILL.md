@@ -29,11 +29,12 @@ Build modular, responsive HTML presentation slide decks with dedicated print/PDF
 
 ## Deterministic Phase Gates
 
-### Gate 1: Alignment & Design (Sifter & Mirror Session)
-- Execute the paced alignment session per [ALIGNMENT.md](ALIGNMENT.md) (sift raw thoughts; ask 1–2 questions per turn):
-  - **Turn 1 (Topic, Audience & Core Takeaway)**: Sift subject, audience context, and 1-sentence Big Idea.
-  - **Turn 2 (Modality & Slide Budget)**: Lock delivery format (live spoken vs. standalone read-ahead) and slide count.
-  - **Turn 3 (Storyline Reflection & Vibe)**: Reflect synthesized **Action Headlines** sequence for user approval, and lock visual palette.
+### Gate 1: Alignment & Design (4-Pass Funnel Session)
+- Execute the funnel alignment session per [ALIGNMENT.md](ALIGNMENT.md) (ask strictly 1 pass per turn; wait for response):
+  - **Pass 1 (Open Brain Dump)**: Wide-open invitation for raw thoughts, topic, audience, and ideas with zero interrogation pressure.
+  - **Pass 2 (Sift & Clarify)**: Mirror extracted core message and clarify only missing format/budget parameters.
+  - **Pass 3 (Storyline Lock-In)**: Propose synthesized Action Headlines sequence for pure narrative validation.
+  - **Pass 4 (Visual Styling & Theme)**: Lock visual mood, color palette tokens, and typography.
 - Scaffold `DECK-DESIGN.md` in the presentation root as the single source of truth for narrative flow and design tokens.
 - Consult [ARCHITECTURE.md](ARCHITECTURE.md) for shell architecture and full-bleed viewport tokens.
 

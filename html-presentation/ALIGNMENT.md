@@ -13,34 +13,42 @@ Human thinking is exploratory, unstructured, and messy. When the user blurts out
 
 ---
 
-## 1. Paced Alignment Dialogue
+## 1. The 4-Pass Funnel Alignment Dialogue
 
-Keep questions focused and paced (ask strictly 1–2 questions per turn; wait for response before advancing):
+Structure the alignment as a funnel—moving from wide, loose exploration down to precise narrative and visual decisions. Ask questions strictly **one pass per message turn**; wait for response before advancing.
 
-### Turn 1: Topic, Audience & Core Takeaway
-*Goal: Anchor the subject matter, audience context, and the single main message.*
-- **Prompt**: *"What is the presentation about, who is your audience, and what is the single main point you want them to walk away with?"*
-- **Sifting Task**: Parse the user's response into Topic, Target Audience, and a tentative 1-sentence Big Idea.
+### Pass 1: The Open Brain Dump (Wide & Loose)
+*Goal: Give the user full freedom to dump raw thoughts without interrogation pressure.*
+- **Opening Invitation**: *"What do you have in mind for this presentation? Feel free to dump your raw thoughts, topic, target audience, rough ideas, or any specific points you want to cover."*
+- **Sifting Task**: Actively parse the user's raw stream to extract tentative topic, audience angle, core thesis, and any specific slide anecdotes.
 
-### Turn 2: Delivery Modality & Slide Budget
-*Goal: Lock in presentation format and length.*
-- **Prompt**: *"Is this presented live with you speaking (visual punch, minimal text), or sent as a standalone read-ahead document (self-explanatory cards)? How many slides are we aiming for?"*
+### Pass 2: Sift & Clarify (Target Missing Context)
+*Goal: Mirror the extracted core back to the user and clarify only what's missing.*
+- **Mirror**: Reflect back the synthesized topic and takeaway:
+  *"Here is what I'm hearing: the core message is [1-sentence synthesis], aimed at [audience]."*
+- **Targeted Clarification**: Ask only for missing parameters:
+  *"To sharpen this: Is this presented live with you speaking (visual punch), or sent as a standalone read-ahead document? Roughly how many slides are we aiming for (e.g. 5-slide brief vs. 10-slide walkthrough)?"*
 
-### Turn 3: Storyline Reflection (Action Headlines) & Visual Vibe
-*Goal: Present the synthesized Slide Content Framework for user validation.*
-- **Sifting Task**: Assemble the user's ideas into a sequence of **Action Headlines** (assertions that tell a complete story top-to-bottom):
+### Pass 3: Storyline & Slide Content Framework (Pure Narrative Lock)
+*Goal: Validate and lock the slide-by-slide narrative before discussing visuals.*
+- **Action Headlines Proposal**: Present the synthesized Slide Content Framework:
   - *Slide 1: [Hero Title & Subtitle]*
-  - *Slide 2: [Action Headline: Current challenge or context]*
-  - *Slide 3: [Action Headline: Core proposal or mechanism]*
-  - *Slide 4: [Action Headline: Architecture / Proof / Data]*
-  - *Slide 5: [Action Headline: Next steps or call to action]*
-- **Prompt**: Present the draft sequence and ask: *"Does this headline sequence tell the exact story you want, and what visual tone and palette fits best (e.g. dark modern engineering vs. clean executive light)?"*
+  - *Slide 2: [Action Headline: Core problem / context]*
+  - *Slide 3: [Action Headline: Core proposal / mechanism]*
+  - *Slide 4: [Action Headline: Proof / Architecture / Data]*
+  - *Slide 5: [Action Headline: Next steps / Call to action]*
+- **Validation Prompt**: *"Does this headline sequence tell the exact story you want, or should we swap, reorder, or adjust any point?"*
+
+### Pass 4: Visual Styling & Theme (Look & Feel)
+*Goal: Lock visual aesthetics once the storyline is settled.*
+- **Prompt**: *"What visual tone and palette fits best for this deck? (e.g., Dark modern engineering with cyan accent, Clean editorial light with slate blue, or custom brand colors)?"*
+- **Scaffold**: Write the approved narrative and visual tokens into `DECK-DESIGN.md` in the presentation root.
 
 ---
 
 ## 2. The `DECK-DESIGN.md` Blueprint Schema
 
-Once the storyline and design choices are agreed, lock them into `DECK-DESIGN.md` in the presentation root:
+Once Pass 4 is confirmed, scaffold `DECK-DESIGN.md` in the presentation root:
 
 ```markdown
 # Deck Design Specifications
