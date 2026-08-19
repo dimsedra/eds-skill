@@ -30,50 +30,68 @@ Structure the alignment as a funnel—moving from wide, loose exploration down t
   *"To sharpen this: Is this presented live with you speaking (visual punch), or sent as a standalone read-ahead document? Roughly how many slides are we aiming for (e.g. 5-slide brief vs. 10-slide walkthrough)?"*
 
 ### Pass 3: Storyline & Slide Content Framework (Pure Narrative Lock)
-*Goal: Validate and lock the slide-by-slide narrative before discussing visuals.*
-- **Action Headlines Proposal**: Present the synthesized Slide Content Framework:
-  - *Slide 1: [Hero Title & Subtitle]*
-  - *Slide 2: [Action Headline: Core problem / context]*
-  - *Slide 3: [Action Headline: Core proposal / mechanism]*
-  - *Slide 4: [Action Headline: Proof / Architecture / Data]*
-  - *Slide 5: [Action Headline: Next steps / Call to action]*
-- **Validation Prompt**: *"Does this headline sequence tell the exact story you want, or should we swap, reorder, or adjust any point?"*
+*Goal: Validate and lock the slide-by-slide narrative and presentation strategy ("how to present this content") before discussing visuals.*
+- **Action Headlines & Strategy Proposal**: Present the synthesized Slide Content Framework:
+  - *Slide 1: [Hero Title & Subtitle]* — How to present: **Hero Statement**
+  - *Slide 2: [Action Headline: Core problem / context]* — How to present: **Side-by-Side Comparison**
+  - *Slide 3: [Action Headline: Core proposal / mechanism]* — How to present: **Architecture Flow Diagram**
+  - *Slide 4: [Action Headline: Proof / Architecture / Data]* — How to present: **Metric Cards Grid**
+  - *Slide 5: [Action Headline: Next steps / Call to action]* — How to present: **Call to Action Callout**
+- **Validation Prompt**: *"Does this headline flow and presentation approach capture what you want to communicate, or should we adjust any slide?"*
+- **Scaffold**: Write the approved narrative blueprint into `STORYLINE.md` in the presentation root.
 
 ### Pass 4: Visual Styling & Theme (Look & Feel)
 *Goal: Lock visual aesthetics once the storyline is settled.*
 - **Prompt**: *"What visual tone and palette fits best for this deck? (e.g., Dark modern engineering with cyan accent, Clean editorial light with slate blue, or custom brand colors)?"*
-- **Scaffold**: Write the approved narrative and visual tokens into `DECK-DESIGN.md` in the presentation root.
+- **Scaffold**: Write the approved design tokens into `DECK-DESIGN.md` in the presentation root.
 
 ---
 
-## 2. The `DECK-DESIGN.md` Blueprint Schema
+## 2. The Blueprint Schemas
 
-Once Pass 4 is confirmed, scaffold `DECK-DESIGN.md` in the presentation root:
+### Output 1: `STORYLINE.md` (Content & Presentation Strategy)
+Scaffolded after Pass 3:
 
 ```markdown
-# Deck Design Specifications
+# Deck Storyline & Slide Content Framework
 
-## 1. Narrative Blueprint & Storyline
+## 1. Context & North Star
 - **Topic & Setting**: [Presentation subject and context]
 - **Target Audience**: [Audience profile and baseline mindset]
 - **The 1-Sentence "Big Idea"**: [Governing takeaway with clear stakes]
 - **Modality**: [Live Companion Keynote | Standalone Read-Ahead]
 - **Slide Count**: [Total number of slides]
 
-## 2. Slide Content Framework (Action Headlines Sequence)
-- **Slide 01**: [Hero Title] — Layout: `.slide-hero`
-- **Slide 02**: [Action Headline: Lead Claim] — Layout: `.split-layout` (Problem contrast)
-- **Slide 03**: [Action Headline: Lead Claim] — Layout: `.code-window` / `.mermaid` (Mechanics)
-- **Slide 04**: [Action Headline: Lead Claim] — Layout: `.card-grid .col-3` (Metrics & Proof)
-- **Slide 05**: [Action Headline: Lead Claim] — Layout: `.cta-layout` (Next steps)
+## 2. Slide Content Framework
 
-## 3. Design Tokens & Typography
+| Slide | Action Headline (Core Claim) | How Should We Present This Content? | Key Supporting Points / Data |
+| :--- | :--- | :--- | :--- |
+| **01** | [Hero Title & Subtitle] | **Hero Statement** | [Author, date, category tag] |
+| **02** | [Lead Assertion: Problem] | **Side-by-Side Comparison** | [Left: old reality vs. Right: new reality] |
+| **03** | [Lead Assertion: Solution] | **Architecture Flow Diagram** | [Step 1 → Step 2 → Step 3] |
+| **04** | [Lead Assertion: Proof] | **Metric Cards Grid** | [3 key stats / benchmarks] |
+| **05** | [Lead Assertion: Action] | **Call to Action Callout** | [Immediate next steps] |
+```
+
+### Output 2: `DECK-DESIGN.md` (Visual System & Tokens)
+Scaffolded after Pass 4:
+
+```markdown
+# Deck Design Specifications
+
+## 1. Aesthetic Profile
+- **Mood / Tone**: [e.g. Dark modern technical, Clean editorial light]
+- **Aspect Ratio**: 16:9 (1920x1080 / 16in x 9in Full-Bleed)
+
+## 2. Design Tokens
 - `--bg-primary`: [Hex color]
 - `--bg-surface`: [Hex color]
 - `--text-primary`: [Hex color]
 - `--text-muted`: [Hex color]
 - `--accent-color`: [Hex color]
 - `--border-color`: [Hex color]
+
+## 3. Typography
 - **Heading Font**: [Font family, weight]
 - **Body Font**: [Font family, weight, line-height]
 - **Code Font**: [Font family]

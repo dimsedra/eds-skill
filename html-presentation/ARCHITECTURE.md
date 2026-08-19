@@ -20,13 +20,16 @@ presentation/
   slides/slide-02.html
   ...
   export_pdf.html         # Dedicated print assembly root for PDF generation
-  DECK-DESIGN.md          # Storyline blueprint and design token specification
+  STORYLINE.md            # Narrative blueprint & slide content framework (Pass 3)
+  DECK-DESIGN.md          # Visual design tokens & typography specification (Pass 4)
 ```
 
 ### Separation of Concerns
+- **Storyline (`STORYLINE.md`)**: Defines topic, audience, takeaway, and slide-by-slide Action Headlines with presentation strategies.
+- **Design Tokens (`DECK-DESIGN.md`)**: Defines color roles, typography, and theme styling tokens.
 - **Shell (`index.html`)**: Mounts the presentation application, provides the slide viewport (`#slide-container`), and hosts navigation controls.
-- **Styles (`css/styles.css`)**: Defines CSS custom properties on `:root` and reusable component classes.
-- **Fragments (`slides/slide-NN.html`)**: Pure semantic HTML containing slide content only. Zero inline styles or script tags.
+- **Styles (`css/styles.css`)**: Implements CSS custom properties from `DECK-DESIGN.md` and reusable layout classes.
+- **Fragments (`slides/slide-NN.html`)**: Pure semantic HTML containing slide content only, implementing the strategy from `STORYLINE.md`. Zero inline styles or script tags.
 - **Export Root (`export_pdf.html`)**: Assembles all fragments at runtime into a multi-page printable document.
 
 ---

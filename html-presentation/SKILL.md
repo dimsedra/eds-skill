@@ -33,9 +33,9 @@ Build modular, responsive HTML presentation slide decks with dedicated print/PDF
 - Execute the funnel alignment session per [ALIGNMENT.md](ALIGNMENT.md) (ask strictly 1 pass per turn; wait for response):
   - **Pass 1 (Open Brain Dump)**: Wide-open invitation for raw thoughts, topic, audience, and ideas with zero interrogation pressure.
   - **Pass 2 (Sift & Clarify)**: Mirror extracted core message and clarify only missing format/budget parameters.
-  - **Pass 3 (Storyline Lock-In)**: Propose synthesized Action Headlines sequence for pure narrative validation.
-  - **Pass 4 (Visual Styling & Theme)**: Lock visual mood, color palette tokens, and typography.
-- Scaffold `DECK-DESIGN.md` in the presentation root as the single source of truth for narrative flow and design tokens.
+  - **Pass 3 (Storyline Lock-In)**: Propose synthesized Action Headlines sequence and presentation strategy ("how to present this content"), locking `STORYLINE.md`.
+  - **Pass 4 (Visual Styling & Theme)**: Lock visual mood, color palette tokens, and typography, locking `DECK-DESIGN.md`.
+- Scaffold `STORYLINE.md` and `DECK-DESIGN.md` in the presentation root as the dual sources of truth before building.
 - Consult [ARCHITECTURE.md](ARCHITECTURE.md) for shell architecture and full-bleed viewport tokens.
 
 ### Gate 2: Delegated Deck Generation
@@ -43,7 +43,7 @@ Build modular, responsive HTML presentation slide decks with dedicated print/PDF
   - Presentation shell (`index.html`) and PDF print assembler (`export_pdf.html`) per [ARCHITECTURE.md](ARCHITECTURE.md).
   - Central stylesheet (`css/styles.css`) implementing tokens from `DECK-DESIGN.md`.
   - Interactive loader and controller scripts (`js/slide-loader.js`, `js/main.js`) per [SCRIPTS.md](SCRIPTS.md).
-  - Slide fragments (`slides/slide-01.html` ... `slides/slide-NN.html`) matching schemas in [SLIDE-FORMAT.md](SLIDE-FORMAT.md).
+  - Slide fragments (`slides/slide-01.html` ... `slides/slide-NN.html`) implementing the presentation strategy from `STORYLINE.md` matching schemas in [SLIDE-FORMAT.md](SLIDE-FORMAT.md).
 
 ### Gate 3: Verification & Initial Delivery
 - Verify slide fragment count matches `totalSlides` in `js/slide-loader.js`.
@@ -54,8 +54,8 @@ Build modular, responsive HTML presentation slide decks with dedicated print/PDF
 ### Gate 4: Iterative Revision & Re-Entry Gate
 Accommodate non-linear human iteration based on user feedback:
 - **Slide Tweaks**: Edit targeted `slides/slide-NN.html` fragments or `css/styles.css` directly.
-- **Slide Additions / Deletions**: Update `DECK-DESIGN.md`, generate or remove fragments, re-index sequential filenames (`slide-01.html` ... `slide-NN.html`), and update `totalSlides` in `slide-loader.js`.
-- **Storyline Pivots**: Re-enter Gate 1 per [ALIGNMENT.md](ALIGNMENT.md), update Action Headlines in `DECK-DESIGN.md`, and re-dispatch subagent to regenerate the deck.
+- **Slide Additions / Deletions**: Update `STORYLINE.md`, generate or remove fragments, re-index sequential filenames (`slide-01.html` ... `slide-NN.html`), and update `totalSlides` in `slide-loader.js`.
+- **Storyline Pivots**: Re-enter Gate 1 per [ALIGNMENT.md](ALIGNMENT.md), update Action Headlines in `STORYLINE.md`, and re-dispatch subagent to regenerate the deck.
 
 ---
 
@@ -63,7 +63,7 @@ Accommodate non-linear human iteration based on user feedback:
 
 - **Rigid Interrogation Drift**: Forcing the user to answer formulaic questions instead of sifting their raw, unstructured thoughts.
 - **Question Dump Bloat**: Dumping all alignment questions at once in a massive wall of text instead of conversational, round-by-round turns.
-- **Unground Deck Generation**: Generating slide files before locking in the Slide Content Framework and Big Idea in `DECK-DESIGN.md`.
+- **Unground Deck Generation**: Generating slide files before locking in `STORYLINE.md` and `DECK-DESIGN.md`.
 - **Stale Index Regressions**: Inserting or deleting slide fragments without updating `totalSlides` or re-numbering subsequent slide files.
 - **Chat Bloat**: Emitting dozens of slide HTML fragments in the main conversation instead of delegating file generation to a subagent.
 - **Floating Card Slide Drift**: Adding outer margins, rounded borders, or drop shadows to the slide container so slides look like floating cards in a gray void instead of a true full-bleed presentation.
