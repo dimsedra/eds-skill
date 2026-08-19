@@ -1,60 +1,51 @@
-# RECORD Format (Session Mission & Record)
+# RECORD Format (Session Records)
 
-A session record is a brief markdown file in `.journal/comprehend/records/0001-<slug>.md`. Each `/comprehend` session has its own focused mission and record combined in one file.
-
-You initialize the **Mission** section at session start, and complete the **Session Summary & Insights** section as the session finishes.
+Session records are concise markdown files saved at `.journal/comprehend/records/{SEQUENCE}-{SLUG}.md`.
 
 ---
 
-## Template Structure
+## Record Schema
 
 ```md
 ---
 date: {YYYY-MM-DD}
-slice: {target code slice or module}
+slice: {Target code slice or module}
 mode: {gating | paying-down}
 ---
 
 # Session Mission
 
 ## Target Slice
-{1-2 sentences: which code, where it lives, and what it does.}
+{1-2 sentences: target code, location, and functional purpose.}
 
-## Why This Slice, Now (Driver)
-{1-2 sentences: the driver. Gating a PR diff, an upcoming refactor, a 3am incident, or paying down debt.}
+## Driver
+{1-2 sentences: PR diff gate, refactoring prep, bug incident, or debt paydown.}
 
 ## Success Criterion
-{1-2 sentences: what success looks like for this session.}
+{1 sentence: clear definition of successful comprehension.}
 
 ---
 
 # Session Summary & Insights
 
-## Covered
-{1-3 bullets: what the session walked through, following the dialogue progression.}
+## Walkthrough Report
+- Report: `.journal/comprehend/modules/{SEQUENCE}-{SLUG}.html`
 
-## Dilemmas & Insights (User POV)
-{1-3 bullets: core dilemma or question explored → the concrete technical realization that clicked.}
+## Topics Explored
+- {Topic 1}
+- {Topic 2}
 
-## Report Status
-{Path to HTML walkthrough report (.journal/comprehend/modules/0001-<slug>.html) compiled by subagent.}
+## Breakthroughs & Realizations (User POV)
+- {Dilemma/Question explored → Concrete technical insight that resolved it}
 
 ## Next Steps
-{1-2 sentences: what the next session should pick up.}
+- {1 sentence on follow-up code slices to explore}
 ```
 
 ---
 
-## Execution Workflow
+## Invariants
 
-1. **Session Start (Subagent):** Create or open `records/0001-<slug>.md`. Fill in the **Session Mission** (Target Slice, Driver, Success Criterion) and link the generated HTML module path.
-2. **Session Finish (Parent Agent):** Update the **Session Summary & Insights** section with any key breakthroughs or Q&A insights from the user's perspective.
-
----
-
-## Guidelines for Writing Records
-
-- **Do NOT write code blocks in records.** Keep records focused on high-level shape, driver, and substantive insights.
-- **Write in the user's voice.** Capture takeaways from the user's first-person perspective (the question explored and the realization that resolved it) so a cold reader six weeks later recalls their own mental journey.
-- **Avoid empty observer logs.** State the actual technical reasoning that clicked rather than third-person meta-statements (such as stating that the user examined or understood something).
-- **Do NOT score or grade.** Document the cognitive journey objectively without evaluating proficiency.
+- **No Code Dumps**: Focus strictly on architectural drivers and cognitive breakthroughs.
+- **User Perspective**: Document insights in the user's voice rather than passive observer logs (e.g., state the insight that clicked, not "user understood the code").
+- **Zero Grading**: Never include scores, checkpoints, or fluency evaluations.
